@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { Provider } from 'react-redux'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-function App() {
+import user from './reducers/user'
+
+import Home from './Pages/HomePage/Home.js'
+
+
+const reducer = combineReducers({
+  user: user.reducer
+})
+const store = configureStore({ reducer })
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Provider store={store}>
+        <Switch>
+          <Route path='/' exact>
+            <Home />
+          </Route>
+        </Switch>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
