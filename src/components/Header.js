@@ -18,6 +18,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
+  <div className="navbar">
     <Navbar color="faded" light toggleable="lg">
       <Container>
         <div className="d-flex justify-content-between">
@@ -43,6 +44,7 @@ const Header = () => {
         </Collapse>
       </Container>
     </Navbar>
+    </div>
   )
 
 }
