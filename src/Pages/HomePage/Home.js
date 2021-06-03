@@ -13,7 +13,7 @@ import { Container } from 'styled-components/Containers.js'
 const Home = () => {
   return (
     <Container>
-      <p>Home</p>
+      <p>Our moody</p>
     </Container>
     
   )
