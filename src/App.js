@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import user from './reducers/user'
 
 import Home from './Pages/HomePage/Home.js'
-import Header from './components/Header'
+import Header from './components/Navbar'
 
 
 const reducer = combineReducers({
