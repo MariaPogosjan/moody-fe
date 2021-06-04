@@ -14,14 +14,13 @@ import { SectionTitle } from 'styled-components/Titels'
 import user from 'reducers/user'
 import { API_URL } from 'reusables/urls'
 
-const SignUp = () => {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
+const Login = () => {
+  const [emailOrUsername, setUsernameOrEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const dispatch = useDispatch()
   const accessToken = useSelector(store => store.user.accessToken)
   const errors = useSelector(store => store.user.errors)
-  const dispatch = useDispatch()
   const history = useHistory()
 
   useEffect(() => {
@@ -30,12 +29,8 @@ const SignUp = () => {
     }
   }, [accessToken, history])
 
-  const onNameChange = (event) => {
-    setUsername(event.target.value)
-  }
-
-  const onEmailChange = (event) => {
-    setEmail(event.target.value)
+  const onUsernameOrEmailChange = (event) => {
+    setUsernameOrEmail(event.target.value)
   }
 
   const onPasswordChange = (event) => {
@@ -43,19 +38,18 @@ const SignUp = () => {
   }
 
   const onFormSubmit = (event) => {
-    console.log("form submit")
     event.preventDefault()
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ username, email, password })
+      body: JSON.stringify({ emailOrUsername, password })
     }
-    fetch(API_URL('users'), options)
+    fetch(API_URL('sessions'), options)
       .then(res => res.json())
       .then(data => {
-        if (data.success) {
+        if(data.success) {
           batch(() => {
             dispatch(user.actions.setUsername(data.username))
             dispatch(user.actions.setUserId(data.userId))
@@ -70,8 +64,7 @@ const SignUp = () => {
           })
         } else {
           dispatch(user.actions.setErrors(data))
-          setUsername("")
-          setEmail("")
+          setUsernameOrEmail("")
           setPassword("")
         }
       })
@@ -79,35 +72,17 @@ const SignUp = () => {
 
   return (
     <FormSection >
-      <SectionTitle>Sign up</SectionTitle>
+      <SectionTitle>Sign in</SectionTitle>
       <Form onSubmit={onFormSubmit}>
-        {errors &&
-          <>
-            {errors.error.code === 11000
-              ?
-              <ErrorMessage>Email or username is not unique</ErrorMessage>
-              :
-              <ErrorMessage>{errors.message}</ErrorMessage>
-            }
-          </>
-        }
-        <Label htmlFor="name">Name</Label>
+        {errors && <ErrorMessage>{errors.message}</ErrorMessage>}
+        <Label htmlFor="name">Email or username</Label>
         <Input
           type="text"
           required
-          onChange={onNameChange}
-          value={username}
-          placeholder="Username"
+          onChange={onUsernameOrEmailChange}
+          value={emailOrUsername}
+          placeholder="Email or username"
           id="name"
-        />
-        <Label htmlFor="email">Email</Label>
-        <Input
-          type="email"
-          required
-          onChange={onEmailChange}
-          value={email}
-          placeholder="Email"
-          id="email"
         />
         <Label htmlFor="password">Password</Label>
         <Input
@@ -119,11 +94,10 @@ const SignUp = () => {
           id="password"
         />
         <ButtonsWrapper>
-          <Button type="submit">Sign up</Button>
+          <Button type="submit">Sign in</Button>
         </ButtonsWrapper>
       </Form>
     </FormSection>
   )
 }
-
-export default SignUp
+export default Login
