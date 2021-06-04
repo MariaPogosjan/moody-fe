@@ -4,13 +4,13 @@ import { Pivot as Hamburger } from 'hamburger-react'
 
 const Nav = styled.div`
   position: sticky;
-  top:0;
   height: 80px;
   padding: 0 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  background-color: #EEECFB;
 
   @media (max-width: 768px) {
     height: ${({isOpen}) => (!isOpen ? "auto" : "0")};
@@ -62,22 +62,11 @@ const MenuLink = styled.a`
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false)
-  const [navbar, setNavbar] = useState(false)
-
-  const onChangeBackground = () => {
-    if (window.scrollY >= 80) {
-      setNavbar(true)
-    } else {
-      setNavbar(false)
-    }
-  }
-  
-  window.addEventListener('scroll', onChangeBackground)
 
   return (
-    <Nav className={navbar ? 'colorChange' : 'navbar'}>
+    <Nav>
       <Logo href="#">
-        Moody
+        moody
       </Logo>
       <HamburgerButton>
         <Hamburger 
@@ -89,12 +78,11 @@ const Navbar = () => {
       </HamburgerButton>
       <Menu isOpen={isOpen}>
         <MenuLink href="#">Home</MenuLink>
-        <MenuLink href="#">About Us</MenuLink>
-        <MenuLink href="#">Contact Us</MenuLink>
+        <MenuLink href="#">About</MenuLink>
+        <MenuLink href="#">Contact</MenuLink>
       </Menu>
     </Nav>
   )
-
 }
 
 export default Navbar

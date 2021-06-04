@@ -5,9 +5,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import user from './reducers/user'
 
-import Home from './Pages/HomePage/Home.js'
-import Header from './components/Navbar'
-
+import Navbar from 'components/Navbar'
+import Home from 'Pages/HomePage/Home.js'
 
 const reducer = combineReducers({
   user: user.reducer
@@ -18,7 +17,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <Header />
+        <Navbar />
         <Switch>
           <Route path='/' exact>
             <Home />

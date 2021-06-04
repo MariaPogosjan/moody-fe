@@ -5,5 +5,5 @@ export const Container = styled.section`
    margin:0;
    height: auto;
    min-height: 100vh;
-   padding: 10px;
+   padding: 1rem;
 `
