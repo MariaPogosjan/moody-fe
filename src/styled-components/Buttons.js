@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+export const ButtonsWrapper = styled.div`
+  display: flex; 
+  justify-content: center;
+`
+
 export const Button = styled.button`
   background-color: #404167;
   border: none;

@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
+import { 
+  FormSection,
+  Form,
+  Label,
+  Input
+} from 'styled-components/Forms'
+import { Button, ButtonsWrapper } from 'styled-components/Buttons'
+import { SectionTitle } from 'styled-components/Titels'
 import user from 'reducers/user'
 
 const SignUp = () => {
@@ -28,11 +36,26 @@ const SignUp = () => {
 
   const onFormSubmit = (event) => {
     event.preventDefault()
-    
+
   }
 
   return (
-    <p>hej</p>
+    <FormSection>
+      <SectionTitle>Sign up</SectionTitle>
+      <Form>
+        <Label htmlFor="name">Name</Label>
+        <Input placeholder="Username" id="name"/>
+        <Label htmlFor="email">E-post</Label>
+        <Input placeholder="Email" id="email"/>
+        <Label htmlFor="password">Password</Label>
+        <Input placeholder="Password" id="password"/> 
+      </Form>
+      <ButtonsWrapper>
+        <Button>Sign up</Button>
+      </ButtonsWrapper>
+
+    </FormSection>
+
   )
 }
 
