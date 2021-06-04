@@ -8,6 +8,7 @@ import user from './reducers/user'
 import Navbar from 'components/Navbar'
 import Home from 'Pages/HomePage/index.js'
 import SignUp from 'Pages/Signup'
+import Profile from 'Pages/ProfilePage'
 
 const reducer = combineReducers({
   user: user.reducer
@@ -25,6 +26,9 @@ const App = () => {
           </Route>
           <Route path='/signup' exact>
             <SignUp />
+          </Route>
+          <Route path='/profile' exact>
+            <Profile />
           </Route>
         </Switch>
       </Provider>

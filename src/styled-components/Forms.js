@@ -20,7 +20,7 @@ export const Label = styled.label`
 export const Input = styled.input`
   padding: 10px 5px;
   margin: 10px 0 5px 0;
-  width: 200px;
+  width: 50%;
   border: 1px solid #BCA0BC;
   border-radius: 6px;
 
@@ -28,3 +28,14 @@ export const Input = styled.input`
     color: #4C5F6B;  
   } 
 `
+
+export const ErrorMessage = styled.p`
+  background-color: rgba(234, 161, 161, 0.318);
+  padding: 10px 5px;
+  text-align: center;
+  width: 50%;
+  font-size: 14px;
+  border-radius: 7px;
+  color: #626365;
+`
+
