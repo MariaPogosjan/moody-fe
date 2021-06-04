@@ -6,7 +6,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import user from './reducers/user'
 
 import Navbar from 'components/Navbar'
-import Home from 'Pages/HomePage/Home.js'
+import Home from 'Pages/HomePage/index.js'
+import SignUp from 'Pages/Signup'
 
 const reducer = combineReducers({
   user: user.reducer
@@ -21,6 +22,9 @@ const App = () => {
         <Switch>
           <Route path='/' exact>
             <Home />
+          </Route>
+          <Route path='/signup' exact>
+            <SignUp />
           </Route>
         </Switch>
       </Provider>

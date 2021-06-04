@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const Container = styled.section`
-   background-color: #F0F2F9;
+   background-color: #fff;
    margin:0;
    height: auto;
    min-height: 100vh;
-   padding: 1rem;
+   padding: 0 1rem;
 `
