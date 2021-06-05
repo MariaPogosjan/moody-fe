@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import user from './reducers/user'
+import feeling from './reducers/feeling'
 
 import Navbar from 'components/Navbar'
 import Home from 'Pages/HomePage/index.js'
@@ -12,7 +13,8 @@ import Login from 'Pages/LoginPage'
 import Profile from 'Pages/ProfilePage'
 
 const reducer = combineReducers({
-  user: user.reducer
+  user: user.reducer,
+  feeling: feeling.reducer
 })
 const store = configureStore({ reducer })
 
