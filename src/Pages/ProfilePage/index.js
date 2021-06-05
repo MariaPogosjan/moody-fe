@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+//import styled from 'styled-components'
 
 import { Container } from 'styled-components/Containers'
 import FeelingsForm from './Form'
