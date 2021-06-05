@@ -43,7 +43,6 @@ const SignUp = () => {
   }
 
   const onFormSubmit = (event) => {
-    console.log("form submit")
     event.preventDefault()
     const options = {
       method: 'POST',

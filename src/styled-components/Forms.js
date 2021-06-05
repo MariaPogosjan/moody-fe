@@ -16,6 +16,10 @@ export const Form = styled.form `
 export const Label = styled.label`
  display: none;
 `
+export const VisibleLabel = styled.label`
+ font-size: 14px;
+ color: #4C5F6B
+`
 
 export const Input = styled.input`
   padding: 10px 5px;

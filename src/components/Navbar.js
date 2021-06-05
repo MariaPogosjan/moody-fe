@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Pivot as Hamburger } from 'hamburger-react'
+import { useSelector } from 'react-redux'
 
 const Nav = styled.div`
   position: sticky;
@@ -13,7 +14,7 @@ const Nav = styled.div`
   background-color: #EEECFB;
 
   @media (max-width: 768px) {
-    height: ${({isOpen}) => (!isOpen ? "auto" : "0")};
+    height: ${({ isOpen }) => (!isOpen ? "auto" : "0")};
   }
 `
 const Logo = styled.a`
@@ -40,7 +41,7 @@ const Menu = styled.div`
     overflow: hidden;
     flex-direction: column;
     width: 100%;
-    max-height: ${({isOpen}) => (isOpen ? "300px" : "0")};
+    max-height: ${({ isOpen }) => (isOpen ? "300px" : "0")};
   }
 `
 
@@ -62,25 +63,29 @@ const MenuLink = styled.a`
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false)
+  const accessToken = useSelector(store => store.user.accessToken)
 
   return (
     <Nav>
       <Logo href="#">
         moody
       </Logo>
-      <HamburgerButton>
-        <Hamburger 
-          label="Show menu"  
-          toggled={isOpen} 
-          toggle={setOpen}
-          color="#404167" 
-        />
-      </HamburgerButton>
-      <Menu isOpen={isOpen}>
-        <MenuLink href="#">Home</MenuLink>
-        <MenuLink href="#">About</MenuLink>
-        <MenuLink href="#">Contact</MenuLink>
-      </Menu>
+      {!accessToken &&
+        <>
+          <HamburgerButton>
+            <Hamburger
+              label="Show menu"
+              toggled={isOpen}
+              toggle={setOpen}
+              color="#404167"
+            />
+          </HamburgerButton>
+          <Menu isOpen={isOpen}>
+            <MenuLink href="#">Home</MenuLink>
+            <MenuLink href="#">About</MenuLink>
+            <MenuLink href="#">Contact</MenuLink>
+          </Menu>
+        </>}
     </Nav>
   )
 }
