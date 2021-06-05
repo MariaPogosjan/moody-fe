@@ -11,6 +11,7 @@ import Home from 'Pages/HomePage/index.js'
 import SignUp from 'Pages/Signup'
 import Login from 'Pages/LoginPage'
 import Profile from 'Pages/ProfilePage'
+import SummaryPage from 'Pages/SummaryPage'
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -35,6 +36,9 @@ const App = () => {
           </Route>
           <Route path='/profile' exact>
             <Profile />
+          </Route>
+          <Route path='/summary' exact>
+            <SummaryPage />
           </Route>
         </Switch>
       </Provider>

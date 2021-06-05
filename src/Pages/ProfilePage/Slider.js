@@ -56,17 +56,17 @@ const generateLabel = (number) => {
 const generateText = (number) => {
   switch (number) {
     case 0:
-      return ('sad')
+      return ('Sad')
     case 0.2:
-      return ('angry')
+      return ('Angry')
     case 0.4:
-      return ('stressed')
+      return ('Stressed')
     case 0.6:
-      return ('okay')
+      return ('Okay')
     case 0.8:
-      return ('better')
+      return ('Better')
     default:
-      return ('happy')
+      return ('Happy')
   }
 }
 
