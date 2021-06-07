@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
+import { format } from 'date-fns'
+import "index.css";
+
+
 
 const CalendarComponent = ({ feelings }) => {
   const [date, setDate] = useState(new Date())
   const [visible, setVisble] = useState(false)
   const [filteredItem, setFiltredItem] = useState([])
+  
+
+
+
+  //console.log(test)
+  //test.className = 'react-calendar__month-view__days__day'
+  
 
   const onChange = (date) => {
     setDate(date)
@@ -13,31 +24,36 @@ const CalendarComponent = ({ feelings }) => {
 
   const tileFunction = (date) => {
     console.log(feelings)
-   const filteredItem = feelings.filter(item => new Date(item.createdAt).toString()  === new Date(date).toString())
-   console.log(filteredItem)
-   if(filteredItem) {
-     setVisble(true)
-     setFiltredItem(filteredItem)
-   } else {
-     setVisble(false)
-     setFiltredItem([])
-   }
-}
+    const filteredItem = feelings.filter(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd'))
+    if (filteredItem) {
+      setVisble(true)
+      setFiltredItem(filteredItem)
+
+    } else {
+      setVisble(false)
+      setFiltredItem([])
+    }
+  }
+  const determineColor = (date, view) => {
+    console.log(date)
+    if (view === 'month' && feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd'))) {
+      console.log("hidden")
+      return 'hidden'
+    }
+  }
 
   return (
     <div>
       <Calendar
-/*         tileContent={tileFunction}
- */     showWeekNumbers
+        showWeekNumbers
         onChange={onChange}
         value={date}
-        onClickDay={tileFunction} 
+        onClickDay={tileFunction}
+        tileClassName={"hidden"}
       />
-      {/* {date.display && <p>{date.info}</p>} */}
-    {/*  <p>{date.toDateString()}</p> */}
-    <div style={{border: "1px solid red"}}>
-    {visible && <div>{filteredItem.map(item => <p>{item.value}</p>)}</div>}
-    </div>
+      <div>
+        {visible && <div>{filteredItem.map(item => <p>{item.value}:{item.description}</p>)}</div>}
+      </div>
     </div>
   )
 }

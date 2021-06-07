@@ -2,3 +2,15 @@ body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
 }
+
+.hidden {
+  color: violet;
+}
+
+.react-calendar__month-view__days__day {
+}
+
+.react-calendar__tile--now {
+  background-color: pink !important;
+  border-radius: 50px !important;
+}
