@@ -5,10 +5,17 @@ import { format } from 'date-fns'
 import styled from 'styled-components'
 
 import { FEELING_URL } from 'reusables/urls'
-import { Container } from 'styled-components/Containers'
+//import { Container } from 'styled-components/Containers'
 
-const PlotWrapper = styled.div`
-width: 100%;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  margin:0;
+  height: auto;
+  min-height: 100vh;
 `
 
 const SummaryPage = () => {
@@ -22,7 +29,6 @@ const SummaryPage = () => {
     fetch(FEELING_URL(userId))
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         setX(data.feelings.map(item => format(new Date(item.createdAt), 'd MMM H:mm:ss')))
         setY(data.feelings.map(item => item.value))
       })
@@ -31,46 +37,44 @@ const SummaryPage = () => {
 
   return (
     <Container>
-      <PlotWrapper>
-        <Plot
-          config={{ displayModeBar: false, responsive: true }}
-          data={[
-            {
-              x: x,
-              y: y,
-              type: 'scatter',
-              mode: 'lines+markers+text',
-              marker: { color: 'blue' },
-              opacity: 0.5,
-              hoverinfo: 'y'
-
-            }
-          ]}
-          layout={
-            {
-              // width: 300,
-              // height: 400,
-              autosize: true,
-              xaxis: {
-                title: 'timeline'
+      <Plot
+        config={{ displayModeBar: false, responsive: true }}
+        style={{ width: "100%", height: "100%" }}
+        useResizeHandler={true}
+        data={[
+          {
+            x: x,
+            y: y,
+            type: 'scatter',
+            mode: 'markers+lines',
+            //marker: { color: '#83A0A0' },
+            hoverinfo: 'y',
+            marker: {
+              color: '#83A0A0',
+              line: {
+                color: '#4C5F6B',
+                width: 3,
               },
-              yaxis: {
-                title: 'mood',
-                //showticklabels: false,
-                range: [0, 1],
-                tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1],
-                ticktext: ['sad', 'angry', 'stressed', 'okay', 'better', 'happy']
-              },
-              title: {
-                text: 'My mood',
-                font: {
-                  family: "Arial", size: 50, color: "red"
-                }
-              }
+              symbol: 'square',
+              size: 16
             }
           }
-        />
-      </PlotWrapper>
+        ]}
+        layout={
+          {
+            //width: 350,
+            autosize: true,
+            xaxis:
+              { autorange: true },
+            yaxis: {
+              autorange: true,
+              range: [0, 1],
+              tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1],
+              ticktext: ['sad', 'angry', 'stressed', 'neutral', 'relaxed', 'happy']
+            },
+          }
+        }
+      />
     </Container>
   )
 }

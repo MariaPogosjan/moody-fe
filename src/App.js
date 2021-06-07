@@ -12,6 +12,7 @@ import SignUp from 'Pages/Signup'
 import Login from 'Pages/LoginPage'
 import Profile from 'Pages/ProfilePage'
 import SummaryPage from 'Pages/SummaryPage'
+import About from 'Pages/AboutPage'
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -27,6 +28,9 @@ const App = () => {
         <Switch>
           <Route path='/' exact>
             <Home />
+          </Route>
+          <Route path='/about' exact>
+            <About />
           </Route>
           <Route path='/signup' exact>
             <SignUp />
