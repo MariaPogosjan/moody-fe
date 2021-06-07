@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import Plot from 'react-plotly.js';
+import { useSelector, useDispatch, batch } from 'react-redux'
 import { format } from 'date-fns'
 import styled from 'styled-components'
 
 import { FEELING_URL } from 'reusables/urls'
 import CalenderComponent from './Calendar'
-//import { Container } from 'styled-components/Containers'
+import feeling from 'reducers/feeling'
+import Graph from './Graph'
+
 
 const Container = styled.div`
   display: flex;
@@ -20,63 +21,45 @@ const Container = styled.div`
 `
 
 const SummaryPage = () => {
-  const accessToken = useSelector(store => store.user.accessToken)
-  const userId = useSelector(store => store.user.userId)
-
   const [x, setX] = useState([])
   const [y, setY] = useState([])
 
+  const accessToken = useSelector(store => store.user.accessToken)
+  const userId = useSelector(store => store.user.userId)
+  const feelings = useSelector(store => store.feeling.feelings)
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    fetch(FEELING_URL(userId))
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': accessToken
+      }
+    }
+    fetch(FEELING_URL(userId), options)
       .then(res => res.json())
       .then(data => {
-        setX(data.feelings.map(item => format(new Date(item.createdAt), 'd MMM H:mm:ss')))
-        setY(data.feelings.map(item => item.value))
+        if (data.success) {
+          batch(() => {
+            dispatch(feeling.actions.setFeelings(data.feelings))
+            dispatch(feeling.actions.setErrors(null))
+          })
+        } else {
+          dispatch(feeling.actions.setErrors(data))
+        }
       })
-  }, [userId])
+  }, [userId, accessToken, dispatch])
 
+  useEffect(() => {
+    setX(feelings.map(item => format(new Date(item.createdAt), 'd MMM H:mm:ss')))
+    setY(feelings.map(item => item.value))
+  }, [feelings])
 
   return (
     <Container>
-      <CalenderComponent/>
-      <Plot
-        config={{ displayModeBar: false, responsive: true }}
-        style={{ width: "100%", height: "100%" }}
-        useResizeHandler={true}
-        data={[
-          {
-            x: x,
-            y: y,
-            type: 'scatter',
-            mode: 'markers+lines',
-            //marker: { color: '#83A0A0' },
-            hoverinfo: 'y',
-            marker: {
-              color: '#83A0A0',
-              line: {
-                color: '#4C5F6B',
-                width: 3,
-              },
-              symbol: 'square',
-              size: 16
-            }
-          }
-        ]}
-        layout={
-          {
-            //width: 350,
-            autosize: true,
-            xaxis:
-              { autorange: true },
-            yaxis: {
-              autorange: true,
-              range: [0, 1],
-              tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1],
-              ticktext: ['sad', 'angry', 'stressed', 'neutral', 'relaxed', 'happy']
-            },
-          }
-        }
-      />
+      <CalenderComponent feelings={feelings} />
+      <Graph x={x} y={y} />
     </Container>
   )
 }
