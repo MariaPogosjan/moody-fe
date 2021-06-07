@@ -5,6 +5,7 @@ import { format } from 'date-fns'
 import styled from 'styled-components'
 
 import { FEELING_URL } from 'reusables/urls'
+import CalenderComponent from './Calendar'
 //import { Container } from 'styled-components/Containers'
 
 const Container = styled.div`
@@ -37,6 +38,7 @@ const SummaryPage = () => {
 
   return (
     <Container>
+      <CalenderComponent/>
       <Plot
         config={{ displayModeBar: false, responsive: true }}
         style={{ width: "100%", height: "100%" }}
