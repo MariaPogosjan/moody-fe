@@ -1,60 +1,58 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Calendar from 'react-calendar'
+import styled from 'styled-components'
 import 'react-calendar/dist/Calendar.css'
 import { format } from 'date-fns'
-import "index.css";
 
+import ModalComponent from './Modal'
 
+const CalendarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+`
 
 const CalendarComponent = ({ feelings }) => {
   const [date, setDate] = useState(new Date())
-  const [visible, setVisble] = useState(false)
+  const [visible, setVisible] = useState(false)
   const [filteredItem, setFiltredItem] = useState([])
   
-
-
-
-  //console.log(test)
-  //test.className = 'react-calendar__month-view__days__day'
-  
-
   const onChange = (date) => {
     setDate(date)
   }
 
   const tileFunction = (date) => {
-    console.log(feelings)
     const filteredItem = feelings.filter(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd'))
-    if (filteredItem) {
-      setVisble(true)
+    if (filteredItem && filteredItem.length > 0) {
+      setVisible(true)
       setFiltredItem(filteredItem)
-
     } else {
-      setVisble(false)
+      setVisible(false)
       setFiltredItem([])
     }
   }
-  const determineColor = (date, view) => {
-    console.log(date)
-    if (view === 'month' && feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd'))) {
-      console.log("hidden")
-      return 'hidden'
-    }
+
+  const determineColor = (date) => {
+    const foundItem = feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date.date), 'yyyy-MM-dd'))
+    if(foundItem) {
+       return  'feeling'
+     } 
   }
 
   return (
-    <div>
-        <Calendar
-          showWeekNumbers
-          onChange={onChange}
-          value={date}
-          onClickDay={tileFunction}
-          tileClassName={"hidden"}
-        />
-      <div>
-        {visible && <div>{filteredItem.map(item => <p>{item.value}:{item.description}</p>)}</div>}
-      </div>
-    </div>
+    <CalendarWrapper>
+      <ModalComponent filteredItem={filteredItem} visible={visible} setVisible={setVisible}/>
+      <Calendar
+        onChange={onChange}
+        value={date}
+        onClickDay={tileFunction}
+        tileClassName={determineColor}        
+      />
+    </CalendarWrapper>
   )
 }
 

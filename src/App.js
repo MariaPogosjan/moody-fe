@@ -7,12 +7,14 @@ import user from './reducers/user'
 import feeling from './reducers/feeling'
 
 import Navbar from 'components/Navbar'
+import Footer from 'components/Footer'
 import Home from 'Pages/HomePage/index.js'
 import SignUp from 'Pages/Signup'
 import Login from 'Pages/LoginPage'
 import Profile from 'Pages/ProfilePage'
 import SummaryPage from 'Pages/SummaryPage'
 import About from 'Pages/AboutPage'
+
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -45,9 +47,10 @@ const App = () => {
             <SummaryPage />
           </Route>
         </Switch>
+        <Footer />
       </Provider>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;

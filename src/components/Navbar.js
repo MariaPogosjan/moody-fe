@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch, batch } from 'react-redux'
 import styled from 'styled-components'
 import { Pivot as Hamburger } from 'hamburger-react'
-import { useSelector } from 'react-redux'
+
+import user from 'reducers/user'
+import feeling from 'reducers/feeling'
+import { ButtonsWrapper, Button } from 'styled-components/Buttons'
 
 const Nav = styled.div`
   position: sticky;
@@ -65,6 +69,20 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false)
   const accessToken = useSelector(store => store.user.accessToken)
 
+  const dispatch = useDispatch()
+
+  const onSignOutClick = () => {
+    batch(() => {
+      dispatch(user.actions.setUsername(null))
+      dispatch(user.actions.setAccessToken(null))
+      dispatch(user.actions.setUserId(null))
+      dispatch(user.actions.setErrors(null))
+      dispatch(feeling.actions.setFeelings([]))
+    })
+
+    localStorage.removeItem('user')
+  }
+
   return (
     <Nav>
       <Logo href="#">
@@ -86,6 +104,10 @@ const Navbar = () => {
             <MenuLink href="#">Contact</MenuLink>
           </Menu>
         </>}
+        {accessToken && 
+          <ButtonsWrapper>
+            <Button onClick={onSignOutClick}>Sign out</Button>
+          </ButtonsWrapper>}
     </Nav>
   )
 }
