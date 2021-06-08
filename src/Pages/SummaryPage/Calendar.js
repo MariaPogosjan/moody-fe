@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import { format } from 'date-fns'
@@ -23,7 +23,6 @@ const CalendarComponent = ({ feelings }) => {
   }
 
   const tileFunction = (date) => {
-    console.log(feelings)
     const filteredItem = feelings.filter(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd'))
     if (filteredItem) {
       setVisble(true)
@@ -35,11 +34,11 @@ const CalendarComponent = ({ feelings }) => {
     }
   }
   const determineColor = (date, view) => {
-    console.log(date)
-    if (view === 'month' && feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date), 'yyyy-MM-dd'))) {
-      console.log("hidden")
-      return 'hidden'
-    }
+    const foundItem = feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date.date), 'yyyy-MM-dd'))
+    console.log(foundItem)
+    if(feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date.date), 'yyyy-MM-dd'))) {
+      return  'hidden'
+     } 
   }
 
   return (
@@ -49,7 +48,7 @@ const CalendarComponent = ({ feelings }) => {
         onChange={onChange}
         value={date}
         onClickDay={tileFunction}
-        tileClassName={"hidden"}
+        tileClassName={determineColor}
       />
       <div>
         {visible && <div>{filteredItem.map(item => <p>{item.value}:{item.description}</p>)}</div>}
