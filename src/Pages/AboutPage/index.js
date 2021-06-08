@@ -47,7 +47,7 @@ const About = () => {
       </SectionTitle>
       <Text>
         Track as often or as little as you'd like!
-        Support and get feedback from others
+        Support and get feedback from others!
       </Text>
       <CardsContainer>
         <Card>
