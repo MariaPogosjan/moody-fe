@@ -44,13 +44,13 @@ const CalendarComponent = ({ feelings }) => {
 
   return (
     <div>
-      <Calendar
-        showWeekNumbers
-        onChange={onChange}
-        value={date}
-        onClickDay={tileFunction}
-        tileClassName={"hidden"}
-      />
+        <Calendar
+          showWeekNumbers
+          onChange={onChange}
+          value={date}
+          onClickDay={tileFunction}
+          tileClassName={"hidden"}
+        />
       <div>
         {visible && <div>{filteredItem.map(item => <p>{item.value}:{item.description}</p>)}</div>}
       </div>
