@@ -11,7 +11,7 @@ const Image = styled.img`
 
   @media (min-width: 768px) {
     width: 40%;
-    border: 1px solid black;
+    height: auto;
   }
 `
 const CardsContainer = styled.div`
@@ -24,15 +24,18 @@ const Card = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 5px;
-  border: 1px solid blue;
   @media (min-width: 768px) {
     flex-direction: row;
-    justify-content: space-between;
+    margin-bottom: 10px;
   }
 `
 
 const Text = styled.p`
 
+
+  @media (min-width: 768px) {
+      padding-left: 10px;
+    }
 `
 
 const About = () => {
