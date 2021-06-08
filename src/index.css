@@ -4,7 +4,12 @@ body {
 }
 
 .hidden {
-  color: violet;
+  background-color: rgb(215, 179, 245) !important;
+  border-radius: 50% !important;
+}
+.sad {
+  background-color: rgb(238, 31, 94) !important;
+  border-radius: 50% !important;
 }
 
 .react-calendar__month-view__days__day {
@@ -12,5 +17,6 @@ body {
 
 .react-calendar__tile--now {
   background-color: pink !important;
-  border-radius: 50px !important;
+  border-radius: 50% !important;
+
 }
