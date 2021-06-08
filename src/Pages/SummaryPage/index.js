@@ -29,6 +29,37 @@ const SummaryPage = () => {
   const feelings = useSelector(store => store.feeling.feelings)
   const dispatch = useDispatch()
 
+
+  const getAverageValue = (array) => {
+    const averages = [];
+    const dates = [];
+    for (const item of array) {
+      if (!dates.includes(new Date(item.createdAt).toDateString())) {
+        dates.push(new Date(item.createdAt).toDateString());
+      }
+    }
+    for (const date of dates) {
+      let day = {
+        createdAt: date,
+        sum: 0,
+        count: 0
+      };
+      for (const item of array) {
+        if (date === new Date(item.createdAt).toDateString()) {
+          day.sum += item.value;
+          day.count++;
+        }
+      }
+      day.average = day.sum / day.count;
+      delete day.sum;
+      delete day.count;
+      averages.push(day);
+    }
+    return averages;
+  };
+
+
+
   useEffect(() => {
     const options = {
       method: 'GET',
@@ -52,8 +83,10 @@ const SummaryPage = () => {
   }, [userId, accessToken, dispatch])
 
   useEffect(() => {
-    setX(feelings.map(item => format(new Date(item.createdAt), 'd MMM H:mm:ss')))
-    setY(feelings.map(item => item.value))
+    const avaragedArray = getAverageValue(feelings)
+    console.log(avaragedArray)
+    setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
+    setY(avaragedArray.map(item => item.average))
   }, [feelings])
 
   return (

@@ -32,7 +32,7 @@ const Graph = ({x, y}) => {
             xaxis:
               { autorange: true },
             yaxis: {
-              autorange: true,
+              //autorange: true,
               range: [0, 1],
               tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1],
               ticktext: ['sad', 'angry', 'stressed', 'neutral', 'relaxed', 'happy']

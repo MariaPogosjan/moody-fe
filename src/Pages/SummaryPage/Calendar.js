@@ -11,11 +11,6 @@ const CalendarComponent = ({ feelings }) => {
   const [visible, setVisble] = useState(false)
   const [filteredItem, setFiltredItem] = useState([])
   
-
-
-
-  //console.log(test)
-  //test.className = 'react-calendar__month-view__days__day'
   
 
   const onChange = (date) => {
@@ -35,9 +30,8 @@ const CalendarComponent = ({ feelings }) => {
   }
   const determineColor = (date, view) => {
     const foundItem = feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date.date), 'yyyy-MM-dd'))
-    console.log(foundItem)
-    if(feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date.date), 'yyyy-MM-dd'))) {
-      return  'hidden'
+    if(foundItem) {
+       return  'hidden'
      } 
   }
 
