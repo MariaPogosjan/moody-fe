@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import styled from 'styled-components'
+import { makeStyles } from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
 import { Pivot as Hamburger } from 'hamburger-react'
 
 import user from 'reducers/user'
@@ -65,14 +67,15 @@ const MenuLink = styled.a`
     }
 `
 
+
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false)
   const accessToken = useSelector(store => store.user.accessToken)
 
   const dispatch = useDispatch()
 
-  const onSignOutClick = () => {
-    batch(() => {
+  const onSignOutClick = () => {
+    batch(() => {
       dispatch(user.actions.setUsername(null))
       dispatch(user.actions.setAccessToken(null))
       dispatch(user.actions.setUserId(null))
@@ -88,6 +91,9 @@ const Navbar = () => {
       <Logo href="#">
         moody
       </Logo>
+      {accessToken &&
+        <Avatar alt="Remy Sharp" src="./assets/card1.jpg" />
+      }
       {!accessToken &&
         <>
           <HamburgerButton>
@@ -104,10 +110,10 @@ const Navbar = () => {
             <MenuLink href="#">Contact</MenuLink>
           </Menu>
         </>}
-        {accessToken && 
-          <ButtonsWrapper>
-            <Button onClick={onSignOutClick}>Sign out</Button>
-          </ButtonsWrapper>}
+      {accessToken &&
+        <ButtonsWrapper>
+          <Button onClick={onSignOutClick}>Sign out</Button>
+        </ButtonsWrapper>}
     </Nav>
   )
 }

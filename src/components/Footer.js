@@ -23,6 +23,7 @@ const FooterContainer = styled.div`
 `
 const FooterText = styled.p`
   text-align: center;
+  font-size: 13px;
 `
 
 const Footer = () => {
@@ -43,7 +44,7 @@ const Footer = () => {
           <SearchIcon />
         </>
         :
-        <FooterText>Hello there</FooterText>  
+        <FooterText>All right reserved © Maria Pogosjan and Ekaterina Klimenko</FooterText>  
       }
 
     </FooterContainer>
