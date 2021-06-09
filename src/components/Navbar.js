@@ -3,6 +3,7 @@ import { useSelector, useDispatch, batch } from 'react-redux'
 import styled from 'styled-components'
 import Avatar from '@material-ui/core/Avatar'
 import { Pivot as Hamburger } from 'hamburger-react'
+import {Link} from 'react-router-dom'
 
 import user from 'reducers/user'
 import feeling from 'reducers/feeling'
@@ -93,7 +94,9 @@ const Navbar = () => {
         moody
       </Logo>
       {accessToken &&
-        <Avatar alt={username.toUpperCase()} src={profileImage? profileImage.imageURL :` /static/images/avatar/1.jpg`}/>
+        <Link to='/settings' >
+          <Avatar alt={username.toUpperCase()} src={profileImage? profileImage.imageURL :` /static/images/avatar/1.jpg`}/>
+        </Link>
       }
       {!accessToken &&
         <>
