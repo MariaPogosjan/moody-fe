@@ -56,7 +56,6 @@ const SummaryPage = () => {
       delete day.count
       averages.push(day)
     }
-    console.log(averages)
     return averages
   }
 
