@@ -50,16 +50,18 @@ const Login = () => {
       .then(res => res.json())
       .then(data => {
         if(data.success) {
+          console.log(data)
           batch(() => {
             dispatch(user.actions.setUsername(data.username))
             dispatch(user.actions.setUserId(data.userId))
             dispatch(user.actions.setAccessToken(data.accessToken))
+            dispatch(user.actions.setProfileImage(data.profileImage))
             dispatch(user.actions.setErrors(null))
-
             localStorage.setItem('user', JSON.stringify({
               userId: data.userId,
               username: data.username,
-              accessToken: data.accessToken
+              accessToken: data.accessToken,
+              profileImage: data.profileImage
             }))
           })
         } else {
