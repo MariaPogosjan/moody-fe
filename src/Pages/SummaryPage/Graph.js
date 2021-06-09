@@ -20,7 +20,7 @@ const Graph = ({x, y}) => {
    <GraphWrapper>
       <Plot
           config={{ displayModeBar: false, responsive: true }}
-          style={{ width: "100%", height: "100%", padding:"0px", margin:"0px" }}
+          style={{ width: "100%", height:"450px", padding:"0px", margin:"0px" }}
           useResizeHandler={true}
           data={[
             {
