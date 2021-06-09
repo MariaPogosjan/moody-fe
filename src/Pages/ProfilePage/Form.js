@@ -34,6 +34,7 @@ const FeelingsForm = ({ accessToken }) => {
         }
       })
   }
+
   useEffect(()=> {
     if(success){
       alert("Thank you for registering!")

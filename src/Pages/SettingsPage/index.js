@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useRef, useEffect } from 'react'
+import {useHistory} from 'react-router-dom'
+import { useSelector, useDispatch, batch } from 'react-redux'
 import {
   FormSection,
   Form,
@@ -11,10 +12,21 @@ import { ButtonsWrapper, Button } from 'styled-components/Buttons'
 import { PROFILE_IMAGE_URL } from 'reusables/urls'
 import user from 'reducers/user'
 
+import UpdateUsername from './UpdateUsername'
+import UpdatePassword from './UpdatePassword'
+
 const Settings = () => {
   const fileInput = useRef()
   const userId = useSelector(store => store.user.userId)
+  const accessToken = useSelector(store => store.user.accessToken)
   const dispatch = useDispatch()
+  const history = useHistory()
+  
+  useEffect(() => {
+    if(!accessToken) {
+      history.push('/')
+    }
+  }, [accessToken, history])
 
   const onFormSubmit = (e) => {
     e.preventDefault()
@@ -27,9 +39,12 @@ const Settings = () => {
     fetch(PROFILE_IMAGE_URL(userId), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.sucess) {
-          dispatch(user.actions.setProfileImage(data.profileImage))
+          batch(() => {
+            dispatch(user.actions.setProfileImage(data.profileImage))
+            dispatch(user.actions.setErrors(null))
+            localStorage.setItem('user', JSON.stringify({ profileImage: data.profileImage }))
+          })
         } else {
           dispatch(user.actions.setErrors(data))
         }
@@ -39,12 +54,14 @@ const Settings = () => {
   return (
     <FormSection>
       <Form onSubmit={onFormSubmit}>
-        <VisibleLabel htmlFor="file-input">Text label</VisibleLabel>
+        <VisibleLabel htmlFor="file-input">Upload image</VisibleLabel>
         <Input type="file" ref={fileInput} id="file-input" />
         <ButtonsWrapper>
           <Button type="submit">Upload</Button>
         </ButtonsWrapper>
       </Form>
+      <UpdateUsername />
+      <UpdatePassword />
     </FormSection>
   )
 }
