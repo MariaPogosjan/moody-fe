@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const FormSection = styled.section`
-  height: auto;
-  min-height: 100vh;
 `
 
 export const Form = styled.form `

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import styled from 'styled-components'
-import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import { Pivot as Hamburger } from 'hamburger-react'
 
