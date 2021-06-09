@@ -5,12 +5,14 @@ const initialState = localStorage.getItem('user')
     userId: JSON.parse(localStorage.getItem('user')).userId,
     username: JSON.parse(localStorage.getItem('user')).username,
     accessToken: JSON.parse(localStorage.getItem('user')).accessToken,
+    profileImage: JSON.parse(localStorage.getItem('user')).profileImage,
     errors: null
   }
   : {
     userId: null,
     username: null,
     accessToken:null,
+    profileImage: null,
     errors: null
   }
 
@@ -26,6 +28,9 @@ const user = createSlice({
     },
     setAccessToken: (store, action) => {
       store.accessToken = action.payload
+    },
+    setProfileImage: (store, action) => {
+      store.profileImage = action.payload
     },
     setErrors: (store, action) => {
       store.errors = action.payload

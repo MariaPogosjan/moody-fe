@@ -16,7 +16,7 @@ export const Label = styled.label`
 `
 export const VisibleLabel = styled.label`
  font-size: 14px;
- color: #4C5F6B
+ color: #4C5F6B;
 `
 
 export const Input = styled.input`

@@ -14,6 +14,7 @@ import Login from 'Pages/LoginPage'
 import Profile from 'Pages/ProfilePage'
 import SummaryPage from 'Pages/SummaryPage'
 import About from 'Pages/AboutPage'
+import Settings from 'Pages/SettingsPage'
 
 
 const reducer = combineReducers({
@@ -45,6 +46,9 @@ const App = () => {
           </Route>
           <Route path='/summary' exact>
             <SummaryPage />
+          </Route>
+          <Route path='/settings' exact>
+            <Settings />
           </Route>
         </Switch>
         <Footer />
