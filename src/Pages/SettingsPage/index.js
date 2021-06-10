@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react' 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { 
     FormSection, 
     Form, 
@@ -8,11 +8,13 @@ import {
 from 'styled-components/Forms'
 import { ButtonsWrapper, Button } from 'styled-components/Buttons'
 import { PROFILE_IMAGE_URL } from 'reusables/urls'
-
+import user from 'reducers/user'
 
 const Settings = () => {
   const fileInput = useRef()
   const userId = useSelector(store => store.user.userId)
+  const userImage = useSelector(store => store.user.profileImage)
+  const dispatch = useDispatch()
   
   const onFormSubmit= (e) => {
     e.preventDefault()
@@ -24,7 +26,9 @@ const Settings = () => {
     }
     fetch(PROFILE_IMAGE_URL(userId), options)
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        dispatch(user.actions.setProfileImage(data.imageURL))
+      })
   }
 
   return (
@@ -37,6 +41,7 @@ const Settings = () => {
         </ButtonsWrapper>
 
       </Form>
+      <img src={userImage}/>
     </FormSection>
   )
 }
