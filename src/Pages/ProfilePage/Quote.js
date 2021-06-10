@@ -43,7 +43,7 @@ const Quote = ({ visible, setVisible, feeling }) => {
     const options = {
       "method": "GET",
       "headers": {
-        "x-rapidapi-key": process.env.RAPID_API_KEY,
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
         "x-rapidapi-host": "healthruwords.p.rapidapi.com"
       }
     }
