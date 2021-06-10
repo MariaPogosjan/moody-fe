@@ -31,7 +31,7 @@ const Home = () => {
       </HeroImageWrapper>
       <HeroTextWrapper>
         <HeroTitle>Moody is always on your side</HeroTitle>
-        <HeroText>Track your feelings and share it with you friends. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</HeroText>
+        <HeroText>Track your feelings and share it with your friends. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</HeroText>
       </HeroTextWrapper>
       <Buttons />     
     </Container>
