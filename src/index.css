@@ -71,3 +71,14 @@ abbr[title] {
 .react-calendar__month-view__days__day--neighboringMonth:hover {
   color: #404167 !important;
 }
+
+.open.notopen {
+  max-height: 0;
+  transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+}
+.open {
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
+  height: auto;
+  max-height: 9999px;
+}
