@@ -39,6 +39,8 @@ const Quote = ({ visible, setVisible, feeling }) => {
   // const API_Key = process.env.REACT_APP_RAPID_API_KEY
   // console.log(API_Key)
 
+  console.log("quote", process.env.REACT_APP_RAPID_API_KEY)
+  console.log()
   useEffect(() => {
     const options = {
       "method": "GET",
