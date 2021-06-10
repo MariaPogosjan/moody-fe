@@ -2,11 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import EventNoteIcon from '@material-ui/icons/EventNote'
-import SearchIcon from '@material-ui/icons/Search'
+import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
 import MailOutlineIcon from '@material-ui/icons/MailOutline'
 import MoodIcon from '@material-ui/icons/Mood'
 import styled from 'styled-components'
+
+
 
 const FooterContainer = styled.div`
   position: fixed;
@@ -33,18 +35,20 @@ const Footer = () => {
     <FooterContainer>
       {accessToken ?
         <>
-          <Link to="/summary">
-            <EventNoteIcon />
+          <Link to="/summary" className="footer-link">
+            <EventNoteIcon className="footer-icon"/>
           </Link>
           <MailOutlineIcon />
           <Link to="/profile">
             <MoodIcon />
           </Link>
           <NotificationsNoneIcon />
-          <SearchIcon />
+          <Link to='/friends'>
+            <PeopleOutlineIcon />
+          </Link>
         </>
         :
-        <FooterText>All right reserved © Maria Pogosjan and Ekaterina Klimenko</FooterText>  
+        <FooterText>All right reserved © Maria Pogosjan and Ekaterina Klimenko</FooterText>
       }
 
     </FooterContainer>

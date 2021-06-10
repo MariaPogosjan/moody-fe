@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import user from './reducers/user'
 import feeling from './reducers/feeling'
+import friends from 'reducers/friends'
 
 import Navbar from 'components/Navbar'
 import Footer from 'components/Footer'
@@ -15,11 +16,12 @@ import Profile from 'Pages/ProfilePage'
 import SummaryPage from 'Pages/SummaryPage'
 import About from 'Pages/AboutPage'
 import Settings from 'Pages/SettingsPage'
-
+import FriendsPage from 'Pages/FriendsPage'
 
 const reducer = combineReducers({
   user: user.reducer,
-  feeling: feeling.reducer
+  feeling: feeling.reducer,
+  friends: friends.reducer
 })
 const store = configureStore({ reducer })
 
@@ -49,6 +51,9 @@ const App = () => {
           </Route>
           <Route path='/settings' exact>
             <Settings />
+          </Route>
+          <Route path='/friends' exact>
+            <FriendsPage />
           </Route>
         </Switch>
         <Footer />
