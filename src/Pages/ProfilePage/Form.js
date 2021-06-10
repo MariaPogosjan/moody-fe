@@ -6,7 +6,7 @@ import FeelingsSlider from './Slider'
 import { API_URL } from 'reusables/urls'
 
 
-const FeelingsForm = ({ accessToken }) => {
+const FeelingsForm = ({ accessToken, setVisible, setFeeling }) => {
   const [value, setValue] = useState(0)
   const [description, setDescription] = useState("")
   const [success, setSuccess] = useState(false)
@@ -27,6 +27,7 @@ const FeelingsForm = ({ accessToken }) => {
       .then(data => {
         if(data.success) {
           setSuccess(true)
+          setFeeling(data.feeling.value)
         } else {
           setDescription("")
           setValue(0)
@@ -37,10 +38,11 @@ const FeelingsForm = ({ accessToken }) => {
 
   useEffect(()=> {
     if(success){
-      alert("Thank you for registering!")
+      //alert("Thank you for registering!")
       setSuccess(false)
+      setVisible(true)
     }
-  }, [success])
+  }, [success, setVisible])
 
   return (
     <FormSection>

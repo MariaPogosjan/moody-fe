@@ -83,7 +83,7 @@ const SummaryPage = () => {
 
   useEffect(() => {
     const avaragedArray = getAverageValue(feelings)
-    console.log(avaragedArray)
+    //console.log(avaragedArray)
     setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
     setY(avaragedArray.map(item => item.average))
   }, [feelings])
