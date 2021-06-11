@@ -82,3 +82,17 @@ abbr[title] {
   height: auto;
   max-height: 9999px;
 }
+.footer-link {
+  text-decoration: none;
+  color: #404167;
+}
+
+.footer-link:visited {
+  text-decoration: none;
+  color: #404167;
+}
+
+.footer-icon {
+  text-decoration: none;
+  color: #404167;
+}

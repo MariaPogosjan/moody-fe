@@ -85,7 +85,7 @@ const SummaryPage = () => {
 
 
   useEffect(() => {
-    const avaragedArray = getAverageValue(feelings)
+    
     if (range === "day") {
       const filterFeelingDay = feelings.filter(item => isToday(new Date(item.createdAt)))
       setX(filterFeelingDay.map(item => format(new Date(item.createdAt), 'HH:mm')))

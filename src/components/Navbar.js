@@ -3,7 +3,7 @@ import { useSelector, useDispatch, batch } from 'react-redux'
 import styled from 'styled-components'
 import Avatar from '@material-ui/core/Avatar'
 import { Pivot as Hamburger } from 'hamburger-react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import user from 'reducers/user'
 import feeling from 'reducers/feeling'
@@ -66,7 +66,9 @@ const MenuLink = styled.a`
       border-radius: 6px;
     }
 `
-
+const styles = {
+  textDecoration: "none"
+}
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false)
@@ -87,15 +89,18 @@ const Navbar = () => {
 
     localStorage.removeItem('user')
   }
-
+  
   return (
     <Nav>
-      <Logo href="#">
-        moody
-      </Logo>
+      <Link to="/" style={styles}>
+        <Logo>
+          moody
+        </Logo>
+      </Link>
+
       {accessToken &&
         <Link to='/settings' >
-          <Avatar alt={username.toUpperCase()} src={profileImage? profileImage.imageURL :` /static/images/avatar/1.jpg`}/>
+          <Avatar alt={username.toUpperCase()} src={profileImage ? profileImage.imageURL : ` /static/images/avatar/1.jpg`} />
         </Link>
       }
       {!accessToken &&
@@ -109,8 +114,11 @@ const Navbar = () => {
             />
           </HamburgerButton>
           <Menu isOpen={isOpen}>
-            <MenuLink href="#">Home</MenuLink>
-            <MenuLink href="#">About</MenuLink>
+            <MenuLink href="#">
+              <Link to='/about' style={styles}>
+                About
+              </Link>
+            </MenuLink>
             <MenuLink href="#">Contact</MenuLink>
           </Menu>
         </>}
