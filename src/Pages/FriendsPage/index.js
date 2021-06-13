@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import { API_URL } from 'reusables/urls'
 import friends from 'reducers/friends'
+import FollowThumb from './FollowThumb'
 
 const SearchInput = styled.input`
   padding: 10px;
@@ -29,6 +30,9 @@ const FriendsPage = () => {
   const dispatch = useDispatch()
   const users = useSelector(store => store.friends.friends)
   const accessToken = useSelector(store => store.user.accessToken)
+  const friendsList = useSelector(store => store.user.friends)
+  const myFriendRequests = useSelector(store => store.user.myFriendRequests)
+  const friendRequests = useSelector(store => store.user.friendRequests)
   const history = useHistory()
 
   useEffect(() => {
@@ -56,8 +60,15 @@ const FriendsPage = () => {
 
   return (
     <PageContainer>
+      <p>Friends</p>
+      <ul>
+        {friendsList.map(item => <li>{item}</li>)}
+      </ul>
+      <p>Friend requests</p>
+      <ul>
+        {friendRequests.map(item => <li>{item}</li>)}
+      </ul>
       <Form onSubmit={onSearchSubmit}>
-        <SearchIcon />
         <SearchInput
           type="text"
           required
@@ -71,7 +82,8 @@ const FriendsPage = () => {
           <SearchIcon />
         </SearchButton>
       </Form>
-      {filteredUsers.map(item => <p>{item.username}</p>)}
+      {filteredUsers.map(item => <FollowThumb item={item} key={item._id} />)}
+
     </PageContainer>
   )
 }

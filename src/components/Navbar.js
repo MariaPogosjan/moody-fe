@@ -84,6 +84,10 @@ const Navbar = () => {
       dispatch(user.actions.setAccessToken(null))
       dispatch(user.actions.setUserId(null))
       dispatch(user.actions.setErrors(null))
+      dispatch(user.actions.setFriends([]))
+      dispatch(user.actions.setFriendRequests([]))
+      dispatch(user.actions.setMyFriendRequests([]))
+      dispatch(user.actions.setProfileImage(null))
       dispatch(feeling.actions.setFeelings([]))
     })
 
