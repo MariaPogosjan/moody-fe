@@ -62,7 +62,6 @@ const Settings = () => {
           <Button type="submit">Upload</Button>
         </ButtonsWrapper>
       </Form>
-      <img src={userImage}/>
       <UpdateUsername />
       <UpdatePassword />
       <UpdateUsername />

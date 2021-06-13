@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { Container } from 'styled-components/Containers'
-import { SectionSubtitle } from 'styled-components/Titels'
+import { SectionTitle } from 'styled-components/Titels'
 import FeelingsForm from './Form'
 import Quote from './Quote'
 
@@ -21,7 +21,7 @@ const Profile = () => {
 
   return (
     <Container>
-      <SectionSubtitle>How are you feeling?</SectionSubtitle>
+      <SectionTitle>How are you feeling?</SectionTitle>
       <FeelingsForm 
         accessToken={accessToken} 
         setVisible={setVisible} 

@@ -15,7 +15,7 @@ const FooterContainer = styled.div`
   bottom: 0;
   right: 0; 
   left: 0;
-  height: 80px;
+  height: 50px;
   padding: 0 3rem;
   display: flex;
   justify-content: space-evenly;
@@ -27,6 +27,12 @@ const FooterText = styled.p`
   text-align: center;
   font-size: 13px;
 `
+const IconsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+`
 
 const Footer = () => {
   const accessToken = useSelector(store => store.user.accessToken)
@@ -34,19 +40,19 @@ const Footer = () => {
   return (
     <FooterContainer>
       {accessToken ?
-        <>
+        <IconsContainer>
           <Link to="/summary" className="footer-link">
             <EventNoteIcon className="footer-icon"/>
           </Link>
           <MailOutlineIcon />
           <Link to="/profile">
-            <MoodIcon />
+            <MoodIcon className="footer-icon"/>
           </Link>
           <NotificationsNoneIcon />
           <Link to='/friends'>
-            <PeopleOutlineIcon />
+            <PeopleOutlineIcon className="footer-icon"/>
           </Link>
-        </>
+        </IconsContainer>
         :
         <FooterText>All right reserved © Maria Pogosjan and Ekaterina Klimenko</FooterText>
       }

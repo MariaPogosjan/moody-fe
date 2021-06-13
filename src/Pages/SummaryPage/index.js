@@ -21,6 +21,14 @@ const Container = styled.div`
   min-height: 100vh;
 `
 
+const FilterButton = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  background-color: #83A0A0;
+  border: 1px solid #4C5F6B !important;
+  width: 30px;
+  cursor: pointer;
+`
+
 const SummaryPage = () => {
   const [x, setX] = useState([])
   const [y, setY] = useState([])
@@ -117,12 +125,19 @@ const SummaryPage = () => {
 return (
   <Container>
     <SectionTitle>Summary of your feelings </SectionTitle>
+    <div style={{display: "flex" }}>
+      <div style={{fontSize: "10px", paddingRight: "5px"}} >Sad</div>
+      <div style={{backgroundColor: "#607474", width: "40px", height: "14px"}}></div>
+      <div style={{backgroundColor: "#83A0A0", width: "40px", height: "14px"}}></div>
+      <div style={{backgroundColor: "#b0c6c6", width: "40px", height: "14px"}}></div>
+      <div style={{fontSize: "10px", paddingLeft: "5px" }}>Happy</div>
+    </div>
     <CalenderComponent feelings={feelings} />
-    < div style={{display: "flex"}}>
-    <button onClick={()=> setRange('day')}>1d</button>
-    <button onClick={()=> setRange('week')}>7d</button>
-    <button onClick={()=> setRange('month')}>1m</button>
-    <button onClick={()=> setRange('year')}>1y</button>
+    <div style={{display: "flex"}}>
+      <FilterButton onClick={()=> setRange('day')}>1d</FilterButton>
+      <FilterButton onClick={()=> setRange('week')}>7d</FilterButton>
+      <FilterButton onClick={()=> setRange('month')}>1m</FilterButton>
+      <FilterButton onClick={()=> setRange('year')}>1y</FilterButton>
     </div>  
     <Graph x={x} y={y} />
   </Container>
