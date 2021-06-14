@@ -68,7 +68,7 @@ const user = createSlice({
       store.myFriendRequests = updatedmyFriendRequests
     },
     removeMyFriendRequests: (store, action) => {
-      const updatedmyFriendRequests = store.myFriendRequests.filter(item => item !== action.payload)
+      const updatedmyFriendRequests = store.myFriendRequests.filter(item => item._id !== action.payload)
       store.myFriendRequests = updatedmyFriendRequests
     },
     setErrors: (store, action) => {
