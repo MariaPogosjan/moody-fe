@@ -46,7 +46,7 @@ const user = createSlice({
       store.friends = updatedFriends
     },
     removeFriends: (store, action) => {
-      const updatedFriends = store.friends.filter(item => item !== action.payload)
+      const updatedFriends = store.friends.filter(item => item._id !== action.payload)
       store.friends = updatedFriends
     },
     setFriendRequests: (store, action) => {
@@ -57,7 +57,7 @@ const user = createSlice({
       store.friendRequests = updatedFriendRequests
     },
     removeFriendRequests: (store, action) => {
-      const updatedFriendRequests = store.friendRequests.filter(item => item !== action.payload)
+      const updatedFriendRequests = store.friendRequests.filter(item => item._id !== action.payload)
       store.friendRequests = updatedFriendRequests
     },
     setMyFriendRequests: (store, action) => {

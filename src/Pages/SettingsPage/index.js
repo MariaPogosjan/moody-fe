@@ -64,8 +64,6 @@ const Settings = () => {
       </Form>
       <UpdateUsername />
       <UpdatePassword />
-      <UpdateUsername />
-      <UpdatePassword />
     </FormSection>
   )
 }

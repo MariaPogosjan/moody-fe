@@ -76,7 +76,7 @@ const ModalComponent = ({ filteredItem, visible, setVisible }) => {
           <div className={classes.paper}>
             <ModalHeader id="transition-modal-title">{filteredItem.length > 0 && format(new Date(filteredItem[0].createdAt), 'EEEE do')}</ModalHeader>
             {filteredItem.map((item) => <div key={item.createdAt} id="transition-modal-description">
-              <ModalText>{format(new Date(filteredItem[0].createdAt), 'HH:mm')}: {generateLabel(item.value)} </ModalText>
+              <ModalText>{format(new Date(item.createdAt), 'HH:mm')}: {generateLabel(item.value)} </ModalText>
               <ModalDescription>{item.description}</ModalDescription>
             </div>)}
           </div>

@@ -92,14 +92,14 @@ const SignUp = () => {
             }
           </>
         }
-        <Label htmlFor="name">Name</Label>
+        <Label htmlFor="signup-name">Name</Label>
         <Input
           type="text"
           required
           onChange={onNameChange}
           value={username}
           placeholder="Username"
-          id="name"
+          id="signup-name"
         />
         <Label htmlFor="email">Email</Label>
         <Input

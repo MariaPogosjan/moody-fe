@@ -3,7 +3,9 @@ import { useSelector, useDispatch, batch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import styled from 'styled-components'
+import Avatar from '@material-ui/core/Avatar'
 
+import user from 'reducers/user'
 import { API_URL } from 'reusables/urls'
 import friends from 'reducers/friends'
 import FollowThumb from './FollowThumb'
@@ -45,6 +47,7 @@ const FriendsPage = () => {
     fetch(API_URL('users'))
       .then(res => res.json())
       .then(data => {
+        //console.log(data)
         batch(() => {
           dispatch(friends.actions.setFriends(data))
           dispatch(friends.actions.setErrors(null))
@@ -58,15 +61,61 @@ const FriendsPage = () => {
     setFilteredUsers(filteredUsers)
   }
 
+  const onRequestAccept = (item) => {
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': accessToken
+      },
+      body: JSON.stringify({ id: item._id })
+    }
+    fetch(API_URL('acceptfriends'), options)
+      .then(res => res.json())
+      .then(data => {
+        dispatch(user.actions.addFriends(data.friend))
+        dispatch(user.actions.removeFriendRequests(data.friend.id))
+        //here we need to fix local storage as well
+      })
+  }
+
+  const onUnfollowFriend = (item) => {
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': accessToken
+      },
+      body: JSON.stringify({ id: item._id })
+    }
+    fetch(API_URL('unfollow'), options)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        dispatch(user.actions.removeFriends(data.friend.id))
+        //here we need to fix local storage as well
+      })
+  }
+
   return (
     <PageContainer>
       <p>Friends</p>
       <ul>
-        {friendsList.map(item => <li>{item}</li>)}
+        {friendsList.map(item => <li style={{display:"flex", alignItems:"center"}}>
+            <Avatar alt={item.username && item.username.toUpperCase()} src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`} />
+            {item.username}
+            <button onClick={() => onUnfollowFriend(item)}>Unfollow</button>
+          </li>
+        )}
       </ul>
       <p>Friend requests</p>
       <ul>
-        {friendRequests.map(item => <li>{item}</li>)}
+        {friendRequests.map(item =>
+          <li>
+            {item.username}
+            <Avatar alt={item.username && item.username.toUpperCase()} src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`} />
+            <button onClick={() => onRequestAccept(item)}>Accept</button>
+          </li>)}
       </ul>
       <Form onSubmit={onSearchSubmit}>
         <SearchInput

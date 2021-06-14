@@ -52,8 +52,9 @@ const UpdatePassword = () => {
   return (
     <FormSection>
       <Form onSubmit={onPasswordUpdate}>
-        <VisibleLabel htmlFor="password">Old password</VisibleLabel>
+        <VisibleLabel htmlFor="settings-password">Old password</VisibleLabel>
         <Input
+          id="settings-password"
           type="password"
           required
           onChange={(e) => setPassword(e.target.value)}
