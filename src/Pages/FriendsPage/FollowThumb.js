@@ -7,8 +7,6 @@ import styled from 'styled-components'
 import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
 
-
-
 const User = styled.li`
   display: flex;
   align-items: center;
@@ -29,7 +27,6 @@ const FollowButton = styled.button`
       opacity: 0.6;
     }
 `
-
 
 const FollowThumb = ({ item }) => {
   const [disabled, setDisabled] = useState(false)

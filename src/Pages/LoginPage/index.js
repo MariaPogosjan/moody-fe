@@ -18,9 +18,9 @@ const Login = () => {
   const [emailOrUsername, setUsernameOrEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const dispatch = useDispatch()
   const accessToken = useSelector(store => store.user.accessToken)
   const errors = useSelector(store => store.user.errors)
+  const dispatch = useDispatch()
   const history = useHistory()
 
   useEffect(() => {

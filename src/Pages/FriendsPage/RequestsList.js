@@ -54,7 +54,7 @@ const RequestsList = () => {
       .then(res => res.json())
       .then(data => {
         dispatch(user.actions.addFriends(data.friend))
-        dispatch(user.actions.removeFriendRequests(data.friend.id))
+        dispatch(user.actions.removeFriendRequests(data.friend._id))
         //here we need to fix local storage as well
       })
   }

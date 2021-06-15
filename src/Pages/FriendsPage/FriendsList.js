@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar'
 import { useSelector, useDispatch } from 'react-redux'
 import { API_URL } from 'reusables/urls'
 
 import user from 'reducers/user'
-
 
 const FriendsContainer = styled.section`
   padding: 5px;
@@ -70,7 +70,7 @@ const FriendsList = () => {
                 src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
                 style={{ marginRight: "5px" }}
               />
-              {item.username}
+             <Link to={`/${item._id}`}>{item.username}</Link> 
             </FriendNamePicWrapper>
             <UnfollowButton onClick={() => onUnfollowFriend(item)}>
               Unfollow
