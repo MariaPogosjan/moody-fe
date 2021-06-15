@@ -14,7 +14,6 @@ const FormContainer = styled.section`
   padding: 5px;
 `
 const Form = styled.form`
-  padding:5px;
   display: flex;
   align-items: center;
 `
