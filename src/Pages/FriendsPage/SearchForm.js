@@ -13,18 +13,24 @@ import FollowThumb from './FollowThumb'
 const FormContainer = styled.section`
   padding: 5px;
 `
+const Form = styled.form`
+  padding:5px;
+  display: flex;
+  align-items: center;
+`
 const SearchInput = styled.input`
   padding: 10px;
-  border: 1px solid pink;
+  border: 1.5px solid #bca0bc;
+  font-size: 12px;
+  width: 200px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 `
-const Form = styled.form`
-
-`
-
 const SearchButton = styled.button`
-  border-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
   border: none;
-  padding: 4px 6px;
+  padding: 5px 6px;
   background-color: #bca0bc;
   color: #fff;
 `
@@ -73,13 +79,14 @@ const SearchForm = () => {
           onChange={(e) => setValue(e.target.value)}
           placeholder="search your friends here"
         />
-        <SearchButton
-          type="submit"
-        >
+        <SearchButton type="submit">
           <SearchIcon />
         </SearchButton>
       </Form>
-      {filteredUsers.map(item => <FollowThumb item={item} key={item._id} />)}
+      <ListContainer>
+        {filteredUsers.map(item => <FollowThumb item={item} key={item._id} />)}
+      </ListContainer>
+
     </FormContainer>
   )
 }
