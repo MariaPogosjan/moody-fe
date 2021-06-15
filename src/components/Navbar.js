@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch, batch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Avatar from '@material-ui/core/Avatar'
 import { Pivot as Hamburger } from 'hamburger-react'
 import { Link } from 'react-router-dom'
 
-import user from 'reducers/user'
-import feeling from 'reducers/feeling'
-import { ButtonsWrapper, Button } from 'styled-components/Buttons'
 
 const Nav = styled.div`
   position: sticky;
@@ -75,24 +72,6 @@ const Navbar = () => {
   const accessToken = useSelector(store => store.user.accessToken)
   const profileImage = useSelector(store => store.user.profileImage)
   const username = useSelector(store => store.user.username)
-
-  const dispatch = useDispatch()
-
-  const onSignOutClick = () => {
-    batch(() => {
-      dispatch(user.actions.setUsername(null))
-      dispatch(user.actions.setAccessToken(null))
-      dispatch(user.actions.setUserId(null))
-      dispatch(user.actions.setErrors(null))
-      dispatch(user.actions.setFriends([]))
-      dispatch(user.actions.setFriendRequests([]))
-      dispatch(user.actions.setMyFriendRequests([]))
-      dispatch(user.actions.setProfileImage(null))
-      dispatch(feeling.actions.setFeelings([]))
-    })
-
-    localStorage.removeItem('user')
-  }
   
   return (
     <Nav>
@@ -126,10 +105,6 @@ const Navbar = () => {
             <MenuLink href="#">Contact</MenuLink>
           </Menu>
         </>}
-      {accessToken &&
-        <ButtonsWrapper>
-          <Button onClick={onSignOutClick}>Sign out</Button>
-        </ButtonsWrapper>}
     </Nav>
   )
 }

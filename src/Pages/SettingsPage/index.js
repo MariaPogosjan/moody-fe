@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import {
   FormSection,
@@ -14,6 +14,7 @@ import user from 'reducers/user'
 
 import UpdateUsername from './UpdateUsername'
 import UpdatePassword from './UpdatePassword'
+import SignoutButton from './SignoutButton'
 
 const Settings = () => {
   const fileInput = useRef()
@@ -24,7 +25,7 @@ const Settings = () => {
   const history = useHistory()
 
   useEffect(() => {
-    if(!accessToken) {
+    if (!accessToken) {
       history.push('/')
     }
   }, [accessToken, history])
@@ -54,17 +55,21 @@ const Settings = () => {
   }
 
   return (
-    <FormSection>
-      <Form onSubmit={onFormSubmit}>
-        <VisibleLabel htmlFor="file-input">Upload image</VisibleLabel>
-        <Input type="file" ref={fileInput} id="file-input" />
-        <ButtonsWrapper>
-          <Button type="submit">Upload</Button>
-        </ButtonsWrapper>
-      </Form>
-      <UpdateUsername />
-      <UpdatePassword />
-    </FormSection>
+    <>
+      <SignoutButton />
+      <FormSection>
+        <Form onSubmit={onFormSubmit}>
+          <VisibleLabel htmlFor="file-input">Upload image</VisibleLabel>
+          <Input type="file" ref={fileInput} id="file-input" />
+          <ButtonsWrapper>
+            <Button type="submit">Upload</Button>
+          </ButtonsWrapper>
+        </Form>
+        <UpdateUsername />
+        <UpdatePassword />
+      </FormSection>
+
+    </>
   )
 }
 
