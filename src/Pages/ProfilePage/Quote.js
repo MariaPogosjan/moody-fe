@@ -34,7 +34,7 @@ const Quote = ({ visible, setVisible, feeling }) => {
     setVisible(false)
   }
 
-  const [imageLink, setImageLink] = useState('https://healthruwords.com/wp-content/uploads/2017/12/Healthruwords.com_-_Inspirational_Images_-_-Forms-300x300.jpg')
+  const [imageLink, setImageLink] = useState()
 
   // const API_Key = process.env.REACT_APP_RAPID_API_KEY
   // console.log(API_Key)
@@ -50,9 +50,8 @@ const Quote = ({ visible, setVisible, feeling }) => {
     fetch("https://healthruwords.p.rapidapi.com/v1/quotes/?size=medium&maxR=1&t=Happiness", options)
       .then(res => res.json())
       .then(quote => {
-        console.log(quote)
-        console.log(feeling)
-        //setImageLink(quote[0].media)
+        //console.log(feeling)
+        setImageLink(quote[0].media)
       })
   }, [setImageLink, feeling])
 

@@ -38,9 +38,15 @@ const CalendarComponent = ({ feelings }) => {
 
   const determineColor = (date) => {
     const foundItem = feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date.date), 'yyyy-MM-dd'))
-    if(foundItem) {
-       return  'feeling'
+    if(foundItem && foundItem.value <= 0.3) {
+       return  'feeling sad'
      } 
+     if(foundItem && foundItem.value >= 0.4 && foundItem.value <=0.7) {
+      return  'feeling neutral'
+    } 
+    if(foundItem && foundItem.value > 0.7) {
+      return  'feeling happy'
+    } 
   }
 
   return (

@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch, batch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import Avatar from '@material-ui/core/Avatar'
 import { Pivot as Hamburger } from 'hamburger-react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import user from 'reducers/user'
-import feeling from 'reducers/feeling'
-import { ButtonsWrapper, Button } from 'styled-components/Buttons'
 
 const Nav = styled.div`
   position: sticky;
@@ -66,36 +63,27 @@ const MenuLink = styled.a`
       border-radius: 6px;
     }
 `
-
+const styles = {
+  textDecoration: "none"
+}
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false)
   const accessToken = useSelector(store => store.user.accessToken)
   const profileImage = useSelector(store => store.user.profileImage)
   const username = useSelector(store => store.user.username)
-
-  const dispatch = useDispatch()
-
-  const onSignOutClick = () => {
-    batch(() => {
-      dispatch(user.actions.setUsername(null))
-      dispatch(user.actions.setAccessToken(null))
-      dispatch(user.actions.setUserId(null))
-      dispatch(user.actions.setErrors(null))
-      dispatch(feeling.actions.setFeelings([]))
-    })
-
-    localStorage.removeItem('user')
-  }
-
+  
   return (
     <Nav>
-      <Logo href="#">
-        moody
-      </Logo>
+      <Link to="/" style={styles}>
+        <Logo>
+          moody
+        </Logo>
+      </Link>
+
       {accessToken &&
         <Link to='/settings' >
-          <Avatar alt={username.toUpperCase()} src={profileImage? profileImage.imageURL :` /static/images/avatar/1.jpg`}/>
+          <Avatar alt={username.toUpperCase()} src={profileImage ? profileImage.imageURL : ` /static/images/avatar/1.jpg`} />
         </Link>
       }
       {!accessToken &&
@@ -109,15 +97,14 @@ const Navbar = () => {
             />
           </HamburgerButton>
           <Menu isOpen={isOpen}>
-            <MenuLink href="#">Home</MenuLink>
-            <MenuLink href="#">About</MenuLink>
+            <MenuLink href="#">
+              <Link to='/about' style={styles}>
+                About
+              </Link>
+            </MenuLink>
             <MenuLink href="#">Contact</MenuLink>
           </Menu>
         </>}
-      {accessToken &&
-        <ButtonsWrapper>
-          <Button onClick={onSignOutClick}>Sign out</Button>
-        </ButtonsWrapper>}
     </Nav>
   )
 }

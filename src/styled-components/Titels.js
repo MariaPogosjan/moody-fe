@@ -7,6 +7,7 @@ export const SectionTitle = styled.h1`
 
 export const SectionSubtitle = styled.h2`
   color: #4C5F6B;
+  text-align: center;
   
   @media (min-width: 768px) {
       padding-left: 10px;

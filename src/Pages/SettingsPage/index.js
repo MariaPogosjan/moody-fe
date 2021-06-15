@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch, batch } from 'react-redux'
+import styled from 'styled-components'
+
 import {
   FormSection,
   Form,
@@ -14,16 +16,23 @@ import user from 'reducers/user'
 
 import UpdateUsername from './UpdateUsername'
 import UpdatePassword from './UpdatePassword'
+import SignoutButton from './SignoutButton'
+
+
+const Container = styled.section`
+  padding-bottom: 70px;
+`
 
 const Settings = () => {
   const fileInput = useRef()
   const userId = useSelector(store => store.user.userId)
   const accessToken = useSelector(store => store.user.accessToken)
+  //const userImage = useSelector(store => store.user.profileImage)
   const dispatch = useDispatch()
   const history = useHistory()
-  
+
   useEffect(() => {
-    if(!accessToken) {
+    if (!accessToken) {
       history.push('/')
     }
   }, [accessToken, history])
@@ -39,6 +48,7 @@ const Settings = () => {
     fetch(PROFILE_IMAGE_URL(userId), options)
       .then(res => res.json())
       .then(data => {
+        dispatch(user.actions.setProfileImage(data.imageURL))
         if (data.sucess) {
           batch(() => {
             dispatch(user.actions.setProfileImage(data.profileImage))
@@ -52,17 +62,21 @@ const Settings = () => {
   }
 
   return (
-    <FormSection>
-      <Form onSubmit={onFormSubmit}>
-        <VisibleLabel htmlFor="file-input">Upload image</VisibleLabel>
-        <Input type="file" ref={fileInput} id="file-input" />
-        <ButtonsWrapper>
-          <Button type="submit">Upload</Button>
-        </ButtonsWrapper>
-      </Form>
-      <UpdateUsername />
-      <UpdatePassword />
-    </FormSection>
+    <Container>
+      <SignoutButton />
+      <FormSection>
+        <Form onSubmit={onFormSubmit}>
+          <VisibleLabel htmlFor="file-input">Upload image</VisibleLabel>
+          <Input type="file" ref={fileInput} id="file-input" />
+          <ButtonsWrapper>
+            <Button type="submit">Upload</Button>
+          </ButtonsWrapper>
+        </Form>
+        <UpdateUsername />
+        <UpdatePassword />
+      </FormSection>
+
+    </Container>
   )
 }
 

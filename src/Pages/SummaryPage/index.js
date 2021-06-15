@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory  } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch, batch } from 'react-redux'
-import { format } from 'date-fns'
+import { format, isToday, subDays, subMonths, subYears } from 'date-fns'
 import styled from 'styled-components'
 
 import { FEELING_URL } from 'reusables/urls'
@@ -21,15 +21,25 @@ const Container = styled.div`
   min-height: 100vh;
 `
 
+const FilterButton = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  background-color: #83A0A0;
+  border: 1px solid #4C5F6B !important;
+  width: 30px;
+  cursor: pointer;
+`
+
 const SummaryPage = () => {
   const [x, setX] = useState([])
   const [y, setY] = useState([])
+  const [range, setRange] = useState('day')
 
   const accessToken = useSelector(store => store.user.accessToken)
   const userId = useSelector(store => store.user.userId)
   const feelings = useSelector(store => store.feeling.feelings)
   const dispatch = useDispatch()
   const history = useHistory()
+
 
   const getAverageValue = (array) => {
     const averages = []
@@ -81,26 +91,57 @@ const SummaryPage = () => {
       })
   }, [userId, accessToken, dispatch])
 
-  useEffect(() => {
-    const avaragedArray = getAverageValue(feelings)
-    //console.log(avaragedArray)
-    setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
-    setY(avaragedArray.map(item => item.average))
-  }, [feelings])
 
   useEffect(() => {
-    if(!accessToken){
+    
+    if (range === "day") {
+      const filterFeelingDay = feelings.filter(item => isToday(new Date(item.createdAt)))
+      setX(filterFeelingDay.map(item => format(new Date(item.createdAt), 'HH:mm')))
+      setY(filterFeelingDay.map(item => item.value))
+    } else if (range === "week") {
+      const filterFeelingWeek = feelings.filter((item) => new Date(item.createdAt) > subDays(Date.now(), 7))
+      const avaragedArray = getAverageValue(filterFeelingWeek)
+      setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
+      setY(avaragedArray.map(item => item.average))
+    } else if (range === 'month') {
+      const filterFeelingMonth = feelings.filter((item) => new Date(item.createdAt) > subMonths(Date.now(), 1))
+      const avaragedArray = getAverageValue(filterFeelingMonth)
+      setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
+      setY(avaragedArray.map(item => item.average))
+    } else {
+      const filterFeelingYear = feelings.filter((item) => new Date(item.createdAt) > subYears(Date.now(), 1))
+      const avaragedArray = getAverageValue(filterFeelingYear)
+      setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
+      setY(avaragedArray.map(item => item.average))
+    }
+  }, [feelings, range])
+
+  useEffect(() => {
+    if (!accessToken) {
       history.push('/')
     }
   }, [accessToken, history])
 
-  return (
-    <Container>
-      <SectionTitle>Summary of your feelings </SectionTitle>
-      <CalenderComponent feelings={feelings} />
-      <Graph x={x} y={y} />
-    </Container>
-  )
+return (
+  <Container>
+    <SectionTitle>Summary of your feelings </SectionTitle>
+    <div style={{display: "flex" }}>
+      <div style={{fontSize: "10px", paddingRight: "5px"}} >Sad</div>
+      <div style={{backgroundColor: "#607474", width: "40px", height: "14px"}}></div>
+      <div style={{backgroundColor: "#83A0A0", width: "40px", height: "14px"}}></div>
+      <div style={{backgroundColor: "#b0c6c6", width: "40px", height: "14px"}}></div>
+      <div style={{fontSize: "10px", paddingLeft: "5px" }}>Happy</div>
+    </div>
+    <CalenderComponent feelings={feelings} />
+    <div style={{display: "flex"}}>
+      <FilterButton onClick={()=> setRange('day')}>1d</FilterButton>
+      <FilterButton onClick={()=> setRange('week')}>7d</FilterButton>
+      <FilterButton onClick={()=> setRange('month')}>1m</FilterButton>
+      <FilterButton onClick={()=> setRange('year')}>1y</FilterButton>
+    </div>  
+    <Graph x={x} y={y} />
+  </Container>
+)
 }
 
 export default SummaryPage
