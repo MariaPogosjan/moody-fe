@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Avatar from '@material-ui/core/Avatar'
 import { useSelector, useDispatch } from 'react-redux'
@@ -64,7 +64,7 @@ const RequestsList = () => {
       <RequestTitle>Friend Requests</RequestTitle>
       <ListContainer>
         {friendRequests.map(item =>
-          <Request key={item.id}>
+          <Request key={item._id}>
             <RequestNamePicWrapper>
               <Avatar
                 alt={item.username && item.username.toUpperCase()}

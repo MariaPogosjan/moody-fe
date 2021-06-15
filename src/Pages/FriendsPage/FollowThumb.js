@@ -2,9 +2,34 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Avatar from '@material-ui/core/Avatar'
+import styled from 'styled-components'
 
 import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
+
+
+
+const User = styled.li`
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  justify-content: space-between;
+`
+const UserNamePicWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const FollowButton = styled.button`
+  border-radius: 6px;
+  border: none;
+  padding: 4px 6px;
+  background-color: #bca0bc;
+  color: #fff;
+    &:disabled {
+      opacity: 0.6;
+    }
+`
+
 
 const FollowThumb = ({ item }) => {
   const [disabled, setDisabled] = useState(false)
@@ -50,38 +75,32 @@ const FollowThumb = ({ item }) => {
 
       } else {
         setDisabled(false)
-        setButtonText(<AddCircleOutlineIcon/>)
+        setButtonText(<AddCircleOutlineIcon />)
       }
     }
 
     checkFriendsArrays(item)
   }, [item, myFriendRequests, friendsList, friendRequests, userId])
 
-  // const checkFriedsArraysAgain = (item) => {
-  //   if(userId === item._id) {
-  //     return "You"
-  //   } else if(myFriendRequests.find(request => request._id === item._id)){
-  //     return "Requested"
-  //   } else if(friendsList.find(friend => friend._id === item._id)) {
-  //     return "Friend"
-  //   } else if(friendRequests.find(friend => friend._id === item._id)) {
-  //     return "Accept"
-  //   } else {
-  //     return <AddCircleOutlineIcon />
-  //   }
-  // }
 
   return (
-    <div>
-      <p>{item.username}</p>
-      <Avatar alt={item.username.toUpperCase()} src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`} />
-      <button
+    <User>
+      <UserNamePicWrapper>
+        <Avatar
+          alt={item.username.toUpperCase()}
+          src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
+          style={{ marginRight: "5px" }}
+        />
+        {item.username}
+      </UserNamePicWrapper>
+
+      <FollowButton
         onClick={onFollowUser}
         disabled={disabled}
       >
         {buttonText}
-      </button>
-    </div>
+      </FollowButton>
+    </User>
   )
 }
 

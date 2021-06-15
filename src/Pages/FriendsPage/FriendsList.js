@@ -63,7 +63,7 @@ const FriendsList = () => {
       <FriendsTitle>Friends</FriendsTitle>
       <ListContainer>
         {friendsList.map(item =>
-          <Friend key={item.id}>
+          <Friend key={item._id}>
             <FriendNamePicWrapper>
               <Avatar
                 alt={item.username && item.username.toUpperCase()}

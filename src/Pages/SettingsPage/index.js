@@ -27,7 +27,7 @@ const Settings = () => {
   const fileInput = useRef()
   const userId = useSelector(store => store.user.userId)
   const accessToken = useSelector(store => store.user.accessToken)
-  const userImage = useSelector(store => store.user.profileImage)
+  //const userImage = useSelector(store => store.user.profileImage)
   const dispatch = useDispatch()
   const history = useHistory()
 
