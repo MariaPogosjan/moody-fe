@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import socketIOClient from "socket.io-client"
+//import socketIOClient from "socket.io-client"
 
 import user from './reducers/user'
 import feeling from './reducers/feeling'
@@ -19,7 +19,7 @@ import About from 'Pages/AboutPage'
 import Settings from 'Pages/SettingsPage'
 import FriendsPage from 'Pages/FriendsPage'
 
-const ENDPOINT = "http://127.0.0.1:8080"
+//const ENDPOINT = "http://127.0.0.1:8080"
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -30,12 +30,12 @@ const store = configureStore({ reducer })
 
 const App = () => {
 
-  useEffect(() => {
+  /* useEffect(() => {
     const socket = socketIOClient(ENDPOINT)
     socket.on("FromAPI", data => {
       console.log(data)
     })
-  }, [])
+  }, []) */
   return (
     <BrowserRouter>
       <Provider store={store}>
