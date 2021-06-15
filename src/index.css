@@ -23,15 +23,22 @@ abbr[title] {
 }
 
 .feeling {
-  background-color: #83A0A0 !important;
   border-radius: 50% !important;
   border: 3px solid #4C5F6B !important;
 }
 
 .sad {
-  background-color: rgb(238, 31, 94) !important;
-  border-radius: 50% !important;
+  background-color: #607474 !important;
 }
+
+.happy {
+  background-color: #b0c6c6 !important;
+}
+
+.neutral {
+  background-color: #83A0A0 !important;
+}
+
 
 .react-calendar button {
   height: 55px !important;

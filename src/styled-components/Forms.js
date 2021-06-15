@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const FormSection = styled.section`
+  padding-top: 25px;
 `
 
 export const Form = styled.form `

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import styled from 'styled-components'
 
 import user from 'reducers/user'
 import { PASSWORD_UPDATE_URL } from 'reusables/urls'
@@ -11,6 +12,12 @@ import {
   Input
 }
   from 'styled-components/Forms'
+
+
+const PasswordTitle = styled.p`
+  font-size: 14px;
+  color: #4C5F6B;
+`
 
 const UpdatePassword = () => {
   const [password, setPassword] = useState('')
@@ -52,8 +59,10 @@ const UpdatePassword = () => {
   return (
     <FormSection>
       <Form onSubmit={onPasswordUpdate}>
-        <VisibleLabel htmlFor="password">Old password</VisibleLabel>
+        <PasswordTitle>Update password</PasswordTitle>
+        <VisibleLabel htmlFor="settings-password">Old password</VisibleLabel>
         <Input
+          id="settings-password"
           type="password"
           required
           onChange={(e) => setPassword(e.target.value)}

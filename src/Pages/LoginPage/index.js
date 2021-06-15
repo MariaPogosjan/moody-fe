@@ -49,18 +49,25 @@ const Login = () => {
     fetch(API_URL('sessions'), options)
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         if(data.success) {
           batch(() => {
             dispatch(user.actions.setUsername(data.username))
             dispatch(user.actions.setUserId(data.userId))
             dispatch(user.actions.setAccessToken(data.accessToken))
             dispatch(user.actions.setProfileImage(data.profileImage))
+            dispatch(user.actions.setFriends(data.friends))
+            dispatch(user.actions.setFriendRequests(data.friendRequests))
+            dispatch(user.actions.setMyFriendRequests(data.myFriendRequests))
             dispatch(user.actions.setErrors(null))
             localStorage.setItem('user', JSON.stringify({
               userId: data.userId,
               username: data.username,
               accessToken: data.accessToken,
-              profileImage: data.profileImage
+              profileImage: data.profileImage,
+              friends: data.friends,
+              friendRequests: data.friendRequests,
+              myFriendRequests: data.myFriendRequests,
             }))
           })
         } else {
