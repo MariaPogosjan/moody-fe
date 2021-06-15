@@ -51,7 +51,7 @@ const Quote = ({ visible, setVisible, feeling }) => {
       .then(res => res.json())
       .then(quote => {
         //console.log(feeling)
-        setImageLink(quote[0].media)
+        // setImageLink(quote[0].media)
       })
   }, [setImageLink, feeling])
 
