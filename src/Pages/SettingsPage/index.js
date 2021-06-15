@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch, batch } from 'react-redux'
+import styled from 'styled-components'
+
 import {
   FormSection,
   Form,
@@ -15,6 +17,11 @@ import user from 'reducers/user'
 import UpdateUsername from './UpdateUsername'
 import UpdatePassword from './UpdatePassword'
 import SignoutButton from './SignoutButton'
+
+
+const Container = styled.section`
+  padding-bottom: 70px;
+`
 
 const Settings = () => {
   const fileInput = useRef()
@@ -55,7 +62,7 @@ const Settings = () => {
   }
 
   return (
-    <>
+    <Container>
       <SignoutButton />
       <FormSection>
         <Form onSubmit={onFormSubmit}>
@@ -69,7 +76,7 @@ const Settings = () => {
         <UpdatePassword />
       </FormSection>
 
-    </>
+    </Container>
   )
 }
 
