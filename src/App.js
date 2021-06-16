@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import user from './reducers/user'
 import feeling from './reducers/feeling'
 import friends from 'reducers/friends'
+import thoughts from './reducers/thoughts'
 
 import Navbar from 'components/Navbar'
 import Footer from 'components/Footer'
@@ -23,7 +24,8 @@ import Thoughts from 'Pages/ThoughtsPage'
 const reducer = combineReducers({
   user: user.reducer,
   feeling: feeling.reducer,
-  friends: friends.reducer
+  friends: friends.reducer,
+  thoughts: thoughts.reducer
 })
 const store = configureStore({ reducer })
 
