@@ -18,6 +18,7 @@ import About from 'Pages/AboutPage'
 import Settings from 'Pages/SettingsPage'
 import FriendsPage from 'Pages/FriendsPage'
 import FriendProfile from 'Pages/FriendProfilePage'
+import Thoughts from 'Pages/ThoughtsPage'
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -56,6 +57,9 @@ const App = () => {
           <Route path='/friends' exact>
             <FriendsPage />
           </Route>
+          <Route path='/thoughts' exact>
+            <Thoughts />
+          </Route>
           <Route path='/:id' exact>
             <FriendProfile />
           </Route>
@@ -66,4 +70,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
