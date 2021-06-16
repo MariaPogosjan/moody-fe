@@ -56,6 +56,7 @@ const FriendsList = () => {
         console.log(data)
         dispatch(user.actions.removeFriends(data.friend._id))
         //here we need to fix local storage as well
+        // localStorage.setItem('friends', JSON.stringify({ friends }))
       })
   }
   return (

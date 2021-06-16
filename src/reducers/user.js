@@ -6,9 +6,9 @@ const initialState = localStorage.getItem('user')
     username: JSON.parse(localStorage.getItem('user')).username,
     accessToken: JSON.parse(localStorage.getItem('user')).accessToken,
     profileImage: JSON.parse(localStorage.getItem('user')).profileImage,
-    friends: JSON.parse(localStorage.getItem('user')).friends,
-    friendRequests: JSON.parse(localStorage.getItem('user')).friendRequests,
-    myFriendRequests: JSON.parse(localStorage.getItem('user')).myFriendRequests,
+    friends: JSON.parse(localStorage.getItem('friends')).friends,
+    friendRequests: JSON.parse(localStorage.getItem('friendRequests')).friendRequests,
+    myFriendRequests: JSON.parse(localStorage.getItem('myFriendRequests')).myFriendRequests,
     errors: null
   }
   : {

@@ -28,16 +28,21 @@ const RequestNamePicWrapper = styled.div`
   display: flex;
   align-items: center;
 `
-const AcceptButton = styled.button`
+const Button = styled.button`
   border-radius: 6px;
   border: none;
   padding: 4px 6px;
   background-color: #bca0bc;
   color: #fff;
 `
+const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
 
 const RequestsList = () => {
   const friendRequests = useSelector(store => store.user.friendRequests)
+  const friends = useSelector(store => store.user.friends)
   const accessToken = useSelector(store => store.user.accessToken)
   const dispatch = useDispatch()
 
@@ -52,10 +57,32 @@ const RequestsList = () => {
     }
     fetch(API_URL('acceptfriends'), options)
       .then(res => res.json())
+      .then(data =>  {
+         dispatch(user.actions.addFriends(data.friend))
+         dispatch(user.actions.removeFriendRequests(data.friend._id))
+        // localStorage.setItem('friends', JSON.stringify({ friends }))
+        // localStorage.setItem('friendRequests', JSON.stringify({ friendRequests }))
+        //here we need to fix local storage as well
+      })
+     
+  }
+
+  const onRequestDeny = (item) => {
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': accessToken
+      },
+      body: JSON.stringify({ id: item._id })
+    }
+    fetch(API_URL('denyfriends'), options)
+      .then(res => res.json())
       .then(data => {
-        dispatch(user.actions.addFriends(data.friend))
         dispatch(user.actions.removeFriendRequests(data.friend._id))
         //here we need to fix local storage as well
+        // localStorage.setItem('friends', JSON.stringify({ friends }))
+        // localStorage.setItem('friendRequests', JSON.stringify({ friendRequests }))
       })
   }
 
@@ -73,7 +100,10 @@ const RequestsList = () => {
               />
               {item.username}
             </RequestNamePicWrapper>
-            <AcceptButton onClick={() => onRequestAccept(item)}>Accept</AcceptButton>
+            <ButtonsWrapper>
+              <Button onClick={() => onRequestAccept(item)}>Accept</Button>
+              <Button onClick={() => onRequestDeny(item)}>Deny</Button>
+            </ButtonsWrapper>
           </Request>)}
       </ListContainer>
     </RequestsContainer>
