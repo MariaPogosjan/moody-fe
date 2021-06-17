@@ -72,7 +72,7 @@ const Navbar = () => {
   const accessToken = useSelector(store => store.user.accessToken)
   const profileImage = useSelector(store => store.user.profileImage)
   const username = useSelector(store => store.user.username)
-  
+
   return (
     <Nav>
       <Link to="/" style={styles}>
@@ -102,7 +102,9 @@ const Navbar = () => {
                 About
               </Link>
             </MenuLink>
-            <MenuLink href="#">Contact</MenuLink>
+            <Link to='/contact' style={styles}>
+              <MenuLink href="#">Contact</MenuLink>
+            </Link>
           </Menu>
         </>}
     </Nav>
