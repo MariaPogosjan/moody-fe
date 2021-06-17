@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { API_URL, THOUGHT_COMMENT } from 'reusables/urls'
+import { THOUGHTS_URL, THOUGHT_COMMENT } from 'reusables/urls'
 import thoughts from 'reducers/thoughts'
 
 const CommentForm = styled.form`
@@ -33,13 +33,13 @@ const InputLabel = styled.label`
 
 
 
-const Comment = ({item}) => {
+const Comment = ({ item, page, setPage, perPage, setPerPage }) => {
   const [comment, setComment] = useState("")
   const dispatch = useDispatch()
   const accessToken = useSelector(store => store.user.accessToken)
 
   const fetchMessageList = () => {
-    fetch(API_URL('thoughts'))
+    fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
         console.log(data)
