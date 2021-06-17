@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import SearchIcon from '@material-ui/icons/Search'
 import { useSelector, useDispatch, batch } from 'react-redux'
+// *
+// import io from "socket.io-client"
+
 
 import { API_URL } from 'reusables/urls'
 import friends from 'reducers/friends'
 
 
 import FollowThumb from './FollowThumb'
+
+// *
+// const socket = io.connect("http://localhost:8080")
 
 
 const FormContainer = styled.section`
@@ -52,8 +58,16 @@ const SearchForm = () => {
     e.preventDefault()
     const filteredUsers = users.filter(user => user.username.includes(value))
     setFilteredUsers(filteredUsers)
+    // socket.emit("follows", filteredUsers)
   }
 
+ /*  useEffect(() => {
+    socket.on('follows', (data) => {
+      // eslint-disable-next-line no-console
+      console.log('message is here: ', data)
+      //asetFilteredUsers(filteredUsers, data)
+    })
+  }, [filteredUsers]) */
 
   useEffect(() => {
     fetch(API_URL('users'))

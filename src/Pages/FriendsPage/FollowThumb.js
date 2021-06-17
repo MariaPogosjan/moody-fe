@@ -3,33 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Avatar from '@material-ui/core/Avatar'
 import styled from 'styled-components'
+import io from "socket.io-client"
 
 import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
 
-
-
-const User = styled.li`
-  display: flex;
-  align-items: center;
-  padding-bottom: 5px;
-  justify-content: space-between;
-`
-const UserNamePicWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-const FollowButton = styled.button`
-  border-radius: 6px;
-  border: none;
-  padding: 4px 6px;
-  background-color: #bca0bc;
-  color: #fff;
-    &:disabled {
-      opacity: 0.6;
-    }
-`
-
+const socket = io.connect("http://localhost:8080")
 
 const FollowThumb = ({ item }) => {
   const [disabled, setDisabled] = useState(false)
@@ -53,9 +32,17 @@ const FollowThumb = ({ item }) => {
     fetch(API_URL('follow'), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data.friend)
         dispatch(user.actions.addMyFriendRequests(data.friend))
-      })
+        
+        //socket.emit("follows", data.friend)
+        /* socket.emit('join room', {
+          message: 'Hej',
+          username: data.friend,
+          room:room
+        }) */
+      })      
+
+    
   }
 
   useEffect(() => {
@@ -78,14 +65,46 @@ const FollowThumb = ({ item }) => {
         setButtonText(<AddCircleOutlineIcon />)
       }
     }
-
     checkFriendsArrays(item)
   }, [item, myFriendRequests, friendsList, friendRequests, userId])
 
 
+  const room = 4001
+ 
+  const test = () => {
+    socket.emit('join room', {
+      room,
+      userId,
+      socketId: socket.id
+    })   
+  }
+
+  const onFollow = () => {
+    socket.emit('join room', {
+      room,
+      userId,
+      socketId: socket.id
+    })   
+    socket.emit('follow', userId)
+    // id of the person we want to follow 
+
+    socket.on('notifyAboutFollow', (data) => {
+      if (data.message) { 
+        console.log(data.message) 
+        alert('Hej! :' ) 
+
+        console.log('det funkar!!!') 
+      } else {
+        console.log("There is a problem:", data)
+      }
+    })
+  }
+
   return (
+    <>
     <User>
-      <UserNamePicWrapper>
+        <button onClick={onFollow}>Test</button>
+    <UserNamePicWrapper>
         <Avatar
           alt={item.username.toUpperCase()}
           src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
@@ -101,7 +120,30 @@ const FollowThumb = ({ item }) => {
         {buttonText}
       </FollowButton>
     </User>
+    </>
   )
 }
 
 export default FollowThumb
+
+
+const User = styled.li`
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  justify-content: space-between;
+`
+const UserNamePicWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const FollowButton = styled.button`
+  border-radius: 6px;
+  border: none;
+  padding: 4px 6px;
+  background-color: #bca0bc;
+  color: #fff;
+    &:disabled {
+      opacity: 0.6;
+    }
+`
