@@ -44,6 +44,33 @@ const DateText = styled.p`
   color: #4c5f6b;
   font-style: italic;
 `
+const MessageText = styled.p`
+`
+const CommentForm = styled.form`
+  margin-bottom: 10px;
+  padding: 5px;
+`
+
+const CommentInput = styled.input`
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border: 1px #f9b9f2 solid;
+  padding: 5px;
+  color: #4c5f6b;
+  font-family: 'Montserrat', sans-serif;
+`
+const CommentButton = styled.button`
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: 1px #f9b9f2 solid;
+  background-color: #f9b9f2;
+  padding: 5px;
+  color: #4c5f6b;
+  font-family: 'Montserrat', sans-serif;
+`
+const InputLabel = styled.label`
+  display: none;
+`
 
 
 const MessageList = () => {
@@ -103,24 +130,24 @@ const MessageList = () => {
             <Name>{item.user}</Name>
           </NameAvatarWrapper>
           <MessageCreatedAtWrapper>
-            <p>{item.message}</p>
+            <MessageText>{item.message}</MessageText>
             <DateText>{formatDistance(new Date(item.createdAt), Date.now())}</DateText>
           </MessageCreatedAtWrapper>
           <HugsButtonWrapper>
             <HugButton onClick={() => onHugSend(item._id)}>💗</HugButton>
             <HugsText> x {item.hugs}</HugsText>
           </HugsButtonWrapper>
-          <form onSubmit={onFormSubmit}>
-            <label>
-              <input
+          <CommentForm onSubmit={onFormSubmit}>
+            <InputLabel> Leave a comment </InputLabel>
+            <CommentInput
                 id="newMessage"
                 type="text"
                 value={comment}
                 onChange={e => setComment(e.target.value)}
+                placeholder="Leave a comment"
               />
-            </label>
-            <button type="submit">comment</button>
-          </form>
+            <CommentButton type="submit">comment</CommentButton>
+          </CommentForm>
           {item.comments.map(item => <p>{item}</p>)}
         </MessageWrapper>)}
     </MessageListContainer>
