@@ -42,7 +42,6 @@ const ButtonsWrapper = styled.div`
 
 const RequestsList = () => {
   const friendRequests = useSelector(store => store.user.friendRequests)
-  const friends = useSelector(store => store.user.friends)
   const accessToken = useSelector(store => store.user.accessToken)
   const dispatch = useDispatch()
 
