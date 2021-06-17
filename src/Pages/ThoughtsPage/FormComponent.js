@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { API_URL } from 'reusables/urls'
+import { THOUGHTS_URL } from 'reusables/urls'
 import thoughts from 'reducers/thoughts'
 
 
@@ -39,13 +39,13 @@ const ShareButton = styled.button`
   width: 150px;
 `
 
-const FormComponent = () => {
+const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
   const [message, setMessage] = useState('')
   const accessToken = useSelector(store => store.user.accessToken)
   const dispatch = useDispatch()
 
   const fetchMessageList = () => {
-    fetch(API_URL('thoughts'))
+    fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
         console.log(data)
@@ -67,7 +67,7 @@ const FormComponent = () => {
       },
       body: JSON.stringify({ message })
     }
-    fetch(API_URL('thoughts'), options)
+    fetch(THOUGHTS_URL(1, 20), options)
       .then(res => res.json())
       .then(data => {
         console.log(data)

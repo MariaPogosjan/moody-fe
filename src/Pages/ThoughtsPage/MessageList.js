@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import formatDistance from 'date-fns/formatDistance'
 import Avatar from '@material-ui/core/Avatar'
 
 import thoughts from 'reducers/thoughts'
-import { API_URL, THOUGHT_HUG} from 'reusables/urls'
+import { THOUGHTS_URL, THOUGHT_HUG } from 'reusables/urls'
 
 import Comment from './Comment'
 
@@ -56,12 +56,19 @@ const CommentsWrapper = styled.div`
 
 `
 
-const MessageList = () => {
+const MessageList = ({ page, setPage, perPage, setPerPage  }) => {
   const thoughtsList = useSelector(store => store.thoughts.thoughts)
   const dispatch = useDispatch()
+  const [visble, setVisble] = useState(10)
+
+  const loadMore = () => {
+    setVisble(visble + 10)
+    setPerPage(perPage + 10)
+  }
+
 
   const fetchMessageList = () => {
-    fetch(API_URL('thoughts'))
+    fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
         console.log(data)
@@ -87,7 +94,7 @@ const MessageList = () => {
   }
 
   useEffect(() => {
-    fetch(API_URL('thoughts'))
+    fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
         console.log(data)
@@ -97,13 +104,13 @@ const MessageList = () => {
           dispatch(thoughts.actions.setErrors(data))
         }
       }) 
-  }, [dispatch])
+  }, [dispatch, page, perPage])
 
   return (
     <>
     {thoughtsList.length>0 &&
     <MessageListContainer>
-      {thoughtsList.map(item =>
+      {thoughtsList.slice(0, visble).map(item =>
         <MessageWrapper key={item._id}>
           <NameAvatarWrapper>
           <Avatar
@@ -134,6 +141,13 @@ const MessageList = () => {
           </CommentsWrapper>
           
         </MessageWrapper>)}
+        {visble < thoughtsList.length ? 
+        <div className="btn-container">
+          <button type="button" className="btn" onClick={loadMore}>More</button>
+        </div>
+        :
+        <p>No more thought to load...</p>
+      }
     </MessageListContainer>
     }
     </>
