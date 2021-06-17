@@ -66,7 +66,6 @@ const SignUp = () => {
               userId: data.userId,
               username: data.username,
               accessToken: data.accessToken,
-              
             }))
           })
         } else {

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import user from './reducers/user'
 import feeling from './reducers/feeling'
 import friends from 'reducers/friends'
+import thoughts from './reducers/thoughts'
 
 import Navbar from 'components/Navbar'
 import Footer from 'components/Footer'
@@ -17,11 +18,15 @@ import SummaryPage from 'Pages/SummaryPage'
 import About from 'Pages/AboutPage'
 import Settings from 'Pages/SettingsPage'
 import FriendsPage from 'Pages/FriendsPage'
+import FriendProfile from 'Pages/FriendProfilePage'
+import Thoughts from 'Pages/ThoughtsPage'
+import Contact from 'Pages/ContactPage'
 
 const reducer = combineReducers({
   user: user.reducer,
   feeling: feeling.reducer,
-  friends: friends.reducer
+  friends: friends.reducer,
+  thoughts: thoughts.reducer
 })
 const store = configureStore({ reducer })
 
@@ -36,6 +41,9 @@ const App = () => {
           </Route>
           <Route path='/about' exact>
             <About />
+          </Route>
+          <Route path='/contact' exact>
+            <Contact/>
           </Route>
           <Route path='/signup' exact>
             <SignUp />
@@ -55,6 +63,12 @@ const App = () => {
           <Route path='/friends' exact>
             <FriendsPage />
           </Route>
+          <Route path='/thoughts' exact>
+            <Thoughts />
+          </Route>
+          <Route path='/:id' exact>
+            <FriendProfile />
+          </Route>
         </Switch>
         <Footer />
       </Provider>
@@ -62,4 +76,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

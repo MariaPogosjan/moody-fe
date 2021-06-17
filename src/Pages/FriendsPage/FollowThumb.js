@@ -7,8 +7,6 @@ import styled from 'styled-components'
 import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
 
-
-
 const User = styled.li`
   display: flex;
   align-items: center;
@@ -29,7 +27,6 @@ const FollowButton = styled.button`
       opacity: 0.6;
     }
 `
-
 
 const FollowThumb = ({ item }) => {
   const [disabled, setDisabled] = useState(false)
@@ -55,6 +52,9 @@ const FollowThumb = ({ item }) => {
       .then(data => {
         console.log(data.friend)
         dispatch(user.actions.addMyFriendRequests(data.friend))
+        // updating local storage here
+        // localStorage.setItem('friends', JSON.stringify({ friends }))
+        // localStorage.setItem('friendRequests', JSON.stringify({ friendRequests }))
       })
   }
 

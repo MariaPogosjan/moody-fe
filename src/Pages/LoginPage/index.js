@@ -18,9 +18,9 @@ const Login = () => {
   const [emailOrUsername, setUsernameOrEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const dispatch = useDispatch()
   const accessToken = useSelector(store => store.user.accessToken)
   const errors = useSelector(store => store.user.errors)
+  const dispatch = useDispatch()
   const history = useHistory()
 
   useEffect(() => {
@@ -64,9 +64,18 @@ const Login = () => {
               userId: data.userId,
               username: data.username,
               accessToken: data.accessToken,
-              profileImage: data.profileImage,
+              profileImage: data.profileImage
+              // friends: data.friends,
+              // friendRequests: data.friendRequests,
+              // myFriendRequests: data.myFriendRequests,
+            }))
+            localStorage.setItem('friends', JSON.stringify({
               friends: data.friends,
+            }))
+            localStorage.setItem('friendRequests', JSON.stringify({
               friendRequests: data.friendRequests,
+            }))
+            localStorage.setItem('myFriendRequests', JSON.stringify({
               myFriendRequests: data.myFriendRequests,
             }))
           })
