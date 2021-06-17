@@ -20,6 +20,7 @@ import Settings from 'Pages/SettingsPage'
 import FriendsPage from 'Pages/FriendsPage'
 import FriendProfile from 'Pages/FriendProfilePage'
 import Thoughts from 'Pages/ThoughtsPage'
+import Contact from 'Pages/ContactPage'
 
 const reducer = combineReducers({
   user: user.reducer,
@@ -40,6 +41,9 @@ const App = () => {
           </Route>
           <Route path='/about' exact>
             <About />
+          </Route>
+          <Route path='/contact' exact>
+            <Contact/>
           </Route>
           <Route path='/signup' exact>
             <SignUp />

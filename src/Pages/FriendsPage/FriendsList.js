@@ -13,7 +13,6 @@ const FriendsContainer = styled.section`
 const FriendsTitle = styled.h2`
   color: #4C5F6B;
   font-size: 18px;
-  
 `
 const ListContainer = styled.ul`
   padding:0;
