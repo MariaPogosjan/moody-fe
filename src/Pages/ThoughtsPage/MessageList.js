@@ -5,7 +5,9 @@ import formatDistance from 'date-fns/formatDistance'
 import Avatar from '@material-ui/core/Avatar'
 
 import thoughts from 'reducers/thoughts'
-import { API_URL, THOUGHT_HUG } from 'reusables/urls'
+import { API_URL, THOUGHT_HUG, THOUGHT_COMMENT } from 'reusables/urls'
+
+import Comment from './Comment'
 
 const MessageListContainer = styled.section`
   padding: 5px;
@@ -75,16 +77,15 @@ const InputLabel = styled.label`
   display: none;
 `
 
+const CommentsWrapper = styled.div`
+
+`
 
 const MessageList = () => {
   const [comment, setComment] = useState("")
   const thoughtsList = useSelector(store => store.thoughts.thoughts)
-  //const accessToken = useSelector(store => store.user.accessToken)
+  const accessToken = useSelector(store => store.user.accessToken)
   const dispatch = useDispatch()
-
-  const onFormSubmit = (e) => {
-    e.preventDefault()
-  }
 
   const fetchMessageList = () => {
     fetch(API_URL('thoughts'))
@@ -111,6 +112,22 @@ const MessageList = () => {
       .then(res => res.json())
       .then(() => fetchMessageList())
   }
+  const onComment = (e, id) => {
+    e.preventDefault()
+    console.log(id)
+    const options = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': accessToken
+      },
+      body: JSON.stringify({ comment })
+    }
+    fetch(THOUGHT_COMMENT(id), options)
+      .then(res => res.json())
+      .then((data) => fetchMessageList())
+      setComment('')
+  }
 
   useEffect(() => {
     fetch(API_URL('thoughts'))
@@ -122,20 +139,22 @@ const MessageList = () => {
         } else {
           dispatch(thoughts.actions.setErrors(data))
         }
-      })
+      }) 
   }, [dispatch])
 
   return (
+    <>
+    {thoughtsList.length>0 &&
     <MessageListContainer>
       {thoughtsList.map(item =>
         <MessageWrapper key={item._id}>
           <NameAvatarWrapper>
           <Avatar
-                alt={item.user && item.user.toUpperCase()}
+                alt={item.user && item.user.username.toUpperCase()}
                 src={item.user.profileImage ? item.user.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
                 style={{ marginRight: "5px" }}
               />
-            <Name>{item.user}</Name>
+            <Name>{item.user.username}</Name>
           </NameAvatarWrapper>
           <MessageCreatedAtWrapper>
             <MessageText>{item.message}</MessageText>
@@ -145,7 +164,9 @@ const MessageList = () => {
             <HugButton onClick={() => onHugSend(item._id)}>💞</HugButton>
             <HugsText> x {item.hugs}</HugsText>
           </HugsButtonWrapper>
-          <CommentForm onSubmit={onFormSubmit}>
+          <p>💬 x {item.comments.length}</p>
+          <Comment item ={item}/>
+          {/* <CommentForm onSubmit={(e)=>onComment(e, item._id)}>
             <InputLabel> Leave a comment </InputLabel>
             <CommentInput
                 id="newMessage"
@@ -155,10 +176,21 @@ const MessageList = () => {
                 placeholder="Leave a comment"
               />
             <CommentButton type="submit">comment</CommentButton>
-          </CommentForm>
-          {item.comments.map(item => <p>{item}</p>)}
+          </CommentForm> */}
+          <CommentsWrapper>
+            {item.comments.map(comment => 
+              <div key={comment._id}>
+                <p>{comment.comment}</p>
+                <p>{comment.user.username}</p>
+                <p>{formatDistance(new Date(comment.createdAt), Date.now())}</p>
+              </div>
+              )}
+          </CommentsWrapper>
+          
         </MessageWrapper>)}
     </MessageListContainer>
+    }
+    </>
   )
 }
 export default MessageList
