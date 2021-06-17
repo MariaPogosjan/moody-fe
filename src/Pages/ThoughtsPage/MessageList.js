@@ -1,8 +1,50 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import formatDistance from 'date-fns/formatDistance'
 
 import thoughts from 'reducers/thoughts'
 import { API_URL, THOUGHT_HUG } from 'reusables/urls'
+
+const MessageListContainer = styled.section`
+  padding: 5px;
+`
+
+const MessageWrapper = styled.div`
+  border: 1px solid #bca0bc;
+  margin: 20px 0;
+  border-radius: 6px;
+`
+const HugButton = styled.button`
+  background-color: #f9b9f2;
+  border-radius: 50%;
+  border: none;
+  padding: 2px 5px;
+`
+const NameAvatarWrapper = styled.div`
+  background-color: #bca0bc;
+
+`
+const Name = styled.p`
+  margin:0;
+  padding: 10px 5px;
+`
+const HugsText = styled.p`
+  margin:0;
+  padding: 5px;
+`
+const MessageCreatedAtWrapper = styled.div`
+  padding: 5px;
+`
+const HugsButtonWrapper = styled.div`
+  display: flex;
+  margin: 10px 5px;
+`
+const DateText = styled.p`
+  color: #4c5f6b;
+  font-style: italic;
+`
+
 
 const MessageList = () => {
   const [comment, setComment] = useState("")
@@ -39,7 +81,7 @@ const MessageList = () => {
       .then(res => res.json())
       .then(() => fetchMessageList())
   }
-  
+
   useEffect(() => {
     fetch(API_URL('thoughts'))
       .then(res => res.json())
@@ -54,13 +96,20 @@ const MessageList = () => {
   }, [dispatch])
 
   return (
-    <div>
+    <MessageListContainer>
       {thoughtsList.map(item =>
-        <div>
-          <p>{item.message}</p>
-          <p>{item.user}</p>
-          <p>{item.hugs}</p>
-          <button onClick={() => onHugSend(item._id)}>heart</button>
+        <MessageWrapper key={item._id}>
+          <NameAvatarWrapper>
+            <Name>{item.user}</Name>
+          </NameAvatarWrapper>
+          <MessageCreatedAtWrapper>
+            <p>{item.message}</p>
+            <DateText>{formatDistance(new Date(item.createdAt), Date.now())}</DateText>
+          </MessageCreatedAtWrapper>
+          <HugsButtonWrapper>
+            <HugButton onClick={() => onHugSend(item._id)}>💗</HugButton>
+            <HugsText> x {item.hugs}</HugsText>
+          </HugsButtonWrapper>
           <form onSubmit={onFormSubmit}>
             <label>
               <input
@@ -73,8 +122,8 @@ const MessageList = () => {
             <button type="submit">comment</button>
           </form>
           {item.comments.map(item => <p>{item}</p>)}
-        </div>)}
-    </div>
+        </MessageWrapper>)}
+    </MessageListContainer>
   )
 }
 export default MessageList
