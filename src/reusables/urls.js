@@ -14,6 +14,10 @@ export const FRIEND_PROFILE = (id) => `${BASE_URL}/users/${id}`
 
 export const FRIEND_FEELING = (id) => `${BASE_URL}/friendfeeling/${id}`
 
+export const THOUGHTS_URL = (page, perPage) => `${BASE_URL}/thoughts?page=${page}&size=${perPage}`
+
 export const THOUGHT_HUG = (id) => `${BASE_URL}/thoughts/${id}/hug`
 
 export const THOUGHT_COMMENT = (id) => `${BASE_URL}/thoughts/${id}/comment`
+
+
