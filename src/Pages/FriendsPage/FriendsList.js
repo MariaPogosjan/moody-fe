@@ -54,8 +54,9 @@ const FriendsList = () => {
       .then(data => {
         console.log(data)
         dispatch(user.actions.removeFriends(data.friend._id))
+        //const updatedFriends = friendsList.filter(item => )
         //here we need to fix local storage as well
-        // localStorage.setItem('friends', JSON.stringify({ friends }))
+        // localStorage.setItem('friends', JSON.stringify({ friends: updatedFriends  }))
       })
   }
   return (

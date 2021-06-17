@@ -179,7 +179,7 @@ const MessageList = () => {
           </CommentForm> */}
           <CommentsWrapper>
             {item.comments.map(comment => 
-              <div>
+              <div key={comment._id}>
                 <p>{comment.comment}</p>
                 <p>{comment.user.username}</p>
                 <p>{formatDistance(new Date(comment.createdAt), Date.now())}</p>
