@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import formatDistance from 'date-fns/formatDistance'
 import Avatar from '@material-ui/core/Avatar'
 
 import thoughts from 'reducers/thoughts'
-import { API_URL, THOUGHT_HUG, THOUGHT_COMMENT } from 'reusables/urls'
+import { API_URL, THOUGHT_HUG} from 'reusables/urls'
 
 import Comment from './Comment'
 
@@ -51,40 +51,13 @@ const DateText = styled.p`
 `
 const MessageText = styled.p`
 `
-const CommentForm = styled.form`
-  margin-bottom: 10px;
-  padding: 5px;
-`
-
-const CommentInput = styled.input`
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  border: 1px #EEECFB solid;
-  padding: 5px;
-  color: #4c5f6b;
-  font-family: 'Montserrat', sans-serif;
-`
-const CommentButton = styled.button`
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border: 1px #EEECFB solid;
-  background-color: #EEECFB;
-  padding: 5px;
-  color: #4c5f6b;
-  font-family: 'Montserrat', sans-serif;
-`
-const InputLabel = styled.label`
-  display: none;
-`
 
 const CommentsWrapper = styled.div`
 
 `
 
 const MessageList = () => {
-  const [comment, setComment] = useState("")
   const thoughtsList = useSelector(store => store.thoughts.thoughts)
-  const accessToken = useSelector(store => store.user.accessToken)
   const dispatch = useDispatch()
 
   const fetchMessageList = () => {
@@ -111,22 +84,6 @@ const MessageList = () => {
     fetch(THOUGHT_HUG(id), options)
       .then(res => res.json())
       .then(() => fetchMessageList())
-  }
-  const onComment = (e, id) => {
-    e.preventDefault()
-    console.log(id)
-    const options = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': accessToken
-      },
-      body: JSON.stringify({ comment })
-    }
-    fetch(THOUGHT_COMMENT(id), options)
-      .then(res => res.json())
-      .then((data) => fetchMessageList())
-      setComment('')
   }
 
   useEffect(() => {
@@ -166,17 +123,6 @@ const MessageList = () => {
           </HugsButtonWrapper>
           <p>💬 x {item.comments.length}</p>
           <Comment item ={item}/>
-          {/* <CommentForm onSubmit={(e)=>onComment(e, item._id)}>
-            <InputLabel> Leave a comment </InputLabel>
-            <CommentInput
-                id="newMessage"
-                type="text"
-                value={comment}
-                onChange={e => setComment(e.target.value)}
-                placeholder="Leave a comment"
-              />
-            <CommentButton type="submit">comment</CommentButton>
-          </CommentForm> */}
           <CommentsWrapper>
             {item.comments.map(comment => 
               <div key={comment._id}>
