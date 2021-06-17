@@ -7,6 +7,7 @@ import MessageList from './MessageList'
 const SectionTitle = styled.h1`
   color: #4C5F6B;
   font-size: 25px;
+  padding: 5px;
 ` 
 const PageContainer = styled.section`
   display: flex;

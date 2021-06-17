@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import formatDistance from 'date-fns/formatDistance'
+import Avatar from '@material-ui/core/Avatar'
 
 import thoughts from 'reducers/thoughts'
 import { API_URL, THOUGHT_HUG } from 'reusables/urls'
@@ -16,18 +17,20 @@ const MessageWrapper = styled.div`
   border-radius: 6px;
 `
 const HugButton = styled.button`
-  background-color: #f9b9f2;
+  background-color: #EEECFB;
   border-radius: 50%;
   border: none;
   padding: 2px 5px;
 `
 const NameAvatarWrapper = styled.div`
   background-color: #bca0bc;
-
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: #fff;
 `
 const Name = styled.p`
   margin:0;
-  padding: 10px 5px;
 `
 const HugsText = styled.p`
   margin:0;
@@ -54,7 +57,7 @@ const CommentForm = styled.form`
 const CommentInput = styled.input`
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
-  border: 1px #f9b9f2 solid;
+  border: 1px #EEECFB solid;
   padding: 5px;
   color: #4c5f6b;
   font-family: 'Montserrat', sans-serif;
@@ -62,8 +65,8 @@ const CommentInput = styled.input`
 const CommentButton = styled.button`
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
-  border: 1px #f9b9f2 solid;
-  background-color: #f9b9f2;
+  border: 1px #EEECFB solid;
+  background-color: #EEECFB;
   padding: 5px;
   color: #4c5f6b;
   font-family: 'Montserrat', sans-serif;
@@ -127,6 +130,11 @@ const MessageList = () => {
       {thoughtsList.map(item =>
         <MessageWrapper key={item._id}>
           <NameAvatarWrapper>
+          <Avatar
+                alt={item.user && item.user.toUpperCase()}
+                src={item.user.profileImage ? item.user.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
+                style={{ marginRight: "5px" }}
+              />
             <Name>{item.user}</Name>
           </NameAvatarWrapper>
           <MessageCreatedAtWrapper>
@@ -134,7 +142,7 @@ const MessageList = () => {
             <DateText>{formatDistance(new Date(item.createdAt), Date.now())}</DateText>
           </MessageCreatedAtWrapper>
           <HugsButtonWrapper>
-            <HugButton onClick={() => onHugSend(item._id)}>💗</HugButton>
+            <HugButton onClick={() => onHugSend(item._id)}>💞</HugButton>
             <HugsText> x {item.hugs}</HugsText>
           </HugsButtonWrapper>
           <CommentForm onSubmit={onFormSubmit}>

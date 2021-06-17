@@ -1,8 +1,43 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import styled from 'styled-components'
 
 import { API_URL } from 'reusables/urls'
 import thoughts from 'reducers/thoughts'
+
+
+const MessageFormContainer = styled.section`
+  padding: 5px;
+  background-color: #bca0bc;
+  color: #fff;
+`
+const Form = styled.form `
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const MessageInput = styled.input`
+  border-radius: 6px;
+  border: 1px #EEECFB solid;
+  width: 300px;
+  height: 50px;
+  padding: 5px;
+  color: #4c5f6b;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 10px;
+`
+const Label = styled.label`
+  margin-bottom: 10px;
+`
+const ShareButton = styled.button`
+  border-radius: 6px;
+  border: 1px #EEECFB solid;
+  background-color: #EEECFB;
+  padding: 5px;
+  color: #4c5f6b;
+  font-family: 'Montserrat', sans-serif;
+  width: 150px;
+`
 
 const FormComponent = () => {
   const [message, setMessage] = useState('')
@@ -14,7 +49,7 @@ const FormComponent = () => {
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        if(data.success){
+        if (data.success) {
           dispatch(thoughts.actions.setThoughts(data.thoughts))
         } else {
           dispatch(thoughts.actions.setErrors(data))
@@ -38,27 +73,27 @@ const FormComponent = () => {
         console.log(data)
         fetchMessageList()
       })
-      setMessage('')
+    setMessage('')
   }
 
 
- return (
-  <form  onSubmit={onFormSubmit}>
-  <p>What's making you happy right now?</p>
-  <label>
-    <input
-      id="newMessage" 
-      type="text"
-      value={message}
-      onChange={ e => setMessage(e.target.value)} 
-    />
-  </label>
-  <button 
-    type="submit"
-  >
-    Send
-  </button> 
-</form>
- )
+  return (
+    <MessageFormContainer>
+      <Form onSubmit={onFormSubmit}>
+        <Label> Share your thoughts and feelings!</Label>
+          <MessageInput
+            id="newMessage"
+            type="text"
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+          />
+        <ShareButton
+          type="submit"
+        >
+          💗 Share 💗
+        </ShareButton>
+      </Form>
+    </MessageFormContainer>
+  )
 }
 export default FormComponent
