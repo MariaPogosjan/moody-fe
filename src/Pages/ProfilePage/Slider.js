@@ -41,13 +41,13 @@ const generateLabel = (number) => {
     case 0:
       return ('😞')
     case 0.2:
-      return ('🙁')
+      return ('😠')
     case 0.4:
       return ('🤯')
     case 0.6:
       return ('😐')
     case 0.8:
-      return ('🙂')
+      return ('😌')
     default:
       return ('😃')
   }
@@ -62,9 +62,9 @@ const generateText = (number) => {
     case 0.4:
       return ('Stressed')
     case 0.6:
-      return ('Okay')
+      return ('Neutral')
     case 0.8:
-      return ('Better')
+      return ('Relaxed')
     default:
       return ('Happy')
   }
