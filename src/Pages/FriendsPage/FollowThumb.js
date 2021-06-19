@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Avatar from '@material-ui/core/Avatar'
 import styled from 'styled-components'
+import { io } from "socket.io-client"
 
 import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
-
-const User = styled.li`
-  display: flex;
-  align-items: center;
-  padding-bottom: 5px;
-  justify-content: space-between;
-`
-const UserNamePicWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-const FollowButton = styled.button`
-  border-radius: 6px;
-  border: none;
-  padding: 4px 6px;
-  background-color: #bca0bc;
-  color: #fff;
-    &:disabled {
-      opacity: 0.6;
-    }
-`
 
 const FollowThumb = ({ item }) => {
   const [disabled, setDisabled] = useState(false)
@@ -38,6 +18,29 @@ const FollowThumb = ({ item }) => {
   const dispatch = useDispatch()
   const userId = useSelector(store => store.user.userId)
 
+  const socket = useRef()
+
+  // runs just ones
+  useEffect(() => {
+    socket.current = io("ws://localhost:8080")
+    socket.current.on("alert", data => {
+      if(data) {
+        alert('Du har en ny följare')
+      } else {
+        console.log("problem!")
+      }
+    }) 
+  }, [])
+
+
+  useEffect(() => {
+    socket.current.emit("addUser", userId)
+    socket.current.on("getUsers", users => {
+     
+    })
+  }, [userId, friendRequests])
+  
+  
   const onFollowUser = () => {
     const options = {
       method: 'PUT',
@@ -50,12 +53,14 @@ const FollowThumb = ({ item }) => {
     fetch(API_URL('follow'), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data.friend)
         dispatch(user.actions.addMyFriendRequests(data.friend))
-        // updating local storage here
-        // localStorage.setItem('friends', JSON.stringify({ friends }))
-        // localStorage.setItem('friendRequests', JSON.stringify({ friendRequests }))
       })
+
+      const reciverId = friendRequests.filter(friend => friend._id !== userId)
+       console.log("reciverId", reciverId)
+       socket.current.emit("sendMessage", {
+        reciverId
+      }) 
   }
 
   useEffect(() => {
@@ -83,6 +88,7 @@ const FollowThumb = ({ item }) => {
   }, [item, myFriendRequests, friendsList, friendRequests, userId])
 
 
+ 
   return (
     <User>
       <UserNamePicWrapper>
@@ -105,3 +111,25 @@ const FollowThumb = ({ item }) => {
 }
 
 export default FollowThumb
+
+
+const User = styled.li`
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  justify-content: space-between;
+`
+const UserNamePicWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const FollowButton = styled.button`
+  border-radius: 6px;
+  border: none;
+  padding: 4px 6px;
+  background-color: #bca0bc;
+  color: #fff;
+    &:disabled {
+      opacity: 0.6;
+    }
+`
