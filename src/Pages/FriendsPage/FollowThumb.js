@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Avatar from '@material-ui/core/Avatar'
 import styled from 'styled-components'
-import { io } from "socket.io-client"
+// import { io } from "socket.io-client"
 
 import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
@@ -18,27 +18,32 @@ const FollowThumb = ({ item }) => {
   const dispatch = useDispatch()
   const userId = useSelector(store => store.user.userId)
 
-  const socket = useRef()
+  // const socket = useRef()
+
+  // useEffect(() => {
+  //     socket.current = io("ws://localhost:8080")
+
+  //   }, [])
 
   // runs just ones
-  useEffect(() => {
-    socket.current = io("ws://localhost:8080")
-    socket.current.on("alert", data => {
-      if(data) {
-        alert('Du har en ny följare')
-      } else {
-        console.log("problem!")
-      }
-    }) 
-  }, [])
+  // useEffect(() => {
+  //   socket.current = io("ws://localhost:8080")
+  //   socket.current.on("alert", data => {
+  //     if(data) {
+  //       alert('Du har en ny följare')
+  //     } else {
+  //       console.log("problem!")
+  //     }
+  //   }) 
+  // }, [])
 
 
-  useEffect(() => {
-    socket.current.emit("addUser", userId)
-    socket.current.on("getUsers", users => {
+  // useEffect(() => {
+  //   socket.current.emit("addUser", userId)
+  //   socket.current.on("getUsers", users => {
      
-    })
-  }, [userId, friendRequests])
+  //   })
+  // }, [userId, friendRequests])
   
   
   const onFollowUser = () => {
@@ -56,11 +61,19 @@ const FollowThumb = ({ item }) => {
         dispatch(user.actions.addMyFriendRequests(data.friend))
       })
 
-      const reciverId = friendRequests.filter(friend => friend._id !== userId)
-       console.log("reciverId", reciverId)
-       socket.current.emit("sendMessage", {
-        reciverId
-      }) 
+      // const reciverId = friendRequests.filter(friend => friend._id !== userId)
+      // if(reciverId) {
+      //   socket.current.emit("sendnotification", {
+      //     username : reciverId
+      //   })
+      // }
+
+      // socket.current.on('newnotification', (resp) => {
+      //   alert(resp, 'New notification')
+      // })
+      //  socket.current.emit("sendMessage", {
+      //   reciverId
+      // }) 
   }
 
   useEffect(() => {

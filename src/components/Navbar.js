@@ -6,6 +6,7 @@ import { Pivot as Hamburger } from 'hamburger-react'
 import { Link } from 'react-router-dom'
 
 
+
 const Nav = styled.div`
   position: sticky;
   height: 80px;
@@ -72,7 +73,7 @@ const Navbar = () => {
   const accessToken = useSelector(store => store.user.accessToken)
   const profileImage = useSelector(store => store.user.profileImage)
   const username = useSelector(store => store.user.username)
-
+ 
   return (
     <Nav>
       <Link to="/" style={styles}>

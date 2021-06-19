@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import EventNoteIcon from '@material-ui/icons/EventNote'
@@ -6,6 +6,8 @@ import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline'
 import MailOutlineIcon from '@material-ui/icons/MailOutline'
 import MoodIcon from '@material-ui/icons/Mood'
 import styled from 'styled-components'
+import { io } from "socket.io-client"
+
 
 const FooterContainer = styled.div`
   position: fixed;
@@ -34,6 +36,26 @@ const IconsContainer = styled.div`
 const Footer = () => {
   const accessToken = useSelector(store => store.user.accessToken)
 
+  const userId = useSelector(store => store.user.userId)
+  const friendRequests = useSelector(store => store.user.friendRequests)
+
+  const color = useRef("footer-icon")
+  const socket = useRef()
+
+  useEffect(() => {
+      socket.current = io("ws://localhost:8080")
+      const reciverId = friendRequests.filter(friend => friend._id !== userId)
+      if(reciverId.length > 0) {
+        socket.current.emit("sendnotification", {
+          username : reciverId
+        })
+      }
+
+      socket.current.on('newnotification', () => {
+        return color.current = "red"
+      })
+    }, [friendRequests, userId])
+
   return (
     <FooterContainer>
       {accessToken ?
@@ -48,7 +70,7 @@ const Footer = () => {
             <MoodIcon className="footer-icon"/>
           </Link>
           <Link to='/friends'>
-            <PeopleOutlineIcon className="footer-icon"/>
+            <PeopleOutlineIcon className={color.current}/>
           </Link>
         </IconsContainer>
         :

@@ -29,7 +29,21 @@ const FriendsPage = () => {
   const friendRequests = useSelector(store => store.user.friendRequests)
   // console.log('friendfråga:', friendRequests)
  
-  const socket = useRef()
+  // const socket = useRef()
+
+  // useEffect(() => {
+  //     socket.current = io("ws://localhost:8080")
+  //     const reciverId = friendRequests.filter(friend => friend._id !== userId)
+  //     if(reciverId) {
+  //       socket.current.emit("sendnotification", {
+  //         username : reciverId
+  //       })
+  //     }
+
+  //     socket.current.on('newnotification', (resp) => {
+  //       alert(resp, 'New notification')
+  //     })
+  //   }, [friendRequests, userId])
 
 /*   useEffect(() => {
    socket.current = io("ws://localhost:8080")
