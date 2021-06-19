@@ -42,15 +42,17 @@ const Footer = () => {
   useEffect(() => {
       socket.current = io("ws://localhost:8080")
       const reciverId = friendRequests.filter(friend => friend._id !== userId)
-      if(reciverId.length > 0) {
+      if(reciverId.length > 0 ) {
         socket.current.emit("sendnotification", {
           username : reciverId
+        }) 
+        socket.current.on('newnotification', () => {
+          return color.current = "red"
         })
-      }
-      socket.current.on('newnotification', () => {
-        //return color.current = "red"
-        alert('hejhej!')
-      })
+      } 
+      //  else if(friendRequests=== 0) {
+      //   return color.current = "footer-icon"
+      // }
     }, [friendRequests, userId])
 
 
