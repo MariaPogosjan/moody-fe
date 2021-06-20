@@ -8,6 +8,9 @@ import MoodIcon from '@material-ui/icons/Mood'
 import styled from 'styled-components'
 import { io } from 'socket.io-client'
 
+import FriendsIcon from 'components/FriendsIcon'
+
+
 const FooterContainer = styled.div`
   position: fixed;
   bottom: 0;
@@ -34,33 +37,33 @@ const IconsContainer = styled.div`
 
 const Footer = () => {
   const accessToken = useSelector(store => store.user.accessToken)
-  const friendRequests = useSelector(store => store.user.friendRequests)
-  const userId = useSelector(store => store.user.userId)
-  const socket = useRef()
-  const color = useRef("footer-icon")
+  // const friendRequests = useSelector(store => store.user.friendRequests)
+  // const userId = useSelector(store => store.user.userId)
+  // const socket = useRef()
+  // const color = useRef("footer-icon")
 
-  useEffect(() => {
-    socket.current = io("ws://localhost:8080")
-  }, [])
+  // useEffect(() => {
+  //   socket.current = io("ws://localhost:8080")
+  // }, [])
 
-  let reciverId = friendRequests
-  .filter(friend => friend._id !== userId)
-  .map(item => item.username)
+  // let reciverId = friendRequests
+  // .filter(friend => friend._id !== userId)
+  // .map(item => item.username)
 
-  useEffect(() => {
-    if(reciverId.length > 0 && accessToken) {
-      socket.current.emit("sendnotification", {
-        username : reciverId
-      }) 
+  // useEffect(() => {
+  //   if(reciverId.length > 0 && accessToken) {
+  //     socket.current.emit("sendnotification", {
+  //       username : reciverId
+  //     }) 
 
-      socket.current.on('newnotification', () => {
-         return color.current = "red"
-     })
-    } else if (reciverId.length === 0 && accessToken){
-        return color.current = "footer-icon"
-    }
+  //     socket.current.on('newnotification', () => {
+  //        return color.current = "red"
+  //    })
+  //   } else if (reciverId.length === 0 && accessToken){
+  //       return color.current = "footer-icon"
+  //   }
     
-  }, [accessToken, reciverId])
+  // }, [accessToken, reciverId])
 
   return (
     <FooterContainer>
@@ -76,8 +79,8 @@ const Footer = () => {
             <MoodIcon className="footer-icon"/>
           </Link>
           <Link to='/friends'>
-            <PeopleOutlineIcon className={color.current}/>
-          </Link>
+          <FriendsIcon />
+       </Link>
         </IconsContainer>
         :
         <FooterText>All right reserved © Maria Pogosjan and Ekaterina Klimenko</FooterText>
