@@ -24,6 +24,9 @@ const SignoutButton = () => {
     })
 
     localStorage.removeItem('user')
+    localStorage.removeItem('friends')
+    localStorage.removeItem('myFriendsRequests')
+    localStorage.removeItem('friendsRequests')
   }
 
   return (

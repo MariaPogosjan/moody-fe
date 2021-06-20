@@ -49,7 +49,7 @@ const Settings = () => {
       .then(res => res.json())
       .then(data => {
         dispatch(user.actions.setProfileImage(data.imageURL))
-        if (data.sucess) {
+        if (data.success) {
           batch(() => {
             dispatch(user.actions.setProfileImage(data.profileImage))
             dispatch(user.actions.setErrors(null))
