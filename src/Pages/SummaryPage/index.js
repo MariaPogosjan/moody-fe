@@ -23,24 +23,15 @@ const Container = styled.div`
 
 const FilterButton = styled.button`
   font-family: 'Montserrat', sans-serif;
-  //background-color: #83A0A0;
+  background-color: #83A0A0;
   border: 1px solid #4C5F6B !important;
   width: 30px;
   cursor: pointer;
-`
-
-const FilterButtonDay = styled(FilterButton)`
-  background-color: ${props => (props.range === "day" ? "#4C5F6B" : "#83A0A0")};
-`
-const FilterButtonWeek = styled(FilterButton)`
-  background-color: ${props => (props.range === "week" ? "#4C5F6B" : "#83A0A0")};
-`
-
-const FilterButtonMonth = styled(FilterButton)`
-  background-color: ${props => (props.range === "month" ? "#4C5F6B" : "#83A0A0")};
-`
-const FilterButtonYear = styled(FilterButton)`
-  background-color: ${props => (props.range === "year" ? "#4C5F6B" : "#83A0A0")};
+  &:focus{
+    background-color: #4C5F6B;
+    /* background-color: ${props => (props.range ? "#4C5F6B" : "#83A0A0")}; */
+    border: none;
+  }
 `
 
 const SummaryPage = () => {
@@ -174,10 +165,10 @@ const SummaryPage = () => {
       </div>
       <CalenderComponent feelings={feelings} />
       <div style={{ display: "flex" }}>
-        <FilterButtonDay range={range} onClick={() => setRange('day')}>1d</FilterButtonDay>
-        <FilterButtonWeek range={range} onClick={() => setRange('week')}>7d</FilterButtonWeek>
-        <FilterButtonMonth range={range} onClick={() => setRange('month')}>1m</FilterButtonMonth>
-        <FilterButtonYear range={range} onClick={() => setRange('year')}>1y</FilterButtonYear>
+        <FilterButton onClick={() => setRange('day')}>1d</FilterButton>
+        <FilterButton onClick={() => setRange('week')}>7d</FilterButton>
+        <FilterButton onClick={() => setRange('month')}>1m</FilterButton>
+        <FilterButton onClick={() => setRange('year')}>1y</FilterButton>
       </div>
       <Graph x={x} y={y} />
     </Container>
