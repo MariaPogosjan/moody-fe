@@ -103,3 +103,7 @@ abbr[title] {
   text-decoration: none;
   color: #404167;
 }
+
+.red {
+  color: red;
+}
