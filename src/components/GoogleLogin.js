@@ -4,6 +4,8 @@ import { useDispatch, batch } from 'react-redux'
 import user from 'reducers/user'
 import styled from 'styled-components'
 
+import { API_URL } from 'reusables/urls'
+
 const GoogleButtonWrapper = styled.div`
   text-align: center;
   margin-bottom: 20px;
@@ -22,7 +24,7 @@ const GoogleLoginComponent = ({ text }) => {
         tokenId: response.tokenId
       })
     }
-    await fetch("http://localhost:8080/googlelogin", options)
+    await fetch(API_URL("googlelogin"), options)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -62,7 +64,7 @@ const GoogleLoginComponent = ({ text }) => {
     <GoogleButtonWrapper>
       <GoogleLogin
         clientId={`${process.env.REACT_APP_GOOGLE_LOGIN}.apps.googleusercontent.com`}
-        buttonText={ `${text} with Google`}
+        buttonText={`${text} with Google`}
         onSuccess={responseSuccessGoogle}
         onFailure={responseErrorGoogle}
         cookiePolicy={'single_host_origin'}
