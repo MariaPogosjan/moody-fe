@@ -14,6 +14,8 @@ import { SectionTitle } from 'styled-components/Titels'
 import user from 'reducers/user'
 import { API_URL } from 'reusables/urls'
 
+import GoogleLoginComponent from 'components/GoogleLogin'
+
 const Login = () => {
   const [emailOrUsername, setUsernameOrEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -65,9 +67,6 @@ const Login = () => {
               username: data.username,
               accessToken: data.accessToken,
               profileImage: data.profileImage
-              // friends: data.friends,
-              // friendRequests: data.friendRequests,
-              // myFriendRequests: data.myFriendRequests,
             }))
             localStorage.setItem('friends', JSON.stringify({
               friends: data.friends,
@@ -90,6 +89,7 @@ const Login = () => {
   return (
     <FormSection >
       <SectionTitle>Sign in</SectionTitle>
+      <GoogleLoginComponent text="Sign in"/>
       <Form onSubmit={onFormSubmit}>
         {errors && <ErrorMessage>{errors.message}</ErrorMessage>}
         <Label htmlFor="name">Email or username</Label>
