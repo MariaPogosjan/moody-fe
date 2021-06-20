@@ -47,13 +47,13 @@ const Quote = ({ visible, setVisible, feeling }) => {
         "x-rapidapi-host": "healthruwords.p.rapidapi.com"
       }
     }
-    fetch("https://healthruwords.p.rapidapi.com/v1/quotes/?size=medium&maxR=1&t=Happiness", options)
+    fetch("https://healthruwords.p.rapidapi.com/v1/quotes/?size=medium&maxR=1&t=Love", options)
       .then(res => res.json())
       .then(quote => {
         //console.log(feeling)
         setImageLink(quote[0].media)
       })
-  }, [setImageLink, feeling])
+  }, [setImageLink])
 
   return (
     <div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import GoogleLoginComponent from 'components/GoogleLogin'
 
 import {
   FormSection,
@@ -80,6 +81,7 @@ const SignUp = () => {
   return (
     <FormSection >
       <SectionTitle>Sign up</SectionTitle>
+      <GoogleLoginComponent text="Sign up"/>
       <Form onSubmit={onFormSubmit}>
         {errors &&
           <>

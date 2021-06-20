@@ -52,9 +52,8 @@ const FollowThumb = ({ item }) => {
       .then(data => {
         console.log(data.friend)
         dispatch(user.actions.addMyFriendRequests(data.friend))
-        // updating local storage here
-        // localStorage.setItem('friends', JSON.stringify({ friends }))
-        // localStorage.setItem('friendRequests', JSON.stringify({ friendRequests }))
+        const updatedMyFriendRequests = [data.friend, ...myFriendRequests]
+        localStorage.setItem('myFriendRequests', JSON.stringify({ myFriendRequests: updatedMyFriendRequests }))
       })
   }
 

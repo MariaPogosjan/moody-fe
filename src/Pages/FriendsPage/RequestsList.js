@@ -43,6 +43,7 @@ const ButtonsWrapper = styled.div`
 const RequestsList = () => {
   const friendRequests = useSelector(store => store.user.friendRequests)
   const accessToken = useSelector(store => store.user.accessToken)
+  const friendsList = useSelector(store => store.user.friends)
   const dispatch = useDispatch()
 
   const onRequestAccept = (item) => {
@@ -59,9 +60,10 @@ const RequestsList = () => {
       .then(data =>  {
          dispatch(user.actions.addFriends(data.friend))
          dispatch(user.actions.removeFriendRequests(data.friend._id))
-        // localStorage.setItem('friends', JSON.stringify({ friends }))
-        // localStorage.setItem('friendRequests', JSON.stringify({ friendRequests }))
-        //here we need to fix local storage as well
+        const updatedFriendRequests = friendRequests.filter(item => item._id !== data.friend._id)
+        const updatedFriends = [data.friend, ...friendsList]
+        localStorage.setItem('friends', JSON.stringify({ friends: updatedFriends}))
+        localStorage.setItem('friendRequests', JSON.stringify({ friendRequests: updatedFriendRequests }))
       })
      
   }
@@ -79,9 +81,8 @@ const RequestsList = () => {
       .then(res => res.json())
       .then(data => {
         dispatch(user.actions.removeFriendRequests(data.friend._id))
-        //here we need to fix local storage as well
-        // localStorage.setItem('friends', JSON.stringify({ friends }))
-        // localStorage.setItem('friendRequests', JSON.stringify({ friendRequests }))
+        const updatedFriendRequests = friendRequests.filter(item => item._id !== data.friend._id)
+        localStorage.setItem('friendRequests', JSON.stringify({ friendRequests: updatedFriendRequests }))
       })
   }
 
