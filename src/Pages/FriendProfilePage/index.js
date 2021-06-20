@@ -16,6 +16,22 @@ const FilterButton = styled.button`
   width: 30px;
   cursor: pointer;
 `
+
+const FilterButtonDay = styled(FilterButton)`
+  background-color: ${props => (props.range === "day" ? "#4C5F6B" : "#83A0A0")};
+`
+const FilterButtonWeek = styled(FilterButton)`
+  background-color: ${props => (props.range === "week" ? "#4C5F6B" : "#83A0A0")};
+`
+
+const FilterButtonMonth = styled(FilterButton)`
+  background-color: ${props => (props.range === "month" ? "#4C5F6B" : "#83A0A0")};
+`
+const FilterButtonYear = styled(FilterButton)`
+  background-color: ${props => (props.range === "year" ? "#4C5F6B" : "#83A0A0")};
+`
+
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,8 +91,33 @@ const FriendProfile = () => {
   }
 
 
-  useEffect(() => {
+  const groupBy = (objectArray, property) => {
+    return objectArray.reduce((acc, obj) => {
+      let key = obj[property]
+      if (!acc[key]) {
+        acc[key] = []
+      }
+      acc[key].push(obj)
+      return acc
+    }, {})
+  }
 
+  const getAvareges = (grouppedObject) => {
+    const avaragedArray = Object.entries(grouppedObject).map(
+      ([key, Objectvalue]) =>
+        `${key}: ${(
+          Objectvalue.map((a) => a.value).reduce((a, b) => a + b) /
+          Objectvalue.length
+        ).toFixed(2)}`
+    )
+
+    return avaragedArray
+      .map(item => item.split(' '))
+      .map(item => ({ createdAt: item[0], value: Number(item[1]) }))
+  }
+
+
+  useEffect(() => {
     if (range === "day") {
       const filterFeelingDay = friendFeeling.filter(item => isToday(new Date(item.createdAt)))
       setX(filterFeelingDay.map(item => format(new Date(item.createdAt), 'HH:mm')))
@@ -93,9 +134,11 @@ const FriendProfile = () => {
       setY(avaragedArray.map(item => item.average))
     } else {
       const filterFeelingYear = friendFeeling.filter((item) => new Date(item.createdAt) > subYears(Date.now(), 1))
-      const avaragedArray = getAverageValue(filterFeelingYear)
-      setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
-      setY(avaragedArray.map(item => item.average))
+      const formatedDateYearFeelings = filterFeelingYear.map(item => ({ ...item, createdAt: format(new Date(item.createdAt), 'yyyy-MM') }))
+      const grouppedArray = groupBy(formatedDateYearFeelings, 'createdAt')
+      const finalArray = getAvareges(grouppedArray)
+      setX(finalArray.map(item => format(new Date(item.createdAt), 'MMM')))
+      setY(finalArray.map(item => item.value))
     }
   }, [friendFeeling, range])
 
@@ -110,10 +153,10 @@ const FriendProfile = () => {
           />
           <Calendar feelings={friendFeeling} />
           <div style={{ display: "flex" }}>
-            <FilterButton onClick={() => setRange('day')}>1d</FilterButton>
-            <FilterButton onClick={() => setRange('week')}>7d</FilterButton>
-            <FilterButton onClick={() => setRange('month')}>1m</FilterButton>
-            <FilterButton onClick={() => setRange('year')}>1y</FilterButton>
+            <FilterButtonDay range={range} onClick={() => setRange('day')}>1d</FilterButtonDay>
+            <FilterButtonWeek range={range} onClick={() => setRange('week')}>7d</FilterButtonWeek>
+            <FilterButtonMonth range={range}  onClick={() => setRange('month')}>1m</FilterButtonMonth>
+            <FilterButtonYear range={range}  onClick={() => setRange('year')}>1y</FilterButtonYear>
           </div>
           <Graph x={x} y={y} />
         </Container>

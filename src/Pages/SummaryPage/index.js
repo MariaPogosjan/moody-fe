@@ -123,11 +123,11 @@ const SummaryPage = () => {
           Objectvalue.map((a) => a.value).reduce((a, b) => a + b) /
           Objectvalue.length
         ).toFixed(2)}`
-    );
+    )
 
     return avaragedArray
       .map(item => item.split(' '))
-      .map(item => ({ createdAt: item[0], value: Number(item[1]) }));
+      .map(item => ({ createdAt: item[0], value: Number(item[1]) }))
   }
 
   useEffect(() => {

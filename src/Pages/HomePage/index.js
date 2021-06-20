@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 import { Container } from 'styled-components/Containers.js'
 
 import Buttons from './Buttons'
@@ -24,6 +25,8 @@ const HeroImage = styled.img`
 `
 
 const Home = () => {
+  const accessToken = useSelector(store => store.user.accessToken)
+
   return (
     <Container>
       <HeroImageWrapper>
@@ -31,9 +34,11 @@ const Home = () => {
       </HeroImageWrapper>
       <HeroTextWrapper>
         <HeroTitle>Moody is always on your side</HeroTitle>
-        <HeroText>Track your feelings and share it with your friends. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</HeroText>
+        <HeroText>
+          Track your feelings and share it with your friends. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </HeroText>
       </HeroTextWrapper>
-      <Buttons />     
+      {!accessToken && <Buttons />}   
     </Container>
   )
 }
