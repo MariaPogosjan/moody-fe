@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-// import { ToastContainer, toast } from 'react-toastify'
 import { toast } from 'toast-notification-alert'
 import 'react-toastify/dist/ReactToastify.css'
 import { io } from 'socket.io-client'
@@ -40,7 +39,6 @@ const FriendsPage = () => {
         username : reciverId
       }) 
       socket.current.on('newnotification', () => {
-         // color.current = "red"
         const confirmation = toast.show({title:`${reciverId} wants to follow you`, position: 'topright', type: 'info'})
         if(confirmation) reciverId = []
       })

@@ -8,7 +8,7 @@ const FriendIcon = () =>{
   const friendRequests = useSelector(store => store.user.friendRequests)
   const userId = useSelector(store => store.user.userId)
   const socket = useRef()
-  const color = useRef(null)
+  const color = useRef()
   console.log(color)
   //const [color, setColor] = useState('')
 
@@ -27,20 +27,19 @@ const FriendIcon = () =>{
       }) 
 
       socket.current.on('newnotification', () => {
-       color.current = "red"
-   })
+        return color.current = "red"   })
 
     }
   }, [reciverId, userId, accessToken])
 
 
-  useEffect(() => {
-    socket.current.on('newnotification', () => {
-      return color.current = "red"
-  })
-    console.log(color.current)
+  // useEffect(() => {
+  //   socket.current.on('newnotification', () => {
+  //     return color.current = "red"
+  // })
+  //   console.log(color.current)
 
-  }, [])
+  // }, [])
 
 
   return (
