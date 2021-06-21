@@ -1,19 +1,9 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import { SectionTitle } from 'styled-components/Titels'
 
 import FormComponent from './FormComponent'
 import MessageList from './MessageList'
-
-const SectionTitle = styled.h1`
-  color: #4C5F6B;
-  font-size: 25px;
-  padding: 5px;
-`
-const PageContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 70px;
-`
 
 const Thoughts = () => {
   const [page, setPage] = useState(1)
@@ -30,3 +20,9 @@ const Thoughts = () => {
 
 export default Thoughts
 
+const PageContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  margin-top: 2rem;
+`

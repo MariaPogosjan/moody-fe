@@ -2,53 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Container } from 'styled-components/Containers'
-import { SectionTitle, SectionSubtitle } from 'styled-components/Titels'
-
-const Image = styled.img`
-  width:100%;
-  height: 40vh;
-  object-fit: cover;
-
-  @media (min-width: 768px) {
-    width: 40%;
-    height: auto;
-  }
-`
-const CardsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 5px;
-  @media (min-width: 768px) {
-    flex-direction: row;
-    margin-bottom: 10px;
-  }
-`
-
-const Text = styled.p`
-
-
-  @media (min-width: 768px) {
-      padding-left: 10px;
-    }
-`
 
 const About = () => {
-
   return (
     <Container>
       <SectionTitle>
-        About Moody
+        About moody
       </SectionTitle>
-      <Text>
-        Track as often or as little as you'd like!
-        Support and get feedback from others!
-      </Text>
       <CardsContainer>
         <Card>
           <Image src="./assets/card1.jpg" />
@@ -60,26 +20,88 @@ const About = () => {
           </div>
         </Card>
         <Card>
-          <Image src="./assets/card2.jpg" />
-          <div>
+          <FlexReverese>
+            <div>
             <SectionSubtitle>Share your feelings with others </SectionSubtitle>
             <Text>
-              Sharing health information with family and friend networks is a way to control one’s health identity,keep loved ones up-to-date, gain social support
+              Sharing health information with family and friend networks is a way to control one’s health identity, keep loved ones up-to-date, gain social supporta and post your thoughts on our forum and get support from other users.
             </Text>
-          </div>
+            </div>
+            <Image src="./assets/card2.jpg" />
+          </FlexReverese>
         </Card>
-        <Card>
-          <Image src="./assets/card3.jpg" />
-          <div>
-            <SectionSubtitle>Talk about your feelings </SectionSubtitle>
-            <Text>
-              Post your thoughts on our forum and get support from other users.
-            </Text>
-          </div>
-        </Card>
-
       </CardsContainer>
     </Container>
   )
 }
 export default About
+
+const SectionTitle = styled.h1`
+  color: #404167;
+  text-align: center;
+  font-size: 2.1rem;
+  margin: 3rem 0;
+` 
+
+const CardsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 2rem 6rem 2rem;
+`
+
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    border: 2px solid #EEECFB;
+  }
+`
+
+const FlexReverese = styled.div`
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+  }
+`
+
+const Image = styled.img`
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+
+  @media (min-width: 768px) {
+    width: 40%;
+    height: auto;
+  }
+`
+
+const SectionSubtitle = styled.h2`
+  color: #4C5F6B;
+  text-align: center;
+
+  @media (min-width: 768px) {
+      margin-left: 2rem;
+      text-align: left;
+    }
+` 
+
+const Text = styled.p`
+ width: 100%;
+ text-align: center;
+ line-height: 1.6rem;
+ color: grey;
+
+  @media (min-width: 768px) {
+      margin-left: 2rem;
+      text-align: left;
+      width: 80%;
+    }
+`

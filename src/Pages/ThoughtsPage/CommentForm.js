@@ -31,8 +31,6 @@ const InputLabel = styled.label`
   display: none;
 `
 
-
-
 const Comment = ({ item, page, setPage, perPage, setPerPage }) => {
   const [comment, setComment] = useState("")
   const dispatch = useDispatch()

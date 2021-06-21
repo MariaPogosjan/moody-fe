@@ -10,54 +10,6 @@ import { THOUGHTS_URL, THOUGHT_HUG } from 'reusables/urls'
 import Comment from './CommentForm'
 import CommentsList from './CommentsList'
 
-const MessageListContainer = styled.section`
-  padding: 5px;
-`
-
-const MessageWrapper = styled.div`
-  border: 1px solid #bca0bc;
-  margin: 20px 0;
-  border-radius: 6px;
-`
-const HugButton = styled.button`
-  background-color: #EEECFB;
-  border-radius: 50%;
-  border: none;
-  padding: 2px 5px;
-`
-const NameAvatarWrapper = styled.div`
-  background-color: #bca0bc;
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  color: #fff;
-`
-const Name = styled.p`
-  margin:0;
-`
-const HugsText = styled.p`
-  margin:0;
-  padding: 5px;
-`
-const MessageCreatedAtWrapper = styled.div`
-  padding: 5px;
-`
-const HugsButtonWrapper = styled.div`
-  display: flex;
-  margin: 10px 5px;
-`
-const HugsCommentsWrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-`
-const DateText = styled.p`
-  color: #4c5f6b;
-  font-style: italic;
-`
-const MessageText = styled.p`
-`
-
 const MessageList = ({ page, setPage, perPage, setPerPage }) => {
   const thoughtsList = useSelector(store => store.thoughts.thoughts)
   const dispatch = useDispatch()
@@ -67,7 +19,6 @@ const MessageList = ({ page, setPage, perPage, setPerPage }) => {
     setVisble(visble + 10)
     setPerPage(perPage + 10)
   }
-
 
   const fetchMessageList = () => {
     fetch(THOUGHTS_URL(page, perPage))
@@ -128,13 +79,13 @@ const MessageList = ({ page, setPage, perPage, setPerPage }) => {
               </MessageCreatedAtWrapper>
               <HugsCommentsWrapper>
                 <HugsButtonWrapper>
-                  <HugButton onClick={() => onHugSend(item._id)}>💞</HugButton>
+                  <HugButton onClick={() => onHugSend(item._id)}>💗 </HugButton>
                   <HugsText> x {item.hugs}</HugsText>
-                </HugsButtonWrapper>
-                <p>💬 x {item.comments.length}</p>
+                  </HugsButtonWrapper>
+                <HugsText>💬 x {item.comments.length}</HugsText>
               </HugsCommentsWrapper>
-              <Comment item={item} />
-              <CommentsList item={item}/>
+{/*               <Comment item={item} />
+ */}              <CommentsList item={item}/>
               {/* <CommentsWrapper>
                 {item.comments.map(comment =>
                   <div key={comment._id}>
@@ -159,3 +110,69 @@ const MessageList = ({ page, setPage, perPage, setPerPage }) => {
   )
 }
 export default MessageList
+
+
+const MessageListContainer = styled.section`
+  
+`
+
+const MessageWrapper = styled.div`
+  border: 1px solid #bca0bc;
+  border-top: none;
+  margin: 2rem 0;
+`
+
+const NameAvatarWrapper = styled.div`
+  background-color: #bca0bc;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  color: #fff;
+`
+
+const Name = styled.p`
+  margin: 0;
+`
+
+const MessageCreatedAtWrapper = styled.div`
+  padding: 8px;
+`
+
+const MessageText = styled.p`
+  width: 80%;
+  color: #404167;
+`
+
+const DateText = styled.p`
+  color: grey;
+  font-style: italic;
+  font-size: 12px;
+`
+
+const HugsCommentsWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 8px;
+`
+
+const HugsButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
+
+const HugButton = styled.button`
+  background-color: #EEECFB;
+  border-radius: 50%;
+  border: none;
+  padding: 3px 8px;
+  text-align: center;
+`
+
+const HugsText = styled.p`
+  margin:0;
+  padding: 5px;
+  color: grey;
+  font-style: italic;
+  font-size: 12px;
+`

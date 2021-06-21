@@ -60,9 +60,7 @@ const SignUp = () => {
             dispatch(user.actions.setUsername(data.username))
             dispatch(user.actions.setUserId(data.userId))
             dispatch(user.actions.setAccessToken(data.accessToken))
-            
             dispatch(user.actions.setErrors(null))
-
             localStorage.setItem('user', JSON.stringify({
               userId: data.userId,
               username: data.username,
@@ -79,7 +77,7 @@ const SignUp = () => {
   }
 
   return (
-    <FormSection >
+    <FormSection>
       <SectionTitle>Sign up</SectionTitle>
       <GoogleLoginComponent text="Sign up"/>
       <Form onSubmit={onFormSubmit}>
