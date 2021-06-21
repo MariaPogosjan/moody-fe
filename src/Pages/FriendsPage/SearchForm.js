@@ -6,12 +6,12 @@ import { useSelector, useDispatch, batch } from 'react-redux'
 import { API_URL } from 'reusables/urls'
 import friends from 'reducers/friends'
 
-
 import FollowThumb from './FollowThumb'
-
 
 const FormContainer = styled.section`
   padding: 5px;
+  max-width: 450px;
+  margin: auto;
 `
 const Form = styled.form`
   display: flex;
@@ -32,6 +32,7 @@ const SearchButton = styled.button`
   padding: 5px 6px;
   background-color: #bca0bc;
   color: #fff;
+  cursor: pointer;
 `
 const SearchTitle = styled.h2`
   color: #4C5F6B;
@@ -50,7 +51,7 @@ const SearchForm = () => {
 
   const onSearchSubmit = (e) => {
     e.preventDefault()
-    const filteredUsers = users.filter(user => user.username.includes(value))
+    const filteredUsers = users.filter(user => user.username.includes(value.toLowerCase()))
     setFilteredUsers(filteredUsers)
   }
 

@@ -3,6 +3,13 @@ import Slider from '@material-ui/core/Slider'
 import { withStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
+import sad from 'assets/sad.png'
+import annoyed from 'assets/annoyed.png'
+import stressed from 'assets/stressed.png'
+import neutral from 'assets/neutral.png'
+import happy from 'assets/happy.png'
+import relaxed from 'assets/relaxed.png'
+
 const CustomSlider = withStyles({
   root: {
     color: '#BCA0BC',
@@ -39,17 +46,17 @@ const CustomSlider = withStyles({
 const generateLabel = (number) => {
   switch (number) {
     case 0:
-      return ('😞')
+      return (<img alt="sad"src={sad} style={{width: 25, height: 25}} />)
     case 0.2:
-      return ('😠')
+      return (<img alt="sad"src={annoyed} style={{width: 25, height: 25}} />)
     case 0.4:
-      return ('🤯')
+      return (<img alt="sad"src={stressed} style={{width: 25, height: 25}} />)
     case 0.6:
-      return ('😐')
+      return (<img alt="sad"src={neutral} style={{width: 25, height: 25}} />)
     case 0.8:
-      return ('😌')
+      return (<img alt="sad"src={relaxed} style={{width: 25, height: 25}} />)
     default:
-      return ('😃')
+      return (<img alt="sad"src={happy} style={{width: 25, height: 25}} />)
   }
 }
 

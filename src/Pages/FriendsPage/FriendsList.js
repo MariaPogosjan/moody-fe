@@ -13,9 +13,12 @@ const FriendsContainer = styled.section`
 const FriendsTitle = styled.h2`
   color: #4C5F6B;
   font-size: 18px;
+  margin-bottom: 25px;
 `
 const ListContainer = styled.ul`
-  padding:0;
+  padding: 0;
+  max-width: 450px;
+  margin: auto;
 `
 const Friend = styled.li`
   display: flex;
@@ -33,7 +36,13 @@ const UnfollowButton = styled.button`
   padding: 4px 6px;
   background-color: #bca0bc;
   color: #fff;
+  width: 100px;
+  cursor: pointer;
 `
+const style = {
+  textDecoration: "none", 
+  color: "#404167"
+}
 
 const FriendsList = () => {
   const friendsList = useSelector(store => store.user.friends)
@@ -55,13 +64,13 @@ const FriendsList = () => {
         console.log(data)
         dispatch(user.actions.removeFriends(data.friend._id))
         const updatedFriends = friendsList.filter(item => item._id !== data.friend._id)
-        localStorage.setItem('friends', JSON.stringify({ friends: updatedFriends  }))
+        localStorage.setItem('friends', JSON.stringify({ friends: updatedFriends }))
       })
   }
   return (
     <FriendsContainer>
-      <FriendsTitle>Friends</FriendsTitle>
       <ListContainer>
+        <FriendsTitle>Friends</FriendsTitle>
         {friendsList.map(item =>
           <Friend key={item._id}>
             <FriendNamePicWrapper>
@@ -70,7 +79,7 @@ const FriendsList = () => {
                 src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
                 style={{ marginRight: "5px" }}
               />
-             <Link to={`/${item._id}`}>{item.username}</Link> 
+              <Link style={style} to={`/${item._id}`}>{item.username}</Link>
             </FriendNamePicWrapper>
             <UnfollowButton onClick={() => onUnfollowFriend(item)}>
               Unfollow
