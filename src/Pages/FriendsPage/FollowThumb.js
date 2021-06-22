@@ -21,7 +21,7 @@ const FollowButton = styled.button`
   border-radius: 6px;
   border: none;
   padding: 4px 6px;
-  background-color: #bca0bc;
+  background-color: #4C5F6B;
   color: #fff;
     &:disabled {
       opacity: 0.6;
