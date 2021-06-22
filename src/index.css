@@ -105,9 +105,8 @@ abbr[title] {
 }
 
 .MuiSlider-valueLabel {
-  font-size: 0.5rem !important;
   width: 50px !important;
-  
+  font-size: 0.5rem !important;;
 }
 
 .MuiSlider-thumb:hover .MuiSlider-valueLabel {

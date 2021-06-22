@@ -15,24 +15,25 @@ const TabButton = styled.div`
   padding: 10px;
   margin: 20px 5px 0px 0px;
   cursor: pointer;
-  color: #404167;
+  color: #4C5F6B;
   font-weight: bolder;
 
   &:hover {
-    background-color: #EEECFB;
+    background-color: #83A0A0;
+    color: #fff
   }
 `
 const TabButtonFriends = styled(TabButton)`
-  border-bottom: ${props => props.tab === "friends" && "2px solid #bca0bc"};
-  color:  ${props => props.tab === "friends" && "#613e61"};
+  border-bottom: ${props => props.tab === "friends" && "2px solid #4C5F6B"};
+  color:  ${props => props.tab === "friends" && "#2a363c"};
 `
 const TabButtonRequests = styled(TabButton)`
-  border-bottom: ${props => props.tab === "requests" && "2px solid #bca0bc"};
-  color:  ${props => props.tab === "requests" && "#613e61"};
+  border-bottom: ${props => props.tab === "requests" && "2px solid #4C5F6B"};
+  color:  ${props => props.tab === "requests" && "#2a363c"};
 `
 const TabButtonSearch = styled(TabButton)`
-  border-bottom: ${props => props.tab === "search" && "2px solid #bca0bc"};
-  color:  ${props => props.tab === "search" && "#613e61"};
+  border-bottom: ${props => props.tab === "search" && "2px solid #4C5F6B"};
+  color:  ${props => props.tab === "search" && "#2a363c"};
 `
 
 

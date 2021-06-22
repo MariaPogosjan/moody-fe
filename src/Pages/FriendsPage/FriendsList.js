@@ -34,14 +34,18 @@ const UnfollowButton = styled.button`
   border-radius: 6px;
   border: none;
   padding: 4px 6px;
-  background-color: #bca0bc;
+  background-color: #4C5F6B;
   color: #fff;
-  width: 100px;
+  width: 75px;
   cursor: pointer;
 
   &:hover {
     opacity: 80%;
-    }
+  }
+  
+  @media(min-width: 650px) {
+    width: 100px;
+  }
 `
 const style = {
   textDecoration: "none",
