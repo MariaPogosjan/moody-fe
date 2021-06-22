@@ -7,63 +7,6 @@ import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
 import image from 'assets/friends.jpg'
 
-const RequestsContainer = styled.section`
-  padding: 5px;
-`
-const RequestTitle = styled.h2`
-  color: #4C5F6B;
-  font-size: 18px;
-  margin-bottom: 25px;
-`
-const ListContainer = styled.ul`
-  padding:0;
-  max-width: 450px;
-  margin: auto;
-`
-const Request = styled.li`
-  display: flex;
-  align-items: center;
-  padding-bottom: 5px;
-  justify-content: space-between;
-`
-const RequestNamePicWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-const Text = styled.p`
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-`
-const Name = styled.p`
-  color: #2a363c;
-`
-const Button = styled.button`
-  border-radius: 6px;
-  border: none;
-  padding: 4px 6px;
-  background-color: #4C5F6B;
-  color: #fff;
-  width: 60px;
-  margin-left: 5px;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 80%;
-  }
-
-  @media(min-width: 650px) {
-    width: 100px;
-  }
-`
-const ButtonsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-const Image = styled.img`
-  width: 100%;
-`
-
 const RequestsList = () => {
   const friendRequests = useSelector(store => store.user.friendRequests)
   const accessToken = useSelector(store => store.user.accessToken)
@@ -141,3 +84,60 @@ const RequestsList = () => {
 }
 
 export default RequestsList
+
+const RequestsContainer = styled.section`
+  padding: 5px;
+`
+const RequestTitle = styled.h2`
+  color: #4C5F6B;
+  font-size: 18px;
+  margin-bottom: 25px;
+`
+const ListContainer = styled.ul`
+  padding:0;
+  max-width: 450px;
+  margin: auto;
+`
+const Request = styled.li`
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  justify-content: space-between;
+`
+const RequestNamePicWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const Text = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+`
+const Name = styled.p`
+  color: #2a363c;
+`
+const Button = styled.button`
+  border-radius: 6px;
+  border: none;
+  padding: 4px 6px;
+  background-color: #4C5F6B;
+  color: #fff;
+  width: 60px;
+  margin-left: 5px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 80%;
+  }
+
+  @media(min-width: 650px) {
+    width: 100px;
+  }
+`
+const ButtonsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const Image = styled.img`
+  width: 100%;
+`

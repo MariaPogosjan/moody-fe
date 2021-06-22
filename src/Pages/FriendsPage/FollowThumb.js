@@ -7,33 +7,6 @@ import styled from 'styled-components'
 import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
 
-const User = styled.li`
-  display: flex;
-  align-items: center;
-  padding-bottom: 5px;
-  justify-content: space-between;
-`
-const UserNamePicWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-const FollowButton = styled.button`
-  border-radius: 6px;
-  border: none;
-  padding: 4px 6px;
-  background-color: #4C5F6B;
-  color: #fff;
-    &:disabled {
-      opacity: 0.6;
-    }
-    &:hover {
-    opacity: 60%;
-    }
-`
-const Name = styled.p`
-  color: #2a363c;
-`
-
 const FollowThumb = ({ item }) => {
   const [disabled, setDisabled] = useState(false)
   const [buttonText, setButtonText] = useState("")
@@ -87,7 +60,6 @@ const FollowThumb = ({ item }) => {
     checkFriendsArrays(item)
   }, [item, myFriendRequests, friendsList, friendRequests, userId])
 
-
   return (
     <User>
       <UserNamePicWrapper>
@@ -110,3 +82,30 @@ const FollowThumb = ({ item }) => {
 }
 
 export default FollowThumb
+
+const User = styled.li`
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  justify-content: space-between;
+`
+const UserNamePicWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const FollowButton = styled.button`
+  border-radius: 6px;
+  border: none;
+  padding: 4px 6px;
+  background-color: #4C5F6B;
+  color: #fff;
+    &:disabled {
+      opacity: 0.6;
+    }
+    &:hover {
+    opacity: 60%;
+    }
+`
+const Name = styled.p`
+  color: #2a363c;
+`

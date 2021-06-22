@@ -8,48 +8,6 @@ import friends from 'reducers/friends'
 
 import FollowThumb from './FollowThumb'
 
-const FormContainer = styled.section`
-  padding: 5px;
-  max-width: 450px;
-  margin: auto;
-`
-const Form = styled.form`
-  display: flex;
-  align-items: center;
-`
-const SearchInput = styled.input`
-  padding: 10px;
-  border: 1.5px solid #4C5F6B;
-  font-size: 12px;
-  width: 200px;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-
-  &:focus {
-    outline-style: unset;
-  }
-`
-const SearchButton = styled.button`
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border: none;
-  padding: 5px 6px;
-  background-color: #4C5F6B;
-  color: #fff;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 80%;
-  }
-`
-const SearchTitle = styled.h2`
-  color: #4C5F6B;
-  font-size: 18px;
-`
-const ListContainer = styled.ul`
-  padding:0;
-`
-
 const SearchForm = () => {
   const [value, setValue] = useState('')
   const [filteredUsers, setFilteredUsers] = useState([])
@@ -97,3 +55,45 @@ const SearchForm = () => {
   )
 }
 export default SearchForm
+
+const FormContainer = styled.section`
+  padding: 5px;
+  max-width: 450px;
+  margin: auto;
+`
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+`
+const SearchInput = styled.input`
+  padding: 10px;
+  border: 1.5px solid #4C5F6B;
+  font-size: 12px;
+  width: 200px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+
+  &:focus {
+    outline-style: unset;
+  }
+`
+const SearchButton = styled.button`
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+  padding: 5px 6px;
+  background-color: #4C5F6B;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 80%;
+  }
+`
+const SearchTitle = styled.h2`
+  color: #4C5F6B;
+  font-size: 18px;
+`
+const ListContainer = styled.ul`
+  padding:0;
+`

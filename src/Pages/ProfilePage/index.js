@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 
-import { Container } from 'styled-components/Containers'
 import { SectionTitle } from 'styled-components/Titels'
 import FeelingsForm from './Form'
 import Quote from './Quote'
@@ -34,3 +34,9 @@ const Profile = () => {
   )
 }
 export default Profile
+
+const Container = styled.section`
+   margin: 0;
+   height: auto;
+   padding: 0 0.5rem 5rem 0.5rem;
+`

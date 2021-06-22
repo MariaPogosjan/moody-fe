@@ -96,8 +96,13 @@ const Marker = styled.div`
 `
 
 const SliderWrapper = styled.div`
-  width: 80%;
-  padding: 0 30px;
+  width: 70%;
+  margin-bottom: 1rem;
+
+  @media(min-width: 350px){
+    width: 75%;
+    margin-bottom: 2rem;
+  }
 `
 
 const FeelingsSlider = ({ value, setValue }) => {
