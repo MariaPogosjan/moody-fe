@@ -4,40 +4,8 @@ import styled from 'styled-components'
 
 import { THOUGHTS_URL } from 'reusables/urls'
 import thoughts from 'reducers/thoughts'
+import { Label } from 'styled-components/Forms'
 
-
-const MessageFormContainer = styled.section`
-  padding: 5px;
-  background-color: #bca0bc;
-  color: #fff;
-`
-const Form = styled.form `
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-const MessageInput = styled.input`
-  border-radius: 6px;
-  border: 1px #EEECFB solid;
-  width: 300px;
-  height: 50px;
-  padding: 5px;
-  color: #4c5f6b;
-  font-family: 'Montserrat', sans-serif;
-  margin-bottom: 10px;
-`
-const Label = styled.label`
-  margin-bottom: 10px;
-`
-const ShareButton = styled.button`
-  border-radius: 6px;
-  border: 1px #EEECFB solid;
-  background-color: #EEECFB;
-  padding: 5px;
-  color: #4c5f6b;
-  font-family: 'Montserrat', sans-serif;
-  width: 150px;
-`
 
 const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
   const [message, setMessage] = useState('')
@@ -85,15 +53,48 @@ const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
             id="newMessage"
             type="text"
             value={message}
+            rows="5"
             onChange={e => setMessage(e.target.value)}
           />
         <ShareButton
           type="submit"
         >
-          💗 Share 💗
+           Share 
         </ShareButton>
       </Form>
     </MessageFormContainer>
   )
 }
 export default FormComponent
+
+
+const MessageFormContainer = styled.section`
+  padding: 1.8rem 1.8rem 1.4rem 1.8rem;
+  background-color: #bca0bc;
+  border-radius: 8px 8px 3px 3px;
+`
+const Form = styled.form `
+  display: flex;
+  flex-direction: column;
+ 
+`
+const MessageInput = styled.textarea`
+  border: none;
+  width: 100%;
+  color: #4c5f6b;
+  font-family: 'Montserrat', sans-serif;
+  outline-style: inherit;
+  resize: none;
+`
+
+const ShareButton = styled.button`
+  border-radius: 6px;
+  border: none;
+  background-color: #EEECFB;
+  padding: 8px;
+  margin-top: 13px;
+  color: #4c5f6b;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  width: 150px;
+`

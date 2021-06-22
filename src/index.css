@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
 
 .react-calendar {
@@ -88,6 +89,16 @@ abbr[title] {
   height: auto;
   max-height: 9999px;
 }
+
+
+/**** Icons from Material UI ****/ 
+.contact-link {
+  text-decoration: none;
+  color: #404167;
+  font-size: 2.5rem;
+  padding-right: 1rem;
+}
+
 
 .footer-link {
   text-decoration: none;

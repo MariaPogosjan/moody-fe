@@ -3,17 +3,7 @@ import styled from 'styled-components'
 
 import FormComponent from './FormComponent'
 import MessageList from './MessageList'
-
-const SectionTitle = styled.h1`
-  color: #4C5F6B;
-  font-size: 25px;
-  padding: 5px;
-`
-const PageContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 70px;
-`
+import { SectionTitle } from 'styled-components/Titels'
 
 const Thoughts = () => {
   const [page, setPage] = useState(1)
@@ -21,7 +11,7 @@ const Thoughts = () => {
  
   return (
     <PageContainer>
-      <SectionTitle>Community</SectionTitle>
+      <SectionTitle>Share your thoughts</SectionTitle>
       <FormComponent page={page} setPage={setPage} perPage={perPage} setPerPage={setPerPage} />
       <MessageList page={page} setPage={setPage} perPage={perPage} setPerPage={setPerPage}/>
     </PageContainer>
@@ -30,3 +20,9 @@ const Thoughts = () => {
 
 export default Thoughts
 
+
+const PageContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 6rem 5rem 6rem;
+`

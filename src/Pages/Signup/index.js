@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import GoogleLoginComponent from 'components/GoogleLogin'
+import styled from 'styled-components'
 
 import {
   FormSection,
@@ -11,7 +12,6 @@ import {
   ErrorMessage
 } from 'styled-components/Forms'
 import { Button, ButtonsWrapper } from 'styled-components/Buttons'
-import { SectionTitle } from 'styled-components/Titels'
 import user from 'reducers/user'
 import { API_URL } from 'reusables/urls'
 
@@ -60,9 +60,7 @@ const SignUp = () => {
             dispatch(user.actions.setUsername(data.username))
             dispatch(user.actions.setUserId(data.userId))
             dispatch(user.actions.setAccessToken(data.accessToken))
-            
             dispatch(user.actions.setErrors(null))
-
             localStorage.setItem('user', JSON.stringify({
               userId: data.userId,
               username: data.username,
@@ -79,7 +77,7 @@ const SignUp = () => {
   }
 
   return (
-    <FormSection >
+    <FormSection>
       <SectionTitle>Sign up</SectionTitle>
       <GoogleLoginComponent text="Sign up"/>
       <Form onSubmit={onFormSubmit}>
@@ -129,3 +127,10 @@ const SignUp = () => {
 }
 
 export default SignUp
+
+const SectionTitle = styled.h1`
+  color: #404167;
+  text-align: center;
+  font-size: 2.1rem;
+  margin: 3rem 0;
+` 

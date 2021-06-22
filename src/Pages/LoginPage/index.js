@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+
 
 import {
   FormSection,
@@ -10,7 +12,6 @@ import {
   ErrorMessage
 } from 'styled-components/Forms'
 import { Button, ButtonsWrapper } from 'styled-components/Buttons'
-import { SectionTitle } from 'styled-components/Titels'
 import user from 'reducers/user'
 import { API_URL } from 'reusables/urls'
 
@@ -118,3 +119,10 @@ const Login = () => {
   )
 }
 export default Login
+
+const SectionTitle = styled.h1`
+  color: #404167;
+  text-align: center;
+  font-size: 2.1rem;
+  margin: 3rem 0;
+` 
