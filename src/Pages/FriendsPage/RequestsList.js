@@ -13,10 +13,12 @@ const RequestsContainer = styled.section`
 const RequestTitle = styled.h2`
   color: #4C5F6B;
   font-size: 18px;
-  
+  margin-bottom: 25px;
 `
 const ListContainer = styled.ul`
   padding:0;
+  max-width: 450px;
+  margin: auto;
 `
 const Request = styled.li`
   display: flex;
@@ -32,8 +34,19 @@ const Button = styled.button`
   border-radius: 6px;
   border: none;
   padding: 4px 6px;
-  background-color: #bca0bc;
+  background-color: #4C5F6B;
   color: #fff;
+  width: 75px;
+  margin-left: 5px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 80%;
+  }
+
+  @media(min-width: 650px) {
+    width: 100px;
+  }
 `
 const ButtonsWrapper = styled.div`
   display: flex;
@@ -57,15 +70,15 @@ const RequestsList = () => {
     }
     fetch(API_URL('acceptfriends'), options)
       .then(res => res.json())
-      .then(data =>  {
-         dispatch(user.actions.addFriends(data.friend))
-         dispatch(user.actions.removeFriendRequests(data.friend._id))
+      .then(data => {
+        dispatch(user.actions.addFriends(data.friend))
+        dispatch(user.actions.removeFriendRequests(data.friend._id))
         const updatedFriendRequests = friendRequests.filter(item => item._id !== data.friend._id)
         const updatedFriends = [data.friend, ...friendsList]
-        localStorage.setItem('friends', JSON.stringify({ friends: updatedFriends}))
+        localStorage.setItem('friends', JSON.stringify({ friends: updatedFriends }))
         localStorage.setItem('friendRequests', JSON.stringify({ friendRequests: updatedFriendRequests }))
       })
-     
+
   }
 
   const onRequestDeny = (item) => {
@@ -88,8 +101,8 @@ const RequestsList = () => {
 
   return (
     <RequestsContainer>
-      <RequestTitle>Friend Requests</RequestTitle>
       <ListContainer>
+        <RequestTitle>Friend Requests</RequestTitle>
         {friendRequests.map(item =>
           <Request key={item._id}>
             <RequestNamePicWrapper>
