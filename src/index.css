@@ -39,7 +39,6 @@ abbr[title] {
   background-color: #83A0A0 !important;
 }
 
-
 .react-calendar button {
   height: 55px !important;
   padding: 10px !important;
@@ -70,7 +69,6 @@ abbr[title] {
   color: #404167 !important;
 }
 
-
 .react-calendar__month-view__days__day--neighboringMonth {
   color: #e6e6e6 !important;
 }
@@ -83,12 +81,14 @@ abbr[title] {
   max-height: 0;
   transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
 }
+
 .open {
   overflow: hidden;
   transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
   height: auto;
   max-height: 9999px;
 }
+
 .footer-link {
   text-decoration: none;
   color: #404167;
@@ -102,4 +102,27 @@ abbr[title] {
 .footer-icon {
   text-decoration: none;
   color: #404167;
+}
+
+.MuiSlider-valueLabel {
+  font-size: 0.5rem !important;
+  width: 50px !important;
+  
+}
+
+.MuiSlider-thumb:hover .MuiSlider-valueLabel {
+  transform: scale(1.5) !important;
+  top: -50px;
+  left: calc(-50% + 7px) !important;
+}
+
+.MuiSlider-thumb:active .MuiSlider-valueLabel {
+  transform: scale(1.5) !important;
+  top: -50px;
+  left: calc(-50% + 7px) !important;
+}
+.MuiSlider-thumb:focus .MuiSlider-valueLabel {
+  transform: scale(1.5) !important;
+  top: -50px;
+  left: calc(-50% + 7px) !important;
 }

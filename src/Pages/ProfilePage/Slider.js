@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
 import sad from 'assets/sad.png'
-import annoyed from 'assets/annoyed.png'
+import angry from 'assets/angry.png'
 import stressed from 'assets/stressed.png'
 import neutral from 'assets/neutral.png'
 import happy from 'assets/happy.png'
@@ -43,20 +43,25 @@ const CustomSlider = withStyles({
   }
 })(Slider)
 
+const Image = styled.img`
+  width: 70px; 
+  height: 70px;
+`
+
 const generateLabel = (number) => {
   switch (number) {
     case 0:
-      return (<img alt="sad"src={sad} style={{width: 25, height: 25}} />)
+      return (<Image alt="sad"src={sad} />)
     case 0.2:
-      return (<img alt="sad"src={annoyed} style={{width: 25, height: 25}} />)
+      return (<Image alt="sad"src={angry} />)
     case 0.4:
-      return (<img alt="sad"src={stressed} style={{width: 25, height: 25}} />)
+      return (<Image alt="sad"src={stressed} />)
     case 0.6:
-      return (<img alt="sad"src={neutral} style={{width: 25, height: 25}} />)
+      return (<Image alt="sad"src={neutral} />)
     case 0.8:
-      return (<img alt="sad"src={relaxed} style={{width: 25, height: 25}} />)
+      return (<Image alt="sad"src={relaxed}  />)
     default:
-      return (<img alt="sad"src={happy} style={{width: 25, height: 25}} />)
+      return (<Image alt="sad"src={happy} />)
   }
 }
 
@@ -77,14 +82,17 @@ const generateText = (number) => {
   }
 }
 
-const Marker = styled.p`
-  color: #fff;
-  background-color: #BCA0BC;
-  margin-bottom: 40px;
-  padding: 10px 10px;
-  border-radius: 6px;
+const Marker = styled.div`
   width: 100px;
-  text-align: center;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 40px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(188,160,188);
+  background: radial-gradient(circle, rgba(188,160,188,1) 0%, rgba(255,255,255,1) 70%);
 `
 
 const SliderWrapper = styled.div`
@@ -100,13 +108,13 @@ const FeelingsSlider = ({ value, setValue }) => {
 
   return (
     <>
-      <Marker>{generateText(value)}</Marker>
+      <Marker>{generateLabel(value)}</Marker>
       <SliderWrapper>
         <CustomSlider
           min={0}
           max={1}
           step={0.2}
-          valueLabelFormat={generateLabel(value)}
+          valueLabelFormat={generateText(value)}
           valueLabelDisplay="auto"
           defaultValue={0}
           value={value}
