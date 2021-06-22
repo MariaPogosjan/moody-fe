@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { THOUGHTS_URL } from 'reusables/urls'
 import thoughts from 'reducers/thoughts'
+import { Label } from 'styled-components/Forms'
 
 
 const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
@@ -52,12 +53,13 @@ const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
             id="newMessage"
             type="text"
             value={message}
+            rows="5"
             onChange={e => setMessage(e.target.value)}
           />
         <ShareButton
           type="submit"
         >
-          Share 
+           Share 
         </ShareButton>
       </Form>
     </MessageFormContainer>
@@ -65,43 +67,34 @@ const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
 }
 export default FormComponent
 
-const MessageFormContainer = styled.section`
-  padding: 1.5rem 0.5px;
-  background-color: #EEECFB;
-  color: #fff;
-`
 
+const MessageFormContainer = styled.section`
+  padding: 1.8rem 1.8rem 1.4rem 1.8rem;
+  background-color: #bca0bc;
+  border-radius: 8px 8px 3px 3px;
+`
 const Form = styled.form `
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: auto;
+ 
 `
-const MessageInput = styled.input`
+const MessageInput = styled.textarea`
   border: none;
-  width: 90%;
-  height: 6rem;
+  width: 100%;
+  color: #4c5f6b;
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 1rem;
-`
-const Label = styled.label`
-  margin-bottom: 2rem;
-  color: #404167; 
+  outline-style: inherit;
+  resize: none;
 `
 
 const ShareButton = styled.button`
-  background-color: #BCA0BC;
-  border: none;
-  color: white;
-  padding: 1rem 0.8rem;
-  margin-top: 1.2rem; 
   border-radius: 6px;
-  width: 8rem;
+  border: none;
+  background-color: #EEECFB;
+  padding: 8px;
+  margin-top: 13px;
+  color: #4c5f6b;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  
-   &:hover {
-     opacity: 0.8;
-   }
+  font-size: 15px;
+  width: 150px;
 `

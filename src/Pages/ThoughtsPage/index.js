@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import { SectionTitle } from 'styled-components/Titels'
 
 import FormComponent from './FormComponent'
 import MessageList from './MessageList'
+import { SectionTitle } from 'styled-components/Titels'
 
 const Thoughts = () => {
   const [page, setPage] = useState(1)
@@ -11,7 +11,7 @@ const Thoughts = () => {
  
   return (
     <PageContainer>
-      <SectionTitle>Community</SectionTitle>
+      <SectionTitle>Share your thoughts</SectionTitle>
       <FormComponent page={page} setPage={setPage} perPage={perPage} setPerPage={setPerPage} />
       <MessageList page={page} setPage={setPage} perPage={perPage} setPerPage={setPerPage}/>
     </PageContainer>
@@ -20,9 +20,9 @@ const Thoughts = () => {
 
 export default Thoughts
 
+
 const PageContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 0 2rem;
-  margin-top: 2rem;
+  margin: 2rem 6rem 5rem 6rem;
 `

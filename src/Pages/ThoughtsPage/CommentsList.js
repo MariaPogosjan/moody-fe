@@ -1,10 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import formatDistance from 'date-fns/formatDistance'
 import Comment from './CommentForm'
 
-const CommentsContainer = styled.section`
+const CommentsList = ({ item, open }) => {
 
+  return (
+    <CommentsContainer>
+      <CommentsWrapper visible={open}>
+      <Comment item={item} />
+        {item.comments.map(comment =>
+          <Comment1 key={comment._id}>
+            <Username>{comment.user.username}</Username>
+            <CommentText>{comment.comment}</CommentText>
+            <DateText>{formatDistance(new Date(comment.createdAt), Date.now())}</DateText>
+          </Comment1>
+        )}
+      </CommentsWrapper>
+    </CommentsContainer>
+  )
+
+}
+export default CommentsList
+
+
+const CommentsContainer = styled.section`
 `
 const CommentsTitle = styled.p`
   color: #4c5f6b;
@@ -16,13 +36,13 @@ const CommentsWrapper = styled.div`
   display:${props => (props.visible ? "flex" : "none")};
   flex-direction: column;
 `
-const Comment1 = styled.div`
+ const Comment1 = styled.div`
   background-color: #EEECFB;
   border-radius: 6px;
   margin: 5px;
   padding: 3px;
   font-size: 12px;
-`
+` 
 const Username = styled.p`
   font-size: 14px;
   font-weight: bold;
@@ -37,26 +57,3 @@ const DateText = styled.p`
   text-align: right;
   font-style: italic;
 `
-
-
-const CommentsList = ({ item }) => {
-  const [visible, setVisible] = useState(false)
-  return (
-    <CommentsContainer>
-      <CommentsTitle onClick={() => setVisible(!visible)}>Add & show comments</CommentsTitle>
-      <CommentsWrapper visible={visible}>
-      <Comment item={item} />
-
-        {item.comments.map(comment =>
-          <Comment1 key={comment._id}>
-            <Username>{comment.user.username}</Username>
-            <CommentText>{comment.comment}</CommentText>
-            <DateText>{formatDistance(new Date(comment.createdAt), Date.now())}</DateText>
-          </Comment1>
-        )}
-      </CommentsWrapper>
-    </CommentsContainer>
-  )
-
-}
-export default CommentsList

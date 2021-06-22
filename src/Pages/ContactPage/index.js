@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import GitHubIcon from '@material-ui/icons/GitHub'
-import EmailIcon from '@material-ui/icons/Email';
+import EmailIcon from '@material-ui/icons/Email'
+
 
 const Contact = () => {
   return (
@@ -74,7 +75,7 @@ const Card = styled.div`
 
   @media (min-width: 768px) {
     flex-direction: row;
-    border: 2px solid #EEECFB;
+    border: 1px solid #EEECFB;
   }
 `
 const FlexReverese = styled.div`
@@ -103,10 +104,6 @@ const Image = styled.img`
   object-fit: cover;
   border-radius: 50%;
   filter: grayscale(70%);
-
-  @media (min-width: 768px) {
-    
-  }
 `
 
 const SectionSubtitle = styled.h2`

@@ -109,8 +109,8 @@ const Settings = () => {
         <Form onSubmit={onFormSubmit}>
 
          <>
-          <IconTitleWrapper>
-            <SettingsTitle onClick={() => setVisible(!visible)} htmlFor="file-input">Upload image</SettingsTitle>
+          <IconTitleWrapper onClick={() => setVisible(!visible)}>
+            <SettingsTitle htmlFor="file-input">Upload image</SettingsTitle>
             {visible ? <KeyboardArrowUpSharpIcon /> : <KeyboardArrowDownSharpIcon />}
           </IconTitleWrapper>
           </>
