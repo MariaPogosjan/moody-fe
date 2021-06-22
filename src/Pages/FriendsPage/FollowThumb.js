@@ -26,6 +26,9 @@ const FollowButton = styled.button`
     &:disabled {
       opacity: 0.6;
     }
+    &:hover {
+    opacity: 60%;
+    }
 `
 
 const FollowThumb = ({ item }) => {

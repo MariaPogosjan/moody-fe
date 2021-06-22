@@ -38,9 +38,13 @@ const UnfollowButton = styled.button`
   color: #fff;
   width: 100px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 80%;
+    }
 `
 const style = {
-  textDecoration: "none", 
+  textDecoration: "none",
   color: "#404167"
 }
 
@@ -50,6 +54,8 @@ const FriendsList = () => {
   const dispatch = useDispatch()
 
   const onUnfollowFriend = (item) => {
+    const confirmation = window.confirm(`Are you shure you want to unfollow ${item.username}?`)
+    if (confirmation) {
     const options = {
       method: 'PATCH',
       headers: {
@@ -66,6 +72,7 @@ const FriendsList = () => {
         const updatedFriends = friendsList.filter(item => item._id !== data.friend._id)
         localStorage.setItem('friends', JSON.stringify({ friends: updatedFriends }))
       })
+    }
   }
   return (
     <FriendsContainer>

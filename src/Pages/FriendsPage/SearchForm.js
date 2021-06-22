@@ -24,6 +24,10 @@ const SearchInput = styled.input`
   width: 200px;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
+
+  &:focus {
+    outline-style: unset;
+  }
 `
 const SearchButton = styled.button`
   border-top-right-radius: 6px;
@@ -33,11 +37,14 @@ const SearchButton = styled.button`
   background-color: #bca0bc;
   color: #fff;
   cursor: pointer;
+
+  &:hover {
+    opacity: 80%;
+  }
 `
 const SearchTitle = styled.h2`
   color: #4C5F6B;
   font-size: 18px;
-  
 `
 const ListContainer = styled.ul`
   padding:0;
@@ -60,7 +67,6 @@ const SearchForm = () => {
     fetch(API_URL('users'))
       .then(res => res.json())
       .then(data => {
-        //console.log(data)
         batch(() => {
           dispatch(friends.actions.setFriends(data))
           dispatch(friends.actions.setErrors(null))
@@ -77,7 +83,7 @@ const SearchForm = () => {
           required
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="search your friends here"
+          placeholder="Type username"
         />
         <SearchButton type="submit">
           <SearchIcon />
