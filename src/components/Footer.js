@@ -1,11 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import EventNoteIcon from '@material-ui/icons/EventNote'
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline'
 import MailOutlineIcon from '@material-ui/icons/MailOutline'
 import MoodIcon from '@material-ui/icons/Mood'
 import styled from 'styled-components'
+
 
 const Footer = () => {
   const accessToken = useSelector(store => store.user.accessToken)
@@ -14,18 +15,38 @@ const Footer = () => {
     <FooterContainer>
       {accessToken ?
         <IconsContainer>
-          <Link to="/summary" className="footer-link">
-            <EventNoteIcon className="footer-icon"/>
-          </Link>
-          <Link to="/thoughts" >
+          <NavLink to="/summary" className="footer-link"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "red"
+            }}
+          >
+            <EventNoteIcon />
+          </NavLink>
+          <NavLink to="/thoughts"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "red"
+            }}>
             <MailOutlineIcon />
-          </Link> 
-          <Link to="/profile">
-            <MoodIcon className="footer-icon"/>
-          </Link>
-          <Link to='/friends'>
-            <PeopleOutlineIcon className="footer-icon"/>
-          </Link>
+          </NavLink>
+          <NavLink to="/profile"
+            activeStyle={{
+              fontWeight: "bold",
+              color: "red"
+            }}
+
+          >
+            <MoodIcon />
+          </NavLink>
+          <NavLink to='/friends'
+            activeStyle={{
+              fontWeight: "bold",
+              color: "red"
+            }}
+          >
+            <PeopleOutlineIcon className="footer-icon" />
+          </NavLink>
         </IconsContainer>
         :
         <FooterText> © Maria Pogosjan & Ekaterina Klimenko</FooterText>

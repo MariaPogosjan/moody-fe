@@ -201,7 +201,7 @@ const ButtonsWrapper = styled.div`
 
 const Button = styled.button`
   /* background-color: #404167; */
-  background-color: #BCA0BC;
+  background-color: #775577;
   border: none;
   color: white;
   padding: 1rem 0.8rem;

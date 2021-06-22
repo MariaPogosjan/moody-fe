@@ -104,6 +104,10 @@ abbr[title] {
   text-decoration: none;
   color: #404167;
 }
+.footer-link:active {
+  text-decoration: underline;
+  color: #404167;
+}
 
 .footer-link:visited {
   text-decoration: none;
