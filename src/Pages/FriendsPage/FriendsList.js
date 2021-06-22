@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { API_URL } from 'reusables/urls'
 
 import user from 'reducers/user'
+import image from 'assets/friends.jpg'
 
 const FriendsContainer = styled.section`
   padding: 5px;
@@ -49,8 +50,19 @@ const UnfollowButton = styled.button`
 `
 const style = {
   textDecoration: "none",
-  color: "#404167"
+  color: "#2a363c"
 }
+
+const Text = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: #2a363c;
+`
+
+const Image = styled.img`
+  width: 100%;
+`
 
 const FriendsList = () => {
   const friendsList = useSelector(store => store.user.friends)
@@ -82,6 +94,12 @@ const FriendsList = () => {
     <FriendsContainer>
       <ListContainer>
         <FriendsTitle>Friends</FriendsTitle>
+        {friendsList.length === 0 &&
+          <>
+            <Text>No friends yet! Perhaps you want to look for them?</Text>
+            <Image src={image} alt="Friends online" />
+          </>
+        }
         {friendsList.map(item =>
           <Friend key={item._id}>
             <FriendNamePicWrapper>

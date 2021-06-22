@@ -30,6 +30,9 @@ const FollowButton = styled.button`
     opacity: 60%;
     }
 `
+const Name = styled.p`
+  color: #2a363c;
+`
 
 const FollowThumb = ({ item }) => {
   const [disabled, setDisabled] = useState(false)
@@ -93,7 +96,7 @@ const FollowThumb = ({ item }) => {
           src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
           style={{ marginRight: "5px" }}
         />
-        {item.username}
+        <Name>{item.username}</Name>
       </UserNamePicWrapper>
 
       <FollowButton

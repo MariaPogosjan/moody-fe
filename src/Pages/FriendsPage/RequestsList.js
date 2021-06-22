@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { API_URL } from 'reusables/urls'
 
 import user from 'reducers/user'
-
+import image from 'assets/friends.jpg'
 
 const RequestsContainer = styled.section`
   padding: 5px;
@@ -30,13 +30,21 @@ const RequestNamePicWrapper = styled.div`
   display: flex;
   align-items: center;
 `
+const Text = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+`
+const Name = styled.p`
+  color: #2a363c;
+`
 const Button = styled.button`
   border-radius: 6px;
   border: none;
   padding: 4px 6px;
   background-color: #4C5F6B;
   color: #fff;
-  width: 75px;
+  width: 60px;
   margin-left: 5px;
   cursor: pointer;
 
@@ -51,6 +59,9 @@ const Button = styled.button`
 const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
+`
+const Image = styled.img`
+  width: 100%;
 `
 
 const RequestsList = () => {
@@ -103,6 +114,12 @@ const RequestsList = () => {
     <RequestsContainer>
       <ListContainer>
         <RequestTitle>Friend Requests</RequestTitle>
+        {friendRequests.length === 0 &&
+          <>
+            <Text>No pending requests</Text>
+            <Image src={image} alt="Friends online" />
+          </>
+        }
         {friendRequests.map(item =>
           <Request key={item._id}>
             <RequestNamePicWrapper>
@@ -111,7 +128,7 @@ const RequestsList = () => {
                 src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
                 style={{ marginRight: "5px" }}
               />
-              {item.username}
+              <Name>{item.username}</Name>
             </RequestNamePicWrapper>
             <ButtonsWrapper>
               <Button onClick={() => onRequestAccept(item)}>Accept</Button>
