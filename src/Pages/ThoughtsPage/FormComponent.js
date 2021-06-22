@@ -44,7 +44,6 @@ const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
     setMessage('')
   }
 
-
   return (
     <MessageFormContainer>
       <Form onSubmit={onFormSubmit}>
@@ -69,9 +68,13 @@ export default FormComponent
 
 
 const MessageFormContainer = styled.section`
-  padding: 1.8rem 1.8rem 1.4rem 1.8rem;
+  padding: 1rem 1rem 1rem 1rem;
   background-color: #bca0bc;
-  border-radius: 8px 8px 3px 3px;
+  border-radius: 6px;
+
+  @media (min-width: 768px) {
+    padding: 1.8rem 1.8rem 1.4rem 1.8rem;
+  }
 `
 const Form = styled.form `
   display: flex;
@@ -95,6 +98,11 @@ const ShareButton = styled.button`
   margin-top: 13px;
   color: #4c5f6b;
   font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-  width: 150px;
+  font-size: 10px;
+  width: 80px;
+
+  @media (min-width: 768px) {
+    width: 150px;
+    font-size: 15px;
+  }
 `

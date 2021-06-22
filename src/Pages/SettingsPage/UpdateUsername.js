@@ -6,35 +6,13 @@ import KeyboardArrowDownSharpIcon from '@material-ui/icons/KeyboardArrowDownShar
 
 import user from 'reducers/user'
 import { USERNAME_UPDATE_URL } from 'reusables/urls'
-import { ButtonsWrapper, Button } from 'styled-components/Buttons'
+import { ButtonsWrapper } from 'styled-components/Buttons'
 import {
   FormSection,
-  Form,
-  Label,
-  Input
+  Form
 }
   from 'styled-components/Forms'
 
-const Wrapper = styled.div`
-  display: ${props => (props.visible ? "flex" : "none")};
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  margin-right: 10px;
-`
-
-const UsernameTitle = styled.p`
-  font-size: 14px;
-  color: #4C5F6B;
-  cursor: pointer;
-  margin-right: 10px;
-`
-
-const IconTitleWrapper = styled.div`
-  display: flex;
-  color: #4C5F6B;
-  align-items: center;
-`
 
 const UpdateUsername = () => {
   const [username, setUsername] = useState('')
@@ -76,14 +54,12 @@ const UpdateUsername = () => {
   return (
     <FormSection>
       <Form onSubmit={onUsernameUpdate}>
-        <IconTitleWrapper>
-          <UsernameTitle onClick={() => setVisible(!visible)}>
-            Update username
-          </UsernameTitle>
+        <IconTitleWrapper onClick={() => setVisible(!visible)}>
+          <SettingsTitle>Update username </SettingsTitle>
           {visible ? <KeyboardArrowUpSharpIcon /> : <KeyboardArrowDownSharpIcon />}
         </IconTitleWrapper>
         <Wrapper visible={visible}>
-          <Label htmlFor="username">Update username</Label>
+          <SettingsLabel htmlFor="username">Update username</SettingsLabel>
           <Input
             id="username"
             type="text"
@@ -93,7 +69,7 @@ const UpdateUsername = () => {
           />
           <ButtonsWrapper>
             <Button type="submit">
-              update
+              Update
             </Button>
           </ButtonsWrapper>
         </Wrapper>
@@ -103,3 +79,94 @@ const UpdateUsername = () => {
 }
 
 export default UpdateUsername
+
+const IconTitleWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EEECFB;
+  border: 1px solid #EEECFB;
+  padding: 0rem;
+  margin-top: 1rem;
+
+    @media (min-width: 768px) {
+      margin-top: 1rem;
+      padding: 0.3rem 0.8rem;
+      width: 80%;  
+    }
+`
+
+const Wrapper = styled.div`
+  display: ${props => (props.visible ? "flex" : "none")};
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  border: 1px solid #EEECFB;
+  border-top: none;
+
+  @media (min-width: 768px) {
+      padding: 0.3rem 0.8rem;
+      width: 80%;  
+      height: 200px;
+    }
+`
+
+const SettingsTitle = styled.p`
+  color: #4C5F6B;
+  cursor: pointer;
+  padding-left: 1rem;
+  font-size: 12px;
+
+  @media (min-width: 768px) {
+      font-size: 18px;
+      
+    }
+`
+
+const SettingsLabel = styled.label `
+  font-size: 10px;
+  margin-top: 10px;
+`
+
+const Input = styled.input`
+  padding: 0.6rem;
+  margin: 1rem 0 0.5rem 0;
+  width: 80%;
+  border: 1px solid #BCA0BC;
+  border-radius: 6px;
+
+  @media (min-width: 768px) {
+    width: 60%;
+    margin: 1rem 0 0.5rem 0;
+    width: 80%;
+    padding: 0.9rem;
+  }
+` 
+
+const Button = styled.button`
+  width: 100px;
+  padding: 0.5rem;
+  border: none;
+  background-color: #404167;
+  border-radius: 6px;
+  color: #fff;
+  margin-top: 1.2rem; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  
+
+  @media (min-width: 768px) {
+    padding: 1rem 0.8rem;
+    margin-top: 1.2rem; 
+    border-radius: 6px;
+    width: 15rem;
+    font-size: 1rem;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+`

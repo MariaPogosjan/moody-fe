@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
-
+import styled from 'styled-components'
 import user from 'reducers/user'
 import feeling from 'reducers/feeling'
 
-import { ButtonsWrapper, Button } from 'styled-components/Buttons'
+import { Button } from 'styled-components/Buttons'
 
 const SignoutButton = () => {
   const accessToken = useSelector(store => store.user.accessToken)
@@ -41,3 +41,16 @@ const SignoutButton = () => {
 }
 
 export default SignoutButton
+
+
+const ButtonsWrapper = styled.div`
+  display: flex; 
+  justify-content: center;
+  padding-bottom: 70px;
+
+  @media (min-width: 768px) {
+  
+    margin-top: 5rem; 
+   
+  }
+`

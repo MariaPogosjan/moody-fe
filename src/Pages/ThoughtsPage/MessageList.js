@@ -17,7 +17,6 @@ const MessageList = ({ page, setPage, perPage, setPerPage }) => {
     setPerPage(perPage + 10)
   }
 
-
   useEffect(() => {
     fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
@@ -59,68 +58,4 @@ export default MessageList
 
 
 const MessageListContainer = styled.section`
-`
-
-const MessageWrapper = styled.div`
-  border: 1px solid #bca0bc;
-  margin: 2rem 0;
-  border-radius: 8px 8px 3px 3px;
-`
-
-const NameAvatarWrapper = styled.div`
-  background-color: #bca0bc;
-  border-radius: 8px 8px 0px 0px;
-  display: flex;
-  align-items: center;
-  padding: 8px 8px 8px 15px;
-  color: #fff;
-`
-
-const Name = styled.p`
-  margin: 0;
-`
-
-const MessageCreatedAtWrapper = styled.div`
-  padding: 15px 0 0 15px;
-`
-
-const MessageText = styled.p`
-  font-size: 16px;
-`
-
-const HugsCommentsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 15px;
-`
-
-const HugsButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 50%;
-  height: 50px;
-`
-
-const HugButton = styled.button`
-  background-color: #EEECFB;
-  border-radius: 50%;
-  border: none;
-  padding: 8px 10px;
-`
-
-const HugsText = styled.p`
-  margin:0;
-  padding: 5px;
-  color: grey;
-  font-size: 12px;
-`
-
-const DateText = styled.p`
-  color: #4c5f6b;
-  font-style: italic;
-  color: grey;
-  font-size: 12px;
-  padding-right: 15px;
 `

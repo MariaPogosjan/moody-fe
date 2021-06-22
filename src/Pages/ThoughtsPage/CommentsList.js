@@ -4,56 +4,53 @@ import formatDistance from 'date-fns/formatDistance'
 import Comment from './CommentForm'
 
 const CommentsList = ({ item, open }) => {
+  const reversedComments = [...item.comments].reverse()
 
   return (
-    <CommentsContainer>
-      <CommentsWrapper visible={open}>
+    <CommentsWrapper visible={open}>
       <Comment item={item} />
-        {item.comments.map(comment =>
-          <Comment1 key={comment._id}>
-            <Username>{comment.user.username}</Username>
-            <CommentText>{comment.comment}</CommentText>
-            <DateText>{formatDistance(new Date(comment.createdAt), Date.now())}</DateText>
-          </Comment1>
-        )}
-      </CommentsWrapper>
-    </CommentsContainer>
-  )
+      {reversedComments.map(comment =>
+        <CommentTextWrapper key={comment._id}>
+          <Username>{comment.user.username}</Username>
+          <CommentText>{comment.comment}</CommentText>
+          <DateText>{formatDistance(new Date(comment.createdAt), Date.now())}</DateText>
+        </CommentTextWrapper>
+      )}
+    </CommentsWrapper>
+)
 
 }
 export default CommentsList
 
-
-const CommentsContainer = styled.section`
-`
-const CommentsTitle = styled.p`
-  color: #4c5f6b;
-  font-size: 14px;
-  margin: 5px;
-  text-decoration: underline;
-`
 const CommentsWrapper = styled.div`
   display:${props => (props.visible ? "flex" : "none")};
   flex-direction: column;
+  padding: 12px;
 `
- const Comment1 = styled.div`
+ const CommentTextWrapper = styled.div`
   background-color: #EEECFB;
   border-radius: 6px;
   margin: 5px;
-  padding: 3px;
   font-size: 12px;
 ` 
 const Username = styled.p`
-  font-size: 14px;
-  font-weight: bold;
   margin: 0;
+  padding: 3px 2px 3px 5px;
+  color: grey;
 `
 const CommentText = styled.p`
   margin: 0;
-  padding: 3px 2px 3px 5px;
+  padding: 8px 2px 3px 5px;
 `
+
 const DateText = styled.p`
-  margin: 0;
   text-align: right;
   font-style: italic;
+  color: grey;
+  font-size: 10px;
+  padding-right: 15px;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
 `
