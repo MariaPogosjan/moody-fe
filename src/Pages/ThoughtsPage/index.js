@@ -13,7 +13,6 @@ const Thoughts = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-
     setTimeout(() => {
       setIsLoading(false)
     }, 2500)
@@ -33,7 +32,6 @@ const Thoughts = () => {
 }
 
 export default Thoughts
-
 
 const PageContainer = styled.section`
   display: flex;

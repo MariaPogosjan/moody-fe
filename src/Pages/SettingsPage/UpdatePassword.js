@@ -8,7 +8,6 @@ import user from 'reducers/user'
 import { PASSWORD_UPDATE_URL } from 'reusables/urls'
 import { ButtonsWrapper } from 'styled-components/Buttons'
 import {
-  FormSection,
   Form
 }
   from 'styled-components/Forms'
@@ -187,4 +186,10 @@ const Button = styled.button`
       opacity: 0.8;
     }
   }
+`
+const FormSection = styled.section`
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
