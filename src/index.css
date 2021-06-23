@@ -5,40 +5,39 @@ body {
 }
 
 .react-calendar {
-  width: 440px !important;
-  padding: 1.2rem;
+  width: 300px !important;
+  padding: 5px !important;
   border-color: #e6e6e6 !important;
   border-radius: 6px;
   box-shadow: 2px 2px 8px #83a0a07a !important;
 }
 
+@media screen and (min-width: 768px) {
+  .react-calendar {
+    width: 440px !important;
+    padding: 1.2rem;
+  }
+}
+
+
+/* .react-calendar__viewContainer > * {
+  width: 100% !important;
+  margin: 0.5em;
+}
 .react-calendar__month-view__weekdays {
   color: #404167 !important;
   padding: 0.5rem 0;
   text-decoration: none !important;
   font-family: 'Montserrat', sans-serif;
+  font-size: 0.8em !important;
 }
+
+
 
 abbr[title] {
   text-decoration: none !important;
 }
 
-.feeling {
-  border-radius: 50% !important;
-  border: 3px solid #4C5F6B !important;
-}
-
-.sad {
-  background-color: #607474 !important;
-}
-
-.happy {
-  background-color: #b0c6c6 !important;
-}
-
-.neutral {
-  background-color: #83A0A0 !important;
-}
 
 .react-calendar button {
   height: 55px !important;
@@ -88,7 +87,7 @@ abbr[title] {
   transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
   height: auto;
   max-height: 9999px;
-}
+} */
 
 
 /**** Icons from Material UI ****/ 
@@ -135,4 +134,23 @@ abbr[title] {
   transform: scale(1.5) !important;
   top: -50px;
   left: calc(-50% + 7px) !important;
+}
+
+
+
+.feeling {
+  border-radius: 50% !important;
+  border: 3px solid #4C5F6B !important;
+}
+
+.sad {
+  background-color: #607474 !important;
+}
+
+.happy {
+  background-color: #b0c6c6 !important;
+}
+
+.neutral {
+  background-color: #83A0A0 !important;
 }

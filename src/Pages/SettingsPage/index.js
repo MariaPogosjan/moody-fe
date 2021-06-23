@@ -105,7 +105,7 @@ const IconTitleWrapper = styled.div`
   background-color: #EEECFB;
   border: 1px solid #EEECFB;
   padding: 0rem;
-
+  
     @media (min-width: 768px) {
       margin-top: 1rem;
       padding: 0.3rem 0.8rem;
