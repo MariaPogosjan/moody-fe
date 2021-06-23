@@ -7,42 +7,18 @@ import Fade from '@material-ui/core/Fade'
 
 import {SectionSubtitle} from 'styled-components/Titels'
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-})
-)
-
-const QuoteImage = styled.img`
-  width: 100%;
-  filter: grayscale(100%) sepia(20%) contrast(1.2);
-  border-radius: 6px;
-  border-bottom: 80px;
-`
-const Quote = ({ visible, setVisible, feeling }) => {
+const Quote = ({ visible, setVisible }) => {
+  const [imageLink, setImageLink] = useState()
   const classes = useStyles()
+  
   const handleClose = () => {
     setVisible(false)
   }
 
-  const [imageLink, setImageLink] = useState()
-
-  // const API_Key = process.env.REACT_APP_RAPID_API_KEY
-  // console.log(API_Key)
-
   useEffect(() => {
     const options = {
-      "method": "GET",
-      "headers": {
+      method: "GET",
+      headers: {
         "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
         "x-rapidapi-host": "healthruwords.p.rapidapi.com"
       }
@@ -58,8 +34,8 @@ const Quote = ({ visible, setVisible, feeling }) => {
   return (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
+        aria-labelledby="feeling comfirmation"
+        aria-describedby="your feeling has been registered"
         className={classes.modal}
         open={visible}
         onClose={handleClose}
@@ -81,3 +57,25 @@ const Quote = ({ visible, setVisible, feeling }) => {
   )
 }
 export default Quote
+
+const QuoteImage = styled.img`
+  width: 100%;
+  filter: grayscale(100%) sepia(20%) contrast(1.2);
+  border-radius: 6px;
+  border-bottom: 80px;
+`
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+})
+)

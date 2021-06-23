@@ -3,19 +3,10 @@ import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
-
 import FriendsList from './FriendsList'
 import RequestsList from './RequestsList'
 import SearchForm from './SearchForm'
 import ButtonsPanel from './ButtonsPanel'
-
-
-const PageContainer = styled.div`
-  display: flex;
-  width:100%;
-  flex-direction: column;
-  padding-bottom: 70px;
-`
 
 const FriendsPage = () => {
   const accessToken = useSelector(store => store.user.accessToken)
@@ -40,3 +31,10 @@ const FriendsPage = () => {
 }
 
 export default FriendsPage
+
+const PageContainer = styled.div`
+  display: flex;
+  width:100%;
+  flex-direction: column;
+  padding-bottom: 70px;
+`

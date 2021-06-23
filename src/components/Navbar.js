@@ -35,9 +35,9 @@ const Navbar = () => {
             />
           </HamburgerButton>
           <Menu isOpen={isOpen}>
-            <Link to='/about' style={styles}>
+            <a href="/#about" style={styles}>
               About
-            </Link>
+            </a>
             <Link to='/contact' style={styles}>
               Contact
             </Link>
