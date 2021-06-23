@@ -3,10 +3,81 @@ import Slider from '@material-ui/core/Slider'
 import { withStyles } from '@material-ui/core/styles'
 import styled from 'styled-components'
 
+import sad from 'assets/sad.png'
+import angry from 'assets/angry.png'
+import stressed from 'assets/stressed.png'
+import neutral from 'assets/neutral.png'
+import happy from 'assets/happy.png'
+import relaxed from 'assets/relaxed.png'
+
+
+const generateLabel = (number) => {
+  switch (number) {
+    case 0:
+      return (<Image alt="sad"src={sad} />)
+    case 0.2:
+      return (<Image alt="sad"src={angry} />)
+    case 0.4:
+      return (<Image alt="sad"src={stressed} />)
+    case 0.6:
+      return (<Image alt="sad"src={neutral} />)
+    case 0.8:
+      return (<Image alt="sad"src={relaxed}  />)
+    default:
+      return (<Image alt="sad"src={happy} />)
+  }
+}
+
+const generateText = (number) => {
+  switch (number) {
+    case 0:
+      return ('Sad')
+    case 0.2:
+      return ('Angry')
+    case 0.4:
+      return ('Stressed')
+    case 0.6:
+      return ('Neutral')
+    case 0.8:
+      return ('Relaxed')
+    default:
+      return ('Happy')
+  }
+}
+
+const FeelingsSlider = ({ value, setValue }) => {
+
+  const onSliderChange = (e, newValue) => {
+    setValue(newValue)
+  }
+
+  return (
+    <>
+      <Marker>{generateLabel(value)}</Marker>
+      <SliderWrapper>
+        <CustomSlider
+          min={0}
+          max={1}
+          step={0.2}
+          valueLabelFormat={generateText(value)}
+          valueLabelDisplay="auto"
+          defaultValue={0}
+          value={value}
+          onChange={onSliderChange}
+        />
+      </SliderWrapper>
+    </>
+  )
+}
+
+export default FeelingsSlider
+
+
 const CustomSlider = withStyles({
   root: {
     color: '#BCA0BC',
     height: 8,
+    marginTop: 25
   },
   thumb: {
     height: 24,
@@ -36,78 +107,30 @@ const CustomSlider = withStyles({
   }
 })(Slider)
 
-const generateLabel = (number) => {
-  switch (number) {
-    case 0:
-      return ('😞')
-    case 0.2:
-      return ('😠')
-    case 0.4:
-      return ('🤯')
-    case 0.6:
-      return ('😐')
-    case 0.8:
-      return ('😌')
-    default:
-      return ('😃')
-  }
-}
+const Image = styled.img`
+  width: 70px; 
+  height: 70px;
+`
 
-const generateText = (number) => {
-  switch (number) {
-    case 0:
-      return ('Sad')
-    case 0.2:
-      return ('Angry')
-    case 0.4:
-      return ('Stressed')
-    case 0.6:
-      return ('Neutral')
-    case 0.8:
-      return ('Relaxed')
-    default:
-      return ('Happy')
-  }
-}
-
-const Marker = styled.p`
-  color: #fff;
-  background-color: #BCA0BC;
-  margin-bottom: 40px;
-  padding: 10px 10px;
-  border-radius: 6px;
+const Marker = styled.div`
   width: 100px;
-  text-align: center;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 40px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(188,160,188);
+  background: radial-gradient(circle, rgba(188,160,188,1) 0%, rgba(255,255,255,1) 70%);
 `
 
 const SliderWrapper = styled.div`
-  width: 80%;
-  padding: 0 30px;
-`
+  width: 70%;
+  margin-bottom: 1rem;
 
-const FeelingsSlider = ({ value, setValue }) => {
-
-  const onSliderChange = (e, newValue) => {
-    setValue(newValue)
+  @media(min-width: 350px){
+    width: 75%;
+    margin-bottom: 2rem;
   }
-
-  return (
-    <>
-      <Marker>{generateText(value)}</Marker>
-      <SliderWrapper>
-        <CustomSlider
-          min={0}
-          max={1}
-          step={0.2}
-          valueLabelFormat={generateLabel(value)}
-          valueLabelDisplay="auto"
-          defaultValue={0}
-          value={value}
-          onChange={onSliderChange}
-        />
-      </SliderWrapper>
-    </>
-  )
-}
-
-export default FeelingsSlider
+`

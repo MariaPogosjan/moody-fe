@@ -56,8 +56,9 @@ const GoogleLoginComponent = ({ text }) => {
         }
       })
   }
+  
   const responseErrorGoogle = (response) => {
-    console.log(response);
+    alert(response);
   }
 
   return (

@@ -5,10 +5,7 @@ import { Container } from 'styled-components/Containers'
 
 const About = () => {
   return (
-    <Container>
-      <SectionTitle>
-        About moody
-      </SectionTitle>
+    <Container id="about">
       <CardsContainer>
         <Card>
           <Image src="./assets/card1.jpg" />
@@ -36,17 +33,15 @@ const About = () => {
 }
 export default About
 
-const SectionTitle = styled.h1`
-  color: #404167;
-  text-align: center;
-  font-size: 2.1rem;
-  margin: 3rem 0;
-` 
-
 const CardsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 2rem 2rem 6rem 2rem;
+  margin: 1rem 1rem 5rem 1rem;
+
+  @media (min-width: 768px) {
+    margin: 2rem 2rem 6rem 2rem;
+
+  }
 `
 
 const Card = styled.div`
@@ -58,7 +53,6 @@ const Card = styled.div`
 
   @media (min-width: 768px) {
     flex-direction: row;
-    border: 2px solid #EEECFB;
   }
 `
 
@@ -84,7 +78,7 @@ const Image = styled.img`
 `
 
 const SectionSubtitle = styled.h2`
-  color: #4C5F6B;
+  color: #404167;
   text-align: center;
 
   @media (min-width: 768px) {

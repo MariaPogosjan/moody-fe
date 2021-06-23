@@ -6,16 +6,6 @@ import { format } from 'date-fns'
 
 import ModalComponent from './Modal'
 
-const CalendarWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-`
-
 const CalendarComponent = ({ feelings }) => {
   const [date, setDate] = useState(new Date())
   const [visible, setVisible] = useState(false)
@@ -63,3 +53,14 @@ const CalendarComponent = ({ feelings }) => {
 }
 
 export default CalendarComponent
+
+
+const CalendarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+`

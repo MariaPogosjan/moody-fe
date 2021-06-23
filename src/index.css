@@ -1,11 +1,15 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
 
 .react-calendar {
-  width: 440px !important;
-  padding: 1.2rem;
+  width: 300px !important;
   border-color: #e6e6e6 !important;
   border-radius: 6px;
   box-shadow: 2px 2px 8px #83a0a07a !important;
@@ -13,14 +17,94 @@ body {
 
 .react-calendar__month-view__weekdays {
   color: #404167 !important;
-  padding: 0.5rem 0;
-  text-decoration: none !important;
   font-family: 'Montserrat', sans-serif;
+  font-size: 0.8em !important;
 }
 
 abbr[title] {
   text-decoration: none !important;
 }
+
+
+.react-calendar button {
+  color: #404167 !important;
+}
+
+
+.react-calendar__tile--now {
+  background-color: #e6e6e6 !important;
+  color: #000 !important;
+  border-radius: 50% !important;
+  border: none !important;
+}
+
+.react-calendar__tile--active {
+  border-radius: 50% !important;
+  border: 1px solid #83a0a0a3!important;
+  background-color: #83a0a0a3 !important;
+  color: #404167 !important;
+}
+
+.react-calendar__tile:hover {
+  border-radius: 50% !important;
+  border: 1px solid #e6e6e6 !important;
+  background-color: #e6e6e6 !important;
+}
+
+@media screen and (min-width: 768px) {
+  .react-calendar {
+    width: 450px !important;
+    padding: 1.2rem;
+  }
+
+  .react-calendar button {
+    height: 60px !important;
+    color: #404167 !important;
+  }
+}
+
+/**** Icons from Material UI ****/ 
+.contact-link {
+  text-decoration: none;
+  color: #404167;
+  font-size: 2.5rem;
+  padding-right: 1rem;
+}
+
+
+.footer-link {
+  text-decoration: none;
+  color: #404167;
+  display: flex;
+  align-items: center;
+}
+.footer-icon {
+  padding: 3px;
+}
+
+
+.MuiSlider-valueLabel {
+  width: 50px !important;
+  font-size: 0.5rem !important;;
+}
+
+.MuiSlider-thumb:hover .MuiSlider-valueLabel {
+  transform: scale(1.5) !important;
+  top: -50px;
+  left: calc(-50% + 7px) !important;
+}
+
+.MuiSlider-thumb:active .MuiSlider-valueLabel {
+  transform: scale(1.5) !important;
+  top: -50px;
+  left: calc(-50% + 7px) !important;
+}
+.MuiSlider-thumb:focus .MuiSlider-valueLabel {
+  transform: scale(1.5) !important;
+  top: -50px;
+  left: calc(-50% + 7px) !important;
+}
+
 
 .feeling {
   border-radius: 50% !important;
@@ -39,67 +123,3 @@ abbr[title] {
   background-color: #83A0A0 !important;
 }
 
-
-.react-calendar button {
-  height: 55px !important;
-  padding: 10px !important;
-  color: #404167 !important;
-}
-
-.react-calendar__tile--now {
-  background-color: #e6e6e6 !important;
-  color: #000 !important;
-  border-radius: 50% !important;
-  border: 0px !important;
-}
-
-.react-calendar__tile--active {
-  border-radius: 50% !important;
-  border: 1px solid #83a0a0a3!important;
-  background-color: #83a0a0a3 !important;
-  color: #404167 !important;
-}
-
-.react-calendar__tile:hover {
-  border-radius: 50% !important;
-  border: 1px solid #e6e6e6 !important;
-  background-color: #e6e6e6 !important;
-}
-
-.react-calendar__month-view__days__day--weekend {
-  color: #404167 !important;
-}
-
-
-.react-calendar__month-view__days__day--neighboringMonth {
-  color: #e6e6e6 !important;
-}
-
-.react-calendar__month-view__days__day--neighboringMonth:hover {
-  color: #404167 !important;
-}
-
-.open.notopen {
-  max-height: 0;
-  transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
-}
-.open {
-  overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
-  height: auto;
-  max-height: 9999px;
-}
-.footer-link {
-  text-decoration: none;
-  color: #404167;
-}
-
-.footer-link:visited {
-  text-decoration: none;
-  color: #404167;
-}
-
-.footer-icon {
-  text-decoration: none;
-  color: #404167;
-}
