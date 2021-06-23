@@ -34,10 +34,10 @@ const Navbar = () => {
           </HamburgerButton>
           <Menu isOpen={isOpen}>
 
-            <a href="/#about" style={styles}>
+            <StyledLink href="/#about" >
               About
-            </a>
-            <Link to='/contact' style={styles}>
+            </StyledLink>
+            <MenuLink to='/contact'>
               Contact
             </MenuLink>
           </Menu>
@@ -95,7 +95,27 @@ const Menu = styled.div`
     max-height: ${({ isOpen }) => (isOpen ? "400px" : "0")};
   }
 `
+const StyledLink = styled.a `
+  padding: 0.5rem;
+  margin: 0rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #404167;
 
+    @media (min-width: 768px) {
+      margin: 10px;
+      font-size: 1.1rem;
+      transition: all 0.2s ease-in;
+
+      &:hover {
+      background-color: #404167;
+      color: white;
+      border-radius: 6px;   
+    }
+  }
+
+`
 const MenuLink = styled(Link)`
   padding: 0.5rem;
   margin: 0rem;
