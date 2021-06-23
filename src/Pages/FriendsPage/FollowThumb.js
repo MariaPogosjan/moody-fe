@@ -7,27 +7,6 @@ import styled from 'styled-components'
 import { API_URL } from 'reusables/urls'
 import user from 'reducers/user'
 
-const User = styled.li`
-  display: flex;
-  align-items: center;
-  padding-bottom: 5px;
-  justify-content: space-between;
-`
-const UserNamePicWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-const FollowButton = styled.button`
-  border-radius: 6px;
-  border: none;
-  padding: 4px 6px;
-  background-color: #bca0bc;
-  color: #fff;
-    &:disabled {
-      opacity: 0.6;
-    }
-`
-
 const FollowThumb = ({ item }) => {
   const [disabled, setDisabled] = useState(false)
   const [buttonText, setButtonText] = useState("")
@@ -50,11 +29,9 @@ const FollowThumb = ({ item }) => {
     fetch(API_URL('follow'), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data.friend)
         dispatch(user.actions.addMyFriendRequests(data.friend))
-        // updating local storage here
-        // localStorage.setItem('friends', JSON.stringify({ friends }))
-        // localStorage.setItem('friendRequests', JSON.stringify({ friendRequests }))
+        const updatedMyFriendRequests = [data.friend, ...myFriendRequests]
+        localStorage.setItem('myFriendRequests', JSON.stringify({ myFriendRequests: updatedMyFriendRequests }))
       })
   }
 
@@ -82,7 +59,6 @@ const FollowThumb = ({ item }) => {
     checkFriendsArrays(item)
   }, [item, myFriendRequests, friendsList, friendRequests, userId])
 
-
   return (
     <User>
       <UserNamePicWrapper>
@@ -91,7 +67,7 @@ const FollowThumb = ({ item }) => {
           src={item.profileImage ? item.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
           style={{ marginRight: "5px" }}
         />
-        {item.username}
+        <Name>{item.username}</Name>
       </UserNamePicWrapper>
 
       <FollowButton
@@ -105,3 +81,30 @@ const FollowThumb = ({ item }) => {
 }
 
 export default FollowThumb
+
+const User = styled.li`
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  justify-content: space-between;
+`
+const UserNamePicWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+const FollowButton = styled.button`
+  border-radius: 6px;
+  border: none;
+  padding: 4px 6px;
+  background-color: #4C5F6B;
+  color: #fff;
+    &:disabled {
+      opacity: 0.6;
+    }
+    &:hover {
+    opacity: 60%;
+    }
+`
+const Name = styled.p`
+  color: #2a363c;
+`

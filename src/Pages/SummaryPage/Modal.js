@@ -6,33 +6,6 @@ import Fade from '@material-ui/core/Fade'
 import { format } from 'date-fns'
 import styled from 'styled-components'
 
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '5px solid #4C5F6B',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    width: "50%"
-  },
-}))
-
-const ModalHeader = styled.h2`
-  color: #4C5F6B;
-  text-align: center;
-`
-const ModalText = styled.p`
-  color: #404167;
-  font-weight: bold;
-`
-
-const ModalDescription = styled.p`
-  font-size: 12px;
-`
 
 const ModalComponent = ({ filteredItem, visible, setVisible }) => {
   const classes = useStyles()
@@ -87,3 +60,32 @@ const ModalComponent = ({ filteredItem, visible, setVisible }) => {
 }
 
 export default ModalComponent
+
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '5px solid #4C5F6B',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    width: "50%"
+  },
+}))
+
+const ModalHeader = styled.h2`
+  color: #4C5F6B;
+  text-align: center;
+`
+const ModalText = styled.p`
+  color: #404167;
+  font-weight: bold;
+`
+
+const ModalDescription = styled.p`
+  font-size: 12px;
+`

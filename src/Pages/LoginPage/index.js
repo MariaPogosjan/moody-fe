@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch, batch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 
 import {
   FormSection,
@@ -10,9 +11,10 @@ import {
   ErrorMessage
 } from 'styled-components/Forms'
 import { Button, ButtonsWrapper } from 'styled-components/Buttons'
-import { SectionTitle } from 'styled-components/Titels'
 import user from 'reducers/user'
 import { API_URL } from 'reusables/urls'
+
+import GoogleLoginComponent from 'components/GoogleLogin'
 
 const Login = () => {
   const [emailOrUsername, setUsernameOrEmail] = useState('')
@@ -49,7 +51,6 @@ const Login = () => {
     fetch(API_URL('sessions'), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if(data.success) {
           batch(() => {
             dispatch(user.actions.setUsername(data.username))
@@ -65,9 +66,6 @@ const Login = () => {
               username: data.username,
               accessToken: data.accessToken,
               profileImage: data.profileImage
-              // friends: data.friends,
-              // friendRequests: data.friendRequests,
-              // myFriendRequests: data.myFriendRequests,
             }))
             localStorage.setItem('friends', JSON.stringify({
               friends: data.friends,
@@ -90,6 +88,7 @@ const Login = () => {
   return (
     <FormSection >
       <SectionTitle>Sign in</SectionTitle>
+      <GoogleLoginComponent text="Sign in"/>
       <Form onSubmit={onFormSubmit}>
         {errors && <ErrorMessage>{errors.message}</ErrorMessage>}
         <Label htmlFor="name">Email or username</Label>
@@ -118,3 +117,14 @@ const Login = () => {
   )
 }
 export default Login
+
+const SectionTitle = styled.h1`
+  color: #404167;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+
+  @media (min-width: 768px) {
+     font-size: 2.1rem;
+  }
+` 

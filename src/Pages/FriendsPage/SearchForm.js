@@ -6,41 +6,7 @@ import { useSelector, useDispatch, batch } from 'react-redux'
 import { API_URL } from 'reusables/urls'
 import friends from 'reducers/friends'
 
-
 import FollowThumb from './FollowThumb'
-
-
-const FormContainer = styled.section`
-  padding: 5px;
-`
-const Form = styled.form`
-  display: flex;
-  align-items: center;
-`
-const SearchInput = styled.input`
-  padding: 10px;
-  border: 1.5px solid #bca0bc;
-  font-size: 12px;
-  width: 200px;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-`
-const SearchButton = styled.button`
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border: none;
-  padding: 5px 6px;
-  background-color: #bca0bc;
-  color: #fff;
-`
-const SearchTitle = styled.h2`
-  color: #4C5F6B;
-  font-size: 18px;
-  
-`
-const ListContainer = styled.ul`
-  padding:0;
-`
 
 const SearchForm = () => {
   const [value, setValue] = useState('')
@@ -50,7 +16,7 @@ const SearchForm = () => {
 
   const onSearchSubmit = (e) => {
     e.preventDefault()
-    const filteredUsers = users.filter(user => user.username.includes(value))
+    const filteredUsers = users.filter(user => user.username.includes(value.toLowerCase()))
     setFilteredUsers(filteredUsers)
   }
 
@@ -59,7 +25,6 @@ const SearchForm = () => {
     fetch(API_URL('users'))
       .then(res => res.json())
       .then(data => {
-        //console.log(data)
         batch(() => {
           dispatch(friends.actions.setFriends(data))
           dispatch(friends.actions.setErrors(null))
@@ -76,7 +41,7 @@ const SearchForm = () => {
           required
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="search your friends here"
+          placeholder="Type username"
         />
         <SearchButton type="submit">
           <SearchIcon />
@@ -90,3 +55,45 @@ const SearchForm = () => {
   )
 }
 export default SearchForm
+
+const FormContainer = styled.section`
+  padding: 5px;
+  max-width: 450px;
+  margin: auto;
+`
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+`
+const SearchInput = styled.input`
+  padding: 10px;
+  border: 1.5px solid #4C5F6B;
+  font-size: 12px;
+  width: 200px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+
+  &:focus {
+    outline-style: unset;
+  }
+`
+const SearchButton = styled.button`
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+  padding: 5px 6px;
+  background-color: #4C5F6B;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 80%;
+  }
+`
+const SearchTitle = styled.h2`
+  color: #4C5F6B;
+  font-size: 18px;
+`
+const ListContainer = styled.ul`
+  padding:0;
+`
