@@ -8,13 +8,6 @@ import MoodIcon from '@material-ui/icons/Mood'
 import styled from 'styled-components'
 
 
-const style = {
-  borderRadius: "50%",
-  backgroundColor: "#404167",
-  fontWeight: "bold",
-  color: "#ffff"
-}
-
 const Footer = () => {
   const accessToken = useSelector(store => store.user.accessToken)
 
@@ -22,34 +15,29 @@ const Footer = () => {
     <FooterContainer>
       {accessToken ?
         <IconsContainer>
-          <NavLink
+          <LinkStyled
             to="/summary"
-            className="footer-link"
             activeStyle={style}
           >
             <EventNoteIcon className="footer-icon" />
-          </NavLink>
-          <NavLink
+          </LinkStyled>
+          <LinkStyled
             to="/thoughts"
-            className="footer-link"
             activeStyle={style}>
             <MailOutlineIcon className="footer-icon" />
-          </NavLink>
-          <NavLink
+          </LinkStyled>
+          <LinkStyled
             to="/profile"
-            className="footer-link"
             activeStyle={style}
-
           >
             <MoodIcon className="footer-icon" />
-          </NavLink>
-          <NavLink
+          </LinkStyled>
+          <LinkStyled
             to='/friends'
-            className="footer-link"
             activeStyle={style}
           >
             <PeopleOutlineIcon className="footer-icon" />
-          </NavLink>
+          </LinkStyled>
         </IconsContainer>
         :
         <FooterText> © Maria Pogosjan & Ekaterina Klimenko</FooterText>
@@ -89,3 +77,15 @@ const IconsContainer = styled.div`
   justify-content: space-evenly;
   width: 100%;
 `
+const LinkStyled = styled(NavLink)`
+  text-decoration: none;
+  color: #404167;
+  display: flex;
+  align-items: center;
+`
+const style = {
+  borderRadius: "6px",
+  backgroundColor: "#404167",
+  fontWeight: "bold",
+  color: "#ffff"
+}

@@ -36,7 +36,8 @@ const Profile = () => {
 export default Profile
 
 const Container = styled.section`
-   margin: 0;
+   margin: 0 auto;
    height: auto;
    padding: 0 0.5rem 5rem 0.5rem;
+   max-width: 600px;
 `
