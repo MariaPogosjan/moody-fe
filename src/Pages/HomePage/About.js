@@ -5,7 +5,7 @@ import { Container } from 'styled-components/Containers'
 
 const About = () => {
   return (
-    <Container>
+    <Container id="about">
       <CardsContainer>
         <Card>
           <Image src="./assets/card1.jpg" />

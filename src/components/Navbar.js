@@ -33,10 +33,11 @@ const Navbar = () => {
             />
           </HamburgerButton>
           <Menu isOpen={isOpen}>
-            <MenuLink >
+
+            <a href="/#about" style={styles}>
               About
-            </MenuLink>
-            <MenuLink to='/contact'>
+            </a>
+            <Link to='/contact' style={styles}>
               Contact
             </MenuLink>
           </Menu>

@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { Button, ButtonsWrapper } from 'styled-components/Buttons'
 import styled from 'styled-components'
 import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import clsx from 'clsx';
 
-
-import { FormSection, Form, VisibleLabel, Input } from 'styled-components/Forms'
 import FeelingsSlider from './Slider'
 import { API_URL } from 'reusables/urls'
 
-const CheckboxWrapper = styled.div`
-  display: flex;
-  margin: 15px;
-  align-items: center;
-  justify-content: center;
-`
+
 const useStyles = makeStyles({
   root: {
     '&:hover': {
@@ -130,18 +122,13 @@ const FeelingsForm = ({ accessToken, setVisible, setFeeling }) => {
         <FeelingsSlider value={value} setValue={setValue} />
         <VisibleLabel htmlFor="input">What made you feel this way?</VisibleLabel>
         <Input
+          placeholder="(optional)"
           id="input"
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <CheckboxWrapper>
-          {/* <Input
-            id="checkbok"
-            type="checkbox"
-            checked={checked}
-            onChange={(e) => setChecked(!checked)}
-          /> */}
           <Checkbox 
             className={classes.root}
             checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
@@ -164,3 +151,68 @@ const FeelingsForm = ({ accessToken, setVisible, setFeeling }) => {
 }
 
 export default FeelingsForm
+
+const CheckboxWrapper = styled.div`
+  display: flex;
+  margin: 15px;
+  align-items: center;
+  justify-content: center;
+`
+
+const FormSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+ const Form = styled.form `
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+`
+
+ const VisibleLabel = styled.label`
+ font-size: 0.9rem;
+ color: #404167;
+`
+
+const Input = styled.input`
+  padding: 0.5rem 0.3rem;
+  margin: 1.5rem 0 0.5rem 0;
+  width: 70%;
+  border: 1px solid #BCA0BC;
+  border-radius: 0.4rem;
+  outline-style: inherit;
+
+  &::placeholder {
+    color: #4C5F6B;  
+  } 
+
+  @media (min-width: 768px) {
+    width: 60%;
+  }
+`
+const ButtonsWrapper = styled.div`
+  display: flex; 
+  justify-content: center;
+  width: 70%;
+`
+
+const Button = styled.button`
+  /* background-color: #404167; */
+  background-color: #775577;
+  border: none;
+  color: white;
+  padding: 1rem 0.8rem;
+  margin-top: 1.2rem; 
+  border-radius: 6px;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  
+   &:hover {
+     opacity: 0.8;
+   }
+`

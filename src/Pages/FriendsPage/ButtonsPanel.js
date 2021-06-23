@@ -1,6 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
+const ButtonsPanel = ({ tab, setTab }) => {
+  return (
+    <ButtonsContainer>
+      <TabButtonFriends tab={tab} onClick={() => setTab("friends")}>
+        Friends
+      </TabButtonFriends>
+      <TabButtonRequests tab={tab} onClick={() => setTab("requests")} >
+        Friend requests
+      </TabButtonRequests>
+      <TabButtonSearch tab={tab} onClick={() => setTab("search")} >
+        Search
+      </TabButtonSearch>
+    </ButtonsContainer>
+  )
+}
+
+export default ButtonsPanel
+
 const ButtonsContainer = styled.div`
   display: flex;
   flex-grow: 1;
@@ -35,22 +54,3 @@ const TabButtonSearch = styled(TabButton)`
   border-bottom: ${props => props.tab === "search" && "2px solid #4C5F6B"};
   color:  ${props => props.tab === "search" && "#2a363c"};
 `
-
-
-const ButtonsPanel = ({ tab, setTab }) => {
-  return (
-    <ButtonsContainer>
-      <TabButtonFriends tab={tab} onClick={() => setTab("friends")}>
-        Friends
-      </TabButtonFriends>
-      <TabButtonRequests tab={tab} onClick={() => setTab("requests")} >
-        Friend requests
-      </TabButtonRequests>
-      <TabButtonSearch tab={tab} onClick={() => setTab("search")} >
-        Search
-      </TabButtonSearch>
-    </ButtonsContainer>
-  )
-}
-
-export default ButtonsPanel

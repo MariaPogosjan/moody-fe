@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -102,17 +106,13 @@ abbr[title] {
 .footer-link {
   text-decoration: none;
   color: #404167;
+  display: flex;
+  align-items: center;
 }
-
-.footer-link:visited {
-  text-decoration: none;
-  color: #404167;
-}
-
 .footer-icon {
-  text-decoration: none;
-  color: #404167;
+  padding: 3px;
 }
+
 
 .MuiSlider-valueLabel {
   width: 50px !important;
@@ -137,7 +137,6 @@ abbr[title] {
 }
 
 
-
 .feeling {
   border-radius: 50% !important;
   border: 3px solid #4C5F6B !important;
@@ -154,3 +153,4 @@ abbr[title] {
 .neutral {
   background-color: #83A0A0 !important;
 }
+
