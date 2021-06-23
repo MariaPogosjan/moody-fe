@@ -16,7 +16,6 @@ const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
     fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.success) {
           dispatch(thoughts.actions.setThoughts(data.thoughts))
         } else {
@@ -38,7 +37,6 @@ const FormComponent = ({ page, setPage, perPage, setPerPage }) => {
     fetch(THOUGHTS_URL(1, 20), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         fetchMessageList()
       })
     setMessage('')

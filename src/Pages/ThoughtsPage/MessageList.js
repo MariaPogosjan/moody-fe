@@ -21,7 +21,6 @@ const MessageList = ({ page, setPage, perPage, setPerPage }) => {
     fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.success) {
           dispatch(thoughts.actions.setThoughts(data.thoughts))
         } else {
@@ -35,7 +34,8 @@ const MessageList = ({ page, setPage, perPage, setPerPage }) => {
       {thoughtsList.length > 0 &&
         <MessageListContainer>
           {thoughtsList.slice(0, visble).map(item =>
-          <MessageWrapperComponent 
+          <MessageWrapperComponent
+            key={item._id}
             item={item} 
             page={page} 
             setPage={setPage} 
@@ -55,7 +55,6 @@ const MessageList = ({ page, setPage, perPage, setPerPage }) => {
   )
 }
 export default MessageList
-
 
 const MessageListContainer = styled.section`
 `

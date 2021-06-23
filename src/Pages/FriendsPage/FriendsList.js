@@ -27,7 +27,6 @@ const FriendsList = () => {
     fetch(API_URL('unfollow'), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         dispatch(user.actions.removeFriends(data.friend._id))
         const updatedFriends = friendsList.filter(item => item._id !== data.friend._id)
         localStorage.setItem('friends', JSON.stringify({ friends: updatedFriends }))

@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import KeyboardArrowUpSharpIcon from '@material-ui/icons/KeyboardArrowUpSharp'
 import KeyboardArrowDownSharpIcon from '@material-ui/icons/KeyboardArrowDownSharp'
 import {
-  FormSection,
   Form,
   Label
 }
@@ -69,13 +68,12 @@ const Settings = () => {
           </IconTitleWrapper>
           </>
           <Wrapper visible={visible}>
-            <Label htmlFor="username">Update username</Label>
-            <Input type="file" ref={fileInput} id="file-input" />
+            <Label htmlFor="username">Upload image</Label>
+            <Input type="file" ref={fileInput} id="file-input" required/>
             <ButtonsWrapper>
               <Button type="submit">Upload</Button>
             </ButtonsWrapper>
           </Wrapper>
-
         </Form>
         <UpdateUsername />
         <UpdatePassword />
@@ -179,4 +177,10 @@ const Button = styled.button`
       opacity: 0.8;
     }
   }
+`
+const FormSection = styled.section`
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `

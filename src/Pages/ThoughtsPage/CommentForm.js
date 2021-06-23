@@ -14,7 +14,6 @@ const Comment = ({ item, page, perPage }) => {
     fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.success) {
           dispatch(thoughts.actions.setThoughts(data.thoughts))
         } else {
