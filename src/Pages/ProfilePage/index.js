@@ -39,5 +39,5 @@ const Container = styled.section`
    margin: 0 auto;
    height: auto;
    padding: 0 0.5rem 5rem 0.5rem;
-   max-width: 600px;
+   margin: 2rem 0 0 0;
 `

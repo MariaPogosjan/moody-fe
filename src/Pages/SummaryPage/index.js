@@ -11,37 +11,6 @@ import Graph from './Graph'
 import { SectionTitle } from 'styled-components/Titels'
 
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: 2rem 0 0 0;
-  height: 100%;
-  min-height: 100vh;
-`
-
-const FilterButton = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  border: 1px solid #4C5F6B !important;
-  width: 30px;
-  cursor: pointer;
-`
-
-const FilterButtonDay = styled(FilterButton)`
-  background-color: ${props => (props.range === "day" ? "#4C5F6B" : "#83A0A0")};
-`
-const FilterButtonWeek = styled(FilterButton)`
-  background-color: ${props => (props.range === "week" ? "#4C5F6B" : "#83A0A0")};
-`
-
-const FilterButtonMonth = styled(FilterButton)`
-  background-color: ${props => (props.range === "month" ? "#4C5F6B" : "#83A0A0")};
-`
-const FilterButtonYear = styled(FilterButton)`
-  background-color: ${props => (props.range === "year" ? "#4C5F6B" : "#83A0A0")};
-`
-
 const SummaryPage = () => {
   const [x, setX] = useState([])
   const [y, setY] = useState([])
@@ -164,24 +133,57 @@ const SummaryPage = () => {
   return (
     <Container>
       <SectionTitle>Your feelings </SectionTitle>
-      <div style={{ display: "flex" }}>
+    {/*   <div style={{ display: "flex" }}>
         <div style={{ fontSize: "10px", paddingRight: "5px" }} >Sad</div>
         <div style={{ backgroundColor: "#607474", width: "40px", height: "14px" }}></div>
         <div style={{ backgroundColor: "#83A0A0", width: "40px", height: "14px" }}></div>
         <div style={{ backgroundColor: "#b0c6c6", width: "40px", height: "14px" }}></div>
         <div style={{ fontSize: "10px", paddingLeft: "5px" }}>Happy</div>
-      </div>
+      </div> */}
       <CalenderComponent feelings={feelings} />
-      <div style={{ display: "flex" }}>
+ {/*      <div style={{ display: "flex" }}>
         <FilterButtonDay range={range} onClick={() => setRange('day')}>1d</FilterButtonDay>
         <FilterButtonWeek range={range} onClick={() => setRange('week')}>7d</FilterButtonWeek>
         <FilterButtonMonth range={range} onClick={() => setRange('month')}>1m</FilterButtonMonth>
         <FilterButtonYear range={range} onClick={() => setRange('year')}>1y</FilterButtonYear>
-      </div>
-      <Graph x={x} y={y} />
+      </div> */}
+      <Graph x={x} y={y} range={range} setRange={setRange}/>
     </Container>
   )
 }
 
 export default SummaryPage
 
+
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 2rem 0 0 0;
+  height: 100%;
+  min-height: 100vh;
+`
+
+/* const FilterButton = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  border: 1px solid #4C5F6B !important;
+  width: 40px;
+  margin-top: 20px;
+  cursor: pointer;
+`
+
+const FilterButtonDay = styled(FilterButton)`
+  background-color: ${props => (props.range === "day" ? "#4C5F6B" : "#83A0A0")};
+`
+const FilterButtonWeek = styled(FilterButton)`
+  background-color: ${props => (props.range === "week" ? "#4C5F6B" : "#83A0A0")};
+`
+
+const FilterButtonMonth = styled(FilterButton)`
+  background-color: ${props => (props.range === "month" ? "#4C5F6B" : "#83A0A0")};
+`
+const FilterButtonYear = styled(FilterButton)`
+  background-color: ${props => (props.range === "year" ? "#4C5F6B" : "#83A0A0")};
+` */

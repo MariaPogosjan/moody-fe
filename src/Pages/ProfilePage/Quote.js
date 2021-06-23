@@ -5,7 +5,7 @@ import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
 
-import {SectionSubtitle} from 'styled-components/Titels'
+import { SectionSubtitle } from 'styled-components/Titels'
 
 const Quote = ({ visible, setVisible }) => {
   const [imageLink, setImageLink] = useState()
@@ -26,7 +26,6 @@ const Quote = ({ visible, setVisible }) => {
     fetch("https://healthruwords.p.rapidapi.com/v1/quotes/?size=medium&maxR=1&t=Love", options)
       .then(res => res.json())
       .then(quote => {
-        //console.log(feeling)
         setImageLink(quote[0].media)
       })
   }, [setImageLink])
@@ -65,7 +64,7 @@ const QuoteImage = styled.img`
   border-bottom: 80px;
 `
 
-const useStyles = makeStyles((theme) => ({
+/* const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -78,4 +77,19 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 })
-)
+) */
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '5px solid #4C5F6B',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    width: "50%"
+  },
+}))

@@ -6,16 +6,6 @@ import { format } from 'date-fns'
 
 import ModalComponent from './Modal'
 
-const CalendarWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-`
-
 const CalendarComponent = ({ feelings }) => {
   const [date, setDate] = useState(new Date())
   const [visible, setVisible] = useState(false)
@@ -51,6 +41,13 @@ const CalendarComponent = ({ feelings }) => {
 
   return (
     <CalendarWrapper>
+      <div style={{ display: "flex", paddingBottom: "20px" }}>
+        <div style={{ fontSize: "10px", paddingRight: "5px" }} >Sad</div>
+        <div style={{ backgroundColor: "#607474", width: "40px", height: "14px" }}></div>
+        <div style={{ backgroundColor: "#83A0A0", width: "40px", height: "14px" }}></div>
+        <div style={{ backgroundColor: "#b0c6c6", width: "40px", height: "14px" }}></div>
+        <div style={{ fontSize: "10px", paddingLeft: "5px" }}>Happy</div>
+      </div>
       <ModalComponent filteredItem={filteredItem} visible={visible} setVisible={setVisible}/>
       <Calendar
         onChange={onChange}
@@ -63,3 +60,14 @@ const CalendarComponent = ({ feelings }) => {
 }
 
 export default CalendarComponent
+
+
+const CalendarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+`

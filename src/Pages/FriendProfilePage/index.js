@@ -8,46 +8,13 @@ import { format, isToday, subDays, subMonths, subYears } from 'date-fns'
 import Calendar from './Calendar'
 import Graph from './Graph'
 
-
-const FilterButton = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  background-color: #83A0A0;
-  border: 1px solid #4C5F6B !important;
-  width: 30px;
-  cursor: pointer;
-`
-
-const FilterButtonDay = styled(FilterButton)`
-  background-color: ${props => (props.range === "day" ? "#4C5F6B" : "#83A0A0")};
-`
-const FilterButtonWeek = styled(FilterButton)`
-  background-color: ${props => (props.range === "week" ? "#4C5F6B" : "#83A0A0")};
-`
-
-const FilterButtonMonth = styled(FilterButton)`
-  background-color: ${props => (props.range === "month" ? "#4C5F6B" : "#83A0A0")};
-`
-const FilterButtonYear = styled(FilterButton)`
-  background-color: ${props => (props.range === "year" ? "#4C5F6B" : "#83A0A0")};
-`
-
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin: 2rem 0 0 0;
-  height: 100%;
-  min-height: 100vh;
-`
 const FriendProfile = () => {
   const { id } = useParams()
   const [friendData, setFriendData] = useState({})
   const [friendFeeling, setFriendFeeling] = useState([])
   const [x, setX] = useState([])
   const [y, setY] = useState([])
-  const [range, setRange] = useState('day')
+  const [range, setRange] = useState('week')
 
 
   useEffect(() => {
@@ -166,3 +133,37 @@ const FriendProfile = () => {
 }
 
 export default FriendProfile
+
+
+const FilterButton = styled.button`
+  font-family: 'Montserrat', sans-serif;
+  background-color: #83A0A0;
+  border: 1px solid #4C5F6B !important;
+  width: 30px;
+  cursor: pointer;
+`
+
+const FilterButtonDay = styled(FilterButton)`
+  background-color: ${props => (props.range === "day" ? "#4C5F6B" : "#83A0A0")};
+`
+const FilterButtonWeek = styled(FilterButton)`
+  background-color: ${props => (props.range === "week" ? "#4C5F6B" : "#83A0A0")};
+`
+
+const FilterButtonMonth = styled(FilterButton)`
+  background-color: ${props => (props.range === "month" ? "#4C5F6B" : "#83A0A0")};
+`
+const FilterButtonYear = styled(FilterButton)`
+  background-color: ${props => (props.range === "year" ? "#4C5F6B" : "#83A0A0")};
+`
+
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 2rem 0 0 0;
+  height: 100%;
+  min-height: 100vh;
+`

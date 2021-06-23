@@ -51,7 +51,6 @@ const Login = () => {
     fetch(API_URL('sessions'), options)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if(data.success) {
           batch(() => {
             dispatch(user.actions.setUsername(data.username))

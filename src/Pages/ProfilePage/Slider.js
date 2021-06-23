@@ -10,43 +10,6 @@ import neutral from 'assets/neutral.png'
 import happy from 'assets/happy.png'
 import relaxed from 'assets/relaxed.png'
 
-const CustomSlider = withStyles({
-  root: {
-    color: '#BCA0BC',
-    height: 8,
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: '#fff',
-    border: '2px solid currentColor',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus, &:hover': {
-      boxShadow: '0px 0px 0px 8px rgba(84, 199, 97, 0.16)'
-    },
-    '&$active': {
-      boxShadow: '0px 0px 0px 12px rgba(84, 199, 97, 0.16)'
-    }
-  },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 4px)'
-  },
-  track: {
-    height: 8,
-    borderRadius: 4
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4
-  }
-})(Slider)
-
-const Image = styled.img`
-  width: 70px; 
-  height: 70px;
-`
 
 const generateLabel = (number) => {
   switch (number) {
@@ -82,29 +45,6 @@ const generateText = (number) => {
   }
 }
 
-const Marker = styled.div`
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 40px;
-  padding: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgb(188,160,188);
-  background: radial-gradient(circle, rgba(188,160,188,1) 0%, rgba(255,255,255,1) 70%);
-`
-
-const SliderWrapper = styled.div`
-  width: 70%;
-  margin-bottom: 1rem;
-
-  @media(min-width: 350px){
-    width: 75%;
-    margin-bottom: 2rem;
-  }
-`
-
 const FeelingsSlider = ({ value, setValue }) => {
 
   const onSliderChange = (e, newValue) => {
@@ -131,3 +71,66 @@ const FeelingsSlider = ({ value, setValue }) => {
 }
 
 export default FeelingsSlider
+
+
+const CustomSlider = withStyles({
+  root: {
+    color: '#BCA0BC',
+    height: 8,
+    marginTop: 25
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: '#fff',
+    border: '2px solid currentColor',
+    marginTop: -8,
+    marginLeft: -12,
+    '&:focus, &:hover': {
+      boxShadow: '0px 0px 0px 8px rgba(84, 199, 97, 0.16)'
+    },
+    '&$active': {
+      boxShadow: '0px 0px 0px 12px rgba(84, 199, 97, 0.16)'
+    }
+  },
+  active: {},
+  valueLabel: {
+    left: 'calc(-50% + 4px)'
+  },
+  track: {
+    height: 8,
+    borderRadius: 4
+  },
+  rail: {
+    height: 8,
+    borderRadius: 4
+  }
+})(Slider)
+
+const Image = styled.img`
+  width: 70px; 
+  height: 70px;
+`
+
+const Marker = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 40px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(188,160,188);
+  background: radial-gradient(circle, rgba(188,160,188,1) 0%, rgba(255,255,255,1) 70%);
+`
+
+const SliderWrapper = styled.div`
+  width: 70%;
+  margin-bottom: 1rem;
+
+  @media(min-width: 350px){
+    width: 75%;
+    margin-bottom: 2rem;
+  }
+`

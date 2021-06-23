@@ -10,33 +10,16 @@ body {
 
 .react-calendar {
   width: 300px !important;
-  padding: 5px !important;
   border-color: #e6e6e6 !important;
   border-radius: 6px;
   box-shadow: 2px 2px 8px #83a0a07a !important;
 }
 
-@media screen and (min-width: 768px) {
-  .react-calendar {
-    width: 440px !important;
-    padding: 1.2rem;
-  }
-}
-
-
-/* .react-calendar__viewContainer > * {
-  width: 100% !important;
-  margin: 0.5em;
-}
 .react-calendar__month-view__weekdays {
   color: #404167 !important;
-  padding: 0.5rem 0;
-  text-decoration: none !important;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.8em !important;
 }
-
-
 
 abbr[title] {
   text-decoration: none !important;
@@ -44,16 +27,15 @@ abbr[title] {
 
 
 .react-calendar button {
-  height: 55px !important;
-  padding: 10px !important;
   color: #404167 !important;
 }
+
 
 .react-calendar__tile--now {
   background-color: #e6e6e6 !important;
   color: #000 !important;
   border-radius: 50% !important;
-  border: 0px !important;
+  border: none !important;
 }
 
 .react-calendar__tile--active {
@@ -69,30 +51,17 @@ abbr[title] {
   background-color: #e6e6e6 !important;
 }
 
-.react-calendar__month-view__days__day--weekend {
-  color: #404167 !important;
+@media screen and (min-width: 768px) {
+  .react-calendar {
+    width: 450px !important;
+    padding: 1.2rem;
+  }
+
+  .react-calendar button {
+    height: 60px !important;
+    color: #404167 !important;
+  }
 }
-
-.react-calendar__month-view__days__day--neighboringMonth {
-  color: #e6e6e6 !important;
-}
-
-.react-calendar__month-view__days__day--neighboringMonth:hover {
-  color: #404167 !important;
-}
-
-.open.notopen {
-  max-height: 0;
-  transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
-}
-
-.open {
-  overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
-  height: auto;
-  max-height: 9999px;
-} */
-
 
 /**** Icons from Material UI ****/ 
 .contact-link {
