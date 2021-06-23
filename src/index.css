@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -103,21 +107,15 @@ abbr[title] {
 .footer-link {
   text-decoration: none;
   color: #404167;
+  display: flex;
+  align-items: center;
 }
-.footer-link:active {
-  text-decoration: underline;
-  color: #404167;
-}
-
-.footer-link:visited {
-  text-decoration: none;
-  color: #404167;
-}
-
 .footer-icon {
-  text-decoration: none;
-  color: #404167;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
 }
+
 
 .MuiSlider-valueLabel {
   width: 50px !important;

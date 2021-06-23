@@ -8,6 +8,13 @@ import MoodIcon from '@material-ui/icons/Mood'
 import styled from 'styled-components'
 
 
+const style = {
+  borderRadius: "50%",
+  backgroundColor: "#404167",
+  fontWeight: "bold",
+  color: "#ffff"
+}
+
 const Footer = () => {
   const accessToken = useSelector(store => store.user.accessToken)
 
@@ -15,35 +22,31 @@ const Footer = () => {
     <FooterContainer>
       {accessToken ?
         <IconsContainer>
-          <NavLink to="/summary" className="footer-link"
-            activeStyle={{
-              fontWeight: "bold",
-              color: "red"
-            }}
+          <NavLink
+            to="/summary"
+            className="footer-link"
+            activeStyle={style}
           >
-            <EventNoteIcon />
+            <EventNoteIcon className="footer-icon" />
           </NavLink>
-          <NavLink to="/thoughts"
-            activeStyle={{
-              fontWeight: "bold",
-              color: "red"
-            }}>
-            <MailOutlineIcon />
+          <NavLink
+            to="/thoughts"
+            className="footer-link"
+            activeStyle={style}>
+            <MailOutlineIcon className="footer-icon" />
           </NavLink>
-          <NavLink to="/profile"
-            activeStyle={{
-              fontWeight: "bold",
-              color: "red"
-            }}
+          <NavLink
+            to="/profile"
+            className="footer-link"
+            activeStyle={style}
 
           >
-            <MoodIcon />
+            <MoodIcon className="footer-icon" />
           </NavLink>
-          <NavLink to='/friends'
-            activeStyle={{
-              fontWeight: "bold",
-              color: "red"
-            }}
+          <NavLink
+            to='/friends'
+            className="footer-link"
+            activeStyle={style}
           >
             <PeopleOutlineIcon className="footer-icon" />
           </NavLink>
