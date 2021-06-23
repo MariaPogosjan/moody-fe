@@ -16,7 +16,6 @@ const MessageWrapperComponent = ({ page, perPage, item }) => {
     fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.success) {
           dispatch(thoughts.actions.setThoughts(data.thoughts))
         } else {
@@ -26,7 +25,6 @@ const MessageWrapperComponent = ({ page, perPage, item }) => {
   }
 
   const onHugSend = (id) => {
-    console.log(id)
     const options = {
       method: 'PATCH',
       headers: {
@@ -42,7 +40,6 @@ const MessageWrapperComponent = ({ page, perPage, item }) => {
     fetch(THOUGHTS_URL(page, perPage))
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         if (data.success) {
           dispatch(thoughts.actions.setThoughts(data.thoughts))
         } else {
@@ -79,8 +76,6 @@ const MessageWrapperComponent = ({ page, perPage, item }) => {
 }
 
 export default MessageWrapperComponent
-
-
 
 const MessageWrapper = styled.div`
   border: 1px solid #bca0bc;
