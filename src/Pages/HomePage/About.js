@@ -36,7 +36,12 @@ export default About
 const CardsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 2rem 2rem 6rem 2rem;
+  margin: 1rem 1rem 5rem 1rem;
+
+  @media (min-width: 768px) {
+    margin: 2rem 2rem 6rem 2rem;
+
+  }
 `
 
 const Card = styled.div`
@@ -73,7 +78,7 @@ const Image = styled.img`
 `
 
 const SectionSubtitle = styled.h2`
-  color: #4C5F6B;
+  color: #404167;
   text-align: center;
 
   @media (min-width: 768px) {

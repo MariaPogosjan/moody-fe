@@ -7,62 +7,17 @@ import KeyboardArrowDownSharpIcon from '@material-ui/icons/KeyboardArrowDownShar
 import {
   FormSection,
   Form,
-  Label,
-  Input
+  Label
 }
   from 'styled-components/Forms'
 import { SectionTitle } from 'styled-components/Titels'
-import { ButtonsWrapper, Button } from 'styled-components/Buttons'
+import { ButtonsWrapper } from 'styled-components/Buttons'
 import { PROFILE_IMAGE_URL } from 'reusables/urls'
 import user from 'reducers/user'
 
 import UpdateUsername from './UpdateUsername'
 import UpdatePassword from './UpdatePassword'
 import SignoutButton from './SignoutButton'
-
-
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-top: 2rem;
-  height: 100vh;
-  min-height: 100vh;
-`
-
-const IconTitleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1.8rem;
-  width: 100%;
-  background-color: #EEECFB;
-  width: 300px;
-  padding: 0.5rem;
-
-    @media (min-width: 768px) {
-        width: 500px;
-        padding: 0.3rem 0.8rem;
-    }
-`
-
-const Wrapper = styled.div`
-  display: ${props => (props.visible ? "flex" : "none")};
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 200px;
-  border: 1px solid #EEECFB;
-  border-top: none;
-`
-
-const SettingsTitle = styled.p`
-  font-size: 20px;
-  color: #4C5F6B;
-  cursor: pointer;
-  padding-left: 1rem;
-`
 
 const Settings = () => {
   const fileInput = useRef()
@@ -104,10 +59,9 @@ const Settings = () => {
 
   return (
     <Container>
-        <SectionTitle>Profile settings </SectionTitle>
+      <SectionTitle>Profile settings </SectionTitle>
       <FormSection>
         <Form onSubmit={onFormSubmit}>
-
          <>
           <IconTitleWrapper onClick={() => setVisible(!visible)}>
             <SettingsTitle htmlFor="file-input">Upload image</SettingsTitle>
@@ -115,7 +69,6 @@ const Settings = () => {
           </IconTitleWrapper>
           </>
           <Wrapper visible={visible}>
-
             <Label htmlFor="username">Update username</Label>
             <Input type="file" ref={fileInput} id="file-input" />
             <ButtonsWrapper>
@@ -133,3 +86,97 @@ const Settings = () => {
 }
 
 export default Settings
+
+
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  height: 100vh;
+  padding: 1rem;
+`
+
+const IconTitleWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EEECFB;
+  border: 1px solid #EEECFB;
+  padding: 0rem;
+  
+    @media (min-width: 768px) {
+      margin-top: 1rem;
+      padding: 0.3rem 0.8rem;
+      width: 80%;  
+    }
+`
+
+const Wrapper = styled.div`
+  display: ${props => (props.visible ? "flex" : "none")};
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  border: 1px solid #EEECFB;
+  border-top: none;
+
+  @media (min-width: 768px) {
+      padding: 0.3rem 0.8rem;
+      width: 80%;  
+      height: 200px;
+    }
+`
+
+const SettingsTitle = styled.p`
+  color: #4C5F6B;
+  cursor: pointer;
+  padding-left: 1rem;
+  font-size: 12px;
+
+  @media (min-width: 768px) {
+      font-size: 18px; 
+    }
+`
+
+const Input = styled.input`
+  padding: 0.6rem;
+  margin: 1rem 0 0.5rem 0;
+  width: 80%;
+  border: 1px solid #BCA0BC;
+  border-radius: 6px;
+
+  @media (min-width: 768px) {
+    width: 60%;
+    margin: 1rem 0 0.5rem 0;
+    width: 80%;
+    padding: 0.9rem;
+  }
+` 
+
+const Button = styled.button`
+  width: 100px;
+  padding: 0.5rem;
+  border: none;
+  background-color: #404167;
+  border-radius: 6px;
+  color: #fff;
+  margin-top: 1.2rem; 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  
+
+  @media (min-width: 768px) {
+    padding: 1rem 0.8rem;
+    margin-top: 1.2rem; 
+    border-radius: 6px;
+    width: 15rem;
+    font-size: 1rem;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+`

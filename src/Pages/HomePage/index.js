@@ -33,15 +33,15 @@ export default Home
  
 const Container = styled.section`
    padding: 0 1rem;
-   margin-top: 3rem;
-   padding: 3rem;
    display: flex;
    flex-direction: column;
-   min-height: 100vh;
+   min-height: 90vh;
 
    @media (min-width: 768px) {
     min-height: 50vh;
     box-shadow: 0 4px 4px -2px #EEECFB;
+    margin-top: 3rem;
+    padding: 3rem;
   }
 `
 const FlexWrapper = styled.div`

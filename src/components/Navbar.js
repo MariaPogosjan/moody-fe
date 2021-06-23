@@ -15,11 +15,9 @@ const Navbar = () => {
 
   return (
     <Nav>
-      <Link to="/" style={styles}>
-        <Logo>
+      <LogoLink to="/">
           moody
-        </Logo>
-      </Link>
+      </LogoLink>
       {accessToken &&
         <Link to='/settings' >
           <Avatar className={classes.large} alt={username.toUpperCase()} src={profileImage ? profileImage.imageURL : ` /static/images/avatar/1.jpg`} />
@@ -35,12 +33,13 @@ const Navbar = () => {
             />
           </HamburgerButton>
           <Menu isOpen={isOpen}>
+
             <a href="/#about" style={styles}>
               About
             </a>
             <Link to='/contact' style={styles}>
               Contact
-            </Link>
+            </MenuLink>
           </Menu>
         </>}
     </Nav>
@@ -64,14 +63,15 @@ const Nav = styled.div`
     padding: 1.1rem;
   }
 `
-const Logo = styled.a`
+
+const LogoLink = styled(Link)`
   color: #404167;
   text-decoration: none;
   font-weight: 800;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
 
-  @media (max-width: 768px) {
-     font-size: 1.5rem;
+  @media (min-width: 768px) {
+     font-size: 1.9rem;
   }
 `
 const HamburgerButton = styled.div`
@@ -96,29 +96,26 @@ const Menu = styled.div`
   }
 `
 
-// const MenuLink = styled.a`
-//   padding: 0.8rem 1rem;
-//   margin: 0.5rem;
-//   cursor: pointer;
-//   text-decoration: none;
-//   font-size: 1.1rem;
-//   transition: all 0.2s ease-in;
-//     &:hover {
-//       background-color: #404167;
-//       color: white;
-//       border-radius: 6px;
-//     }
-// `
-const styles = {
-  textDecoration: "none",
-  color: "#404167",
-  padding: "0.4rem 0rem 0rem 0rem",
-  margin: "0.3rem",
-  cursor: "pointer",
-  textSecoration: "none",
-  fontSize: "1rem",
-  transition: "all 0.2s ease-in"
-}
+const MenuLink = styled(Link)`
+  padding: 0.5rem;
+  margin: 0rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: #404167;
+
+    @media (min-width: 768px) {
+      margin: 10px;
+      font-size: 1.1rem;
+      transition: all 0.2s ease-in;
+
+      &:hover {
+      background-color: #404167;
+      color: white;
+      border-radius: 6px;   
+    }
+  }
+`
 
 const useStyles = makeStyles((theme) => ({
   root: {

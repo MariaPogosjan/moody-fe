@@ -131,6 +131,10 @@ export default SignUp
 const SectionTitle = styled.h1`
   color: #404167;
   text-align: center;
-  font-size: 2.1rem;
-  margin: 3rem 0;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+
+  @media (min-width: 768px) {
+     font-size: 2.1rem;
+  }
 ` 

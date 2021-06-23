@@ -23,7 +23,6 @@ const Container = styled.div`
 
 const FilterButton = styled.button`
   font-family: 'Montserrat', sans-serif;
-  //background-color: #83A0A0;
   border: 1px solid #4C5F6B !important;
   width: 30px;
   cursor: pointer;
@@ -164,7 +163,7 @@ const SummaryPage = () => {
 
   return (
     <Container>
-      <SectionTitle>Summary of your feelings </SectionTitle>
+      <SectionTitle>Your feelings </SectionTitle>
       <div style={{ display: "flex" }}>
         <div style={{ fontSize: "10px", paddingRight: "5px" }} >Sad</div>
         <div style={{ backgroundColor: "#607474", width: "40px", height: "14px" }}></div>

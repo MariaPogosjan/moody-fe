@@ -8,7 +8,7 @@ import CommentsList from './CommentsList'
 import thoughts from 'reducers/thoughts'
 import { THOUGHTS_URL, THOUGHT_HUG } from 'reusables/urls'
 
-const MessageWrapperComponent = ({ page, setPage, perPage, setPerPage, item }) => {
+const MessageWrapperComponent = ({ page, perPage, item }) => {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
 
@@ -54,12 +54,12 @@ const MessageWrapperComponent = ({ page, setPage, perPage, setPerPage, item }) =
   return (
       <MessageWrapper key={item._id}>
       <NameAvatarWrapper>
-        <Avatar
+       {item.user && <Avatar
           alt={item.user && item.user.username.toUpperCase()}
           src={item.user.profileImage ? item.user.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
           style={{ marginRight: "5px" }}
-        />
-        <Name>{item.user.username}</Name>
+        />} 
+      {item.user ? <Name>{item.user.username}</Name> : <Name>Guest</Name>}
       </NameAvatarWrapper>
       <MessageCreatedAtWrapper>
         <MessageText>{item.message}</MessageText>
@@ -85,16 +85,22 @@ export default MessageWrapperComponent
 const MessageWrapper = styled.div`
   border: 1px solid #bca0bc;
   margin: 2rem 0;
-  border-radius: 8px 8px 3px 3px;
+  border-radius: 6px;
 `
 
 const NameAvatarWrapper = styled.div`
   background-color: #bca0bc;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 6px 6px 0px 0px;
   display: flex;
   align-items: center;
   padding: 8px 8px 8px 15px;
   color: #fff;
+  font-size: 12px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+
 `
 
 const Name = styled.p`
@@ -106,7 +112,11 @@ const MessageCreatedAtWrapper = styled.div`
 `
 
 const MessageText = styled.p`
-  font-size: 16px;
+  font-size: 12px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 `
 
 const HugsCommentsWrapper = styled.div`
@@ -128,20 +138,32 @@ const HugButton = styled.button`
   background-color: #EEECFB;
   border-radius: 50%;
   border: none;
-  padding: 8px 10px;
+  padding: 4px 6px;
+
+  @media (min-width: 768px) {
+    padding: 8px 10px;
+  }
 `
 
 const HugsText = styled.p`
   margin:0;
   padding: 5px;
   color: grey;
-  font-size: 12px;
+  font-size: 10px;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
 `
 
 const DateText = styled.p`
   color: #4c5f6b;
   font-style: italic;
   color: grey;
-  font-size: 12px;
-  padding-right: 15px;
+  font-size: 10px;
+  padding-right: 30px;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+  }
 `
