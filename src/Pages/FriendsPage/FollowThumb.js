@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
 import Avatar from '@material-ui/core/Avatar'
 import styled from 'styled-components'
 

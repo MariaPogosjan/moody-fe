@@ -87,7 +87,7 @@ const SummaryPage = () => {
   const getAvareges = (grouppedObject) => {
     const avaragedArray = Object.entries(grouppedObject).map(
       ([key, Objectvalue]) =>
-        `${key}: ${(
+        `${key} ${(
           Objectvalue.map((a) => a.value).reduce((a, b) => a + b) /
           Objectvalue.length
         ).toFixed(2)}`
@@ -133,28 +133,13 @@ const SummaryPage = () => {
   return (
     <Container>
       <SectionTitle>Your feelings </SectionTitle>
-    {/*   <div style={{ display: "flex" }}>
-        <div style={{ fontSize: "10px", paddingRight: "5px" }} >Sad</div>
-        <div style={{ backgroundColor: "#607474", width: "40px", height: "14px" }}></div>
-        <div style={{ backgroundColor: "#83A0A0", width: "40px", height: "14px" }}></div>
-        <div style={{ backgroundColor: "#b0c6c6", width: "40px", height: "14px" }}></div>
-        <div style={{ fontSize: "10px", paddingLeft: "5px" }}>Happy</div>
-      </div> */}
       <CalenderComponent feelings={feelings} />
- {/*      <div style={{ display: "flex" }}>
-        <FilterButtonDay range={range} onClick={() => setRange('day')}>1d</FilterButtonDay>
-        <FilterButtonWeek range={range} onClick={() => setRange('week')}>7d</FilterButtonWeek>
-        <FilterButtonMonth range={range} onClick={() => setRange('month')}>1m</FilterButtonMonth>
-        <FilterButtonYear range={range} onClick={() => setRange('year')}>1y</FilterButtonYear>
-      </div> */}
       <Graph x={x} y={y} range={range} setRange={setRange}/>
     </Container>
   )
 }
 
 export default SummaryPage
-
-
 
 const Container = styled.div`
   display: flex;
@@ -165,25 +150,3 @@ const Container = styled.div`
   height: 100%;
   min-height: 100vh;
 `
-
-/* const FilterButton = styled.button`
-  font-family: 'Montserrat', sans-serif;
-  border: 1px solid #4C5F6B !important;
-  width: 40px;
-  margin-top: 20px;
-  cursor: pointer;
-`
-
-const FilterButtonDay = styled(FilterButton)`
-  background-color: ${props => (props.range === "day" ? "#4C5F6B" : "#83A0A0")};
-`
-const FilterButtonWeek = styled(FilterButton)`
-  background-color: ${props => (props.range === "week" ? "#4C5F6B" : "#83A0A0")};
-`
-
-const FilterButtonMonth = styled(FilterButton)`
-  background-color: ${props => (props.range === "month" ? "#4C5F6B" : "#83A0A0")};
-`
-const FilterButtonYear = styled(FilterButton)`
-  background-color: ${props => (props.range === "year" ? "#4C5F6B" : "#83A0A0")};
-` */

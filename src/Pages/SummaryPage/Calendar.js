@@ -10,7 +10,7 @@ const CalendarComponent = ({ feelings }) => {
   const [date, setDate] = useState(new Date())
   const [visible, setVisible] = useState(false)
   const [filteredItem, setFiltredItem] = useState([])
-  
+
   const onChange = (date) => {
     setDate(date)
   }
@@ -28,32 +28,32 @@ const CalendarComponent = ({ feelings }) => {
 
   const determineColor = (date) => {
     const foundItem = feelings.find(item => format(new Date(item.createdAt), 'yyyy-MM-dd') === format(new Date(date.date), 'yyyy-MM-dd'))
-    if(foundItem && foundItem.value <= 0.3) {
-       return  'feeling sad'
-     } 
-     if(foundItem && foundItem.value >= 0.4 && foundItem.value <=0.7) {
-      return  'feeling neutral'
-    } 
-    if(foundItem && foundItem.value > 0.7) {
-      return  'feeling happy'
-    } 
+    if (foundItem && foundItem.value <= 0.3) {
+      return 'feeling sad'
+    }
+    if (foundItem && foundItem.value >= 0.4 && foundItem.value <= 0.7) {
+      return 'feeling neutral'
+    }
+    if (foundItem && foundItem.value > 0.7) {
+      return 'feeling happy'
+    }
   }
 
   return (
     <CalendarWrapper>
-      <div style={{ display: "flex", paddingBottom: "20px" }}>
-        <div style={{ fontSize: "10px", paddingRight: "5px" }} >Sad</div>
-        <div style={{ backgroundColor: "#607474", width: "40px", height: "14px" }}></div>
-        <div style={{ backgroundColor: "#83A0A0", width: "40px", height: "14px" }}></div>
-        <div style={{ backgroundColor: "#b0c6c6", width: "40px", height: "14px" }}></div>
-        <div style={{ fontSize: "10px", paddingLeft: "5px" }}>Happy</div>
-      </div>
-      <ModalComponent filteredItem={filteredItem} visible={visible} setVisible={setVisible}/>
+      <LegendContainer>
+        <LegendItemSad>Sad</LegendItemSad>
+        <LegendColorSad></LegendColorSad>
+        <LegendColorNutral></LegendColorNutral>
+        <LegendColorHappy></LegendColorHappy>
+        <LegendItemHappy>Happy</LegendItemHappy>
+      </LegendContainer>
+      <ModalComponent filteredItem={filteredItem} visible={visible} setVisible={setVisible} />
       <Calendar
         onChange={onChange}
         value={date}
         onClickDay={tileFunction}
-        tileClassName={determineColor}        
+        tileClassName={determineColor}
       />
     </CalendarWrapper>
   )
@@ -71,3 +71,31 @@ const CalendarWrapper = styled.div`
   margin-top: 2rem;
   margin-bottom: 1rem;
 `
+const LegendContainer = styled.div`
+  display: flex;
+  padding-bottom: 20px; 
+`
+
+const LegendItemHappy = styled.div`
+  font-size: 10px; 
+  padding-left: 5px; 
+`
+const LegendColor = styled.div`
+  width: 40px; 
+  height: 14px;
+`
+const LegendColorSad = styled(LegendColor)`
+  background-color: #607474;
+`
+const LegendColorNutral = styled(LegendColor)`
+  background-color: #83A0A0;
+`
+const LegendColorHappy = styled(LegendColor)`
+  background-color: #b0c6c6
+`
+
+const LegendItemSad = styled.div`
+  font-size: 10px;
+  padding-right: 5px; 
+`
+

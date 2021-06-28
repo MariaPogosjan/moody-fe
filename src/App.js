@@ -15,7 +15,6 @@ import SignUp from 'Pages/Signup'
 import Login from 'Pages/LoginPage'
 import Profile from 'Pages/ProfilePage'
 import SummaryPage from 'Pages/SummaryPage'
-//import About from 'Pages/AboutPage'
 import Settings from 'Pages/SettingsPage'
 import FriendsPage from 'Pages/FriendsPage'
 import FriendProfile from 'Pages/FriendProfilePage'
@@ -39,9 +38,6 @@ const App = () => {
           <Route path='/' exact>
             <Home />
           </Route>
-          {/* <Route path='/about' exact>
-            <About />
-          </Route> */}
           <Route path='/contact' exact>
             <Contact/>
           </Route>

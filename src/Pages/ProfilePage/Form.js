@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { makeStyles } from '@material-ui/core/styles';
-import Checkbox from '@material-ui/core/Checkbox';
-import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles'
+import Checkbox from '@material-ui/core/Checkbox'
+import clsx from 'clsx'
 
 import FeelingsSlider from './Slider'
 import { API_URL } from 'reusables/urls'
@@ -80,7 +80,6 @@ const FeelingsForm = ({ accessToken, setVisible, setFeeling }) => {
 
   useEffect(() => {
     if (success) {
-      //alert("Thank you for registering!")
       setSuccess(false)
       setVisible(true)
     }

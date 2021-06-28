@@ -138,7 +138,6 @@ const SettingsTitle = styled.p`
 
   @media (min-width: 768px) {
       font-size: 18px;
-      
     }
 `
 

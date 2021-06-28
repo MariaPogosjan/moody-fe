@@ -72,7 +72,7 @@ const FriendProfile = () => {
   const getAvareges = (grouppedObject) => {
     const avaragedArray = Object.entries(grouppedObject).map(
       ([key, Objectvalue]) =>
-        `${key}: ${(
+        `${key} ${(
           Objectvalue.map((a) => a.value).reduce((a, b) => a + b) /
           Objectvalue.length
         ).toFixed(2)}`
@@ -119,12 +119,12 @@ const FriendProfile = () => {
             src={friendData.profileImage ? friendData.profileImage.imageURL : ` /static/images/avatar/1.jpg`}
           />
           <Calendar feelings={friendFeeling} />
-          <div style={{ display: "flex" }}>
+          <FilterButtonContainer>
             <FilterButtonDay range={range} onClick={() => setRange('day')}>1d</FilterButtonDay>
             <FilterButtonWeek range={range} onClick={() => setRange('week')}>7d</FilterButtonWeek>
             <FilterButtonMonth range={range}  onClick={() => setRange('month')}>1m</FilterButtonMonth>
             <FilterButtonYear range={range}  onClick={() => setRange('year')}>1y</FilterButtonYear>
-          </div>
+          </FilterButtonContainer>
           <Graph x={x} y={y} />
         </Container>
       }
@@ -141,6 +141,9 @@ const FilterButton = styled.button`
   border: 1px solid #4C5F6B !important;
   width: 30px;
   cursor: pointer;
+`
+const FilterButtonContainer = styled.div`
+  display: flex; 
 `
 
 const FilterButtonDay = styled(FilterButton)`

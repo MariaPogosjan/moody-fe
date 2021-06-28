@@ -1,15 +1,10 @@
 import React from 'react'
-import GoogleLogin from 'react-google-login';
+import GoogleLogin from 'react-google-login'
 import { useDispatch, batch } from 'react-redux'
 import user from 'reducers/user'
 import styled from 'styled-components'
 
 import { API_URL } from 'reusables/urls'
-
-const GoogleButtonWrapper = styled.div`
-  text-align: center;
-  margin-bottom: 20px;
-`
 
 const GoogleLoginComponent = ({ text }) => {
   const dispatch = useDispatch()
@@ -58,7 +53,7 @@ const GoogleLoginComponent = ({ text }) => {
   }
   
   const responseErrorGoogle = (response) => {
-    alert(response);
+    alert("Login with Google did not succeed")
   }
 
   return (
@@ -75,3 +70,9 @@ const GoogleLoginComponent = ({ text }) => {
   )
 }
 export default GoogleLoginComponent
+
+
+const GoogleButtonWrapper = styled.div`
+  text-align: center;
+  margin-bottom: 20px;
+`

@@ -9,21 +9,21 @@ const About = () => {
       <CardsContainer>
         <Card>
           <Image src="./assets/card1.jpg" />
-          <div>
+          <AboutContainer>
             <SectionSubtitle>Track your moods</SectionSubtitle>
             <Text>
               Just as it is important to manage health behaviors such as sleep and exercise, the importance of tracking psychological elements of health has been long recongnized. In our app you can register your feelings and see the overview over time.
             </Text>
-          </div>
+          </AboutContainer>
         </Card>
         <Card>
           <FlexReverese>
-            <div>
-            <SectionSubtitle>Share your feelings with others </SectionSubtitle>
-            <Text>
-              Sharing health information with family and friend networks is a way to control one’s health identity, keep loved ones up-to-date, gain social supporta and post your thoughts on our forum and get support from other users.
-            </Text>
-            </div>
+            <AboutContainer>
+              <SectionSubtitle>Share your feelings with others </SectionSubtitle>
+              <Text>
+                Sharing health information with family and friend networks is a way to control one’s health identity, keep loved ones up-to-date, gain social supporta and post your thoughts on our forum and get support from other users.
+              </Text>
+            </AboutContainer>
             <Image src="./assets/card2.jpg" />
           </FlexReverese>
         </Card>
@@ -98,4 +98,7 @@ const Text = styled.p`
       text-align: left;
       width: 80%;
     }
+`
+
+const AboutContainer = styled.div`
 `

@@ -17,12 +17,20 @@ const Contact = () => {
           <div>
             <SectionSubtitle>Maria Pogosjan</SectionSubtitle>
             <Text>
-            I love to come up with crazy ambitious ideas and make them come to life. I wanted to work with development and went from thinking about it to actually do something about it. Six months later I learned to code professionally. And today it is my biggest passion in life.
+              I love to come up with crazy ambitious ideas and make them come to life. I wanted to work with development and went from thinking about it to actually do something about it. Six months later I learned to code professionally. And today it is my biggest passion in life.
             </Text>
             <IconsContainer>
-              <LinkedInIcon className="contact-link"/>
-              <GitHubIcon className="contact-link" />
-              <EmailIcon className="contact-link" />
+              <Link href="https://www.linkedin.com/in/maria-pogosjan-0201b199/" target="_blank" className="contact-link">
+                <LinkedInIcon/>
+              </Link>
+
+              <Link href="https://github.com/MariaPogosjan" target="_blank" className="contact-link">
+                <GitHubIcon />
+              </Link>
+
+              <Link href="mailto:maria.pogosjan@gmail.com" target="_blank" className="contact-link">
+                <EmailIcon />
+              </Link>
             </IconsContainer>
           </div>
         </Card>
@@ -34,13 +42,20 @@ const Contact = () => {
                 Frontend developer with background in research and project management. I love solving problems and come up with solutions that can be achieved in reasonable time and using assigned budget. I love working in a team and am used to being a part of a multicultural work environment.
               </Text>
               <IconsContainer>
-                <LinkedInIcon className="contact-link"/>
-                <GitHubIcon className="contact-link" />
-                <EmailIcon className="contact-link" />
-            </IconsContainer>
+                <Link className="contact-link" href="https://www.linkedin.com/in/ekaterina-klimenko-a7b1b340/" target="_blank">
+                  <LinkedInIcon />
+                </Link>
+                <Link className="contact-link" href="https://github.com/klimenko3007" target="_blank">
+                  <GitHubIcon  />
+                </Link>
+                <Link href="mailto: klimenko3007@gmail.com" className="contact-link" target="_blank">
+                  <EmailIcon />
+                </Link>
+                
+              </IconsContainer>
             </div>
             <ImageContainer>
-              <Image src="./assets/ekaterina.jpg" />  
+              <Image src="./assets/ekaterina.jpg" />
             </ImageContainer>
           </FlexReverese>
         </Card>
@@ -57,7 +72,7 @@ const SectionTitle = styled.h1`
   text-align: center;
   font-size: 2.1rem;
   margin: 3rem 0;
-` 
+`
 
 const CardsContainer = styled.div`
   display: flex;
@@ -114,7 +129,7 @@ const SectionSubtitle = styled.h2`
       text-align: left;
       margin-left: 2rem;
     }
-` 
+`
 
 const Text = styled.p`
  width: 100%;
@@ -141,4 +156,7 @@ const IconsContainer = styled.div`
     justify-content: flex-start;
 
   }
+`
+const Link = styled.a`
+
 `

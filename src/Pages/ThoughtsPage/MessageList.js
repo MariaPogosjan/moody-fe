@@ -47,7 +47,7 @@ const MessageList = ({ page, setPage, perPage, setPerPage }) => {
               <Button type="button" className="btn" onClick={loadMore}>More</Button>
             </ButtonsWrapper>
             :
-            <p>No more thought to load...</p>
+            <p>No more thoughts to load...</p>
           }
         </MessageListContainer>
       }
