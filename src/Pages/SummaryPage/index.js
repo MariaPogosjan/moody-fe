@@ -85,71 +85,58 @@ const SummaryPage = () => {
   }
 
   const getAvareges = (grouppedObject) => {
-    const avaragedArray = Object.entries(grouppedObject).map(
-      ([key, Objectvalue]) =>
-        `${key}: ${(
-          Objectvalue.map((a) => a.value).reduce((a, b) => a + b) /
-          Objectvalue.length
-        ).toFixed(2)}`
-    )
-
+    const Array = (Object.entries(grouppedObject))
+    const reducer = (a, b) => ((a + b.value))
+    const object = {}
+    const avaragedArray = Array.map(item => {
+      return  {
+        ...object, 
+        createdAt: item[0], 
+        value:(item[1].reduce(reducer, 0) / item[1].length).toFixed(2)
+      }
+    })
     return avaragedArray
-      .map(item => item.split(' '))
-      .map(item => ({ createdAt: item[0], value: Number(item[1]) }))
+}
+
+useEffect(() => {
+
+  if (range === "day") {
+    const filterFeelingDay = feelings.filter(item => isToday(new Date(item.createdAt)))
+    setX(filterFeelingDay.map(item => format(new Date(item.createdAt), 'HH:mm')))
+    setY(filterFeelingDay.map(item => item.value))
+  } else if (range === "week") {
+    const filterFeelingWeek = feelings.filter((item) => new Date(item.createdAt) > subDays(Date.now(), 7))
+    const avaragedArray = getAverageValue(filterFeelingWeek)
+    setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
+    setY(avaragedArray.map(item => item.average))
+  } else if (range === 'month') {
+    const filterFeelingMonth = feelings.filter((item) => new Date(item.createdAt) > subMonths(Date.now(), 1))
+    const avaragedArray = getAverageValue(filterFeelingMonth)
+    setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
+    setY(avaragedArray.map(item => item.average))
+  } else {
+    const filterFeelingYear = feelings.filter((item) => new Date(item.createdAt) > subYears(Date.now(), 1))
+    const formatedDateYearFeelings = filterFeelingYear.map(item => ({ ...item, createdAt: format(new Date(item.createdAt), 'yyyy-MM') }))
+    const grouppedArray = groupBy(formatedDateYearFeelings, 'createdAt')
+    const finalArray = getAvareges(grouppedArray)
+    setX(finalArray.map(item => format(Date.parse(item.createdAt), 'MMM')))
+    setY(finalArray.map(item => item.value))
   }
+}, [feelings, range])
 
-  useEffect(() => {
+useEffect(() => {
+  if (!accessToken) {
+    history.push('/')
+  }
+}, [accessToken, history])
 
-    if (range === "day") {
-      const filterFeelingDay = feelings.filter(item => isToday(new Date(item.createdAt)))
-      setX(filterFeelingDay.map(item => format(new Date(item.createdAt), 'HH:mm')))
-      setY(filterFeelingDay.map(item => item.value))
-    } else if (range === "week") {
-      const filterFeelingWeek = feelings.filter((item) => new Date(item.createdAt) > subDays(Date.now(), 7))
-      const avaragedArray = getAverageValue(filterFeelingWeek)
-      setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
-      setY(avaragedArray.map(item => item.average))
-    } else if (range === 'month') {
-      const filterFeelingMonth = feelings.filter((item) => new Date(item.createdAt) > subMonths(Date.now(), 1))
-      const avaragedArray = getAverageValue(filterFeelingMonth)
-      setX(avaragedArray.map(item => format(new Date(item.createdAt), 'd MMM')))
-      setY(avaragedArray.map(item => item.average))
-    } else {
-      const filterFeelingYear = feelings.filter((item) => new Date(item.createdAt) > subYears(Date.now(), 1))
-      const formatedDateYearFeelings = filterFeelingYear.map(item => ({ ...item, createdAt: format(new Date(item.createdAt), 'yyyy-MM') }))
-      const grouppedArray = groupBy(formatedDateYearFeelings, 'createdAt')
-      const finalArray = getAvareges(grouppedArray)
-      setX(finalArray.map(item => format(new Date(item.createdAt), 'MMM')))
-      setY(finalArray.map(item => item.value))
-    }
-  }, [feelings, range])
-
-  useEffect(() => {
-    if (!accessToken) {
-      history.push('/')
-    }
-  }, [accessToken, history])
-
-  return (
-    <Container>
-      <SectionTitle>Your feelings </SectionTitle>
-    {/*   <div style={{ display: "flex" }}>
-        <div style={{ fontSize: "10px", paddingRight: "5px" }} >Sad</div>
-        <div style={{ backgroundColor: "#607474", width: "40px", height: "14px" }}></div>
-        <div style={{ backgroundColor: "#83A0A0", width: "40px", height: "14px" }}></div>
-        <div style={{ backgroundColor: "#b0c6c6", width: "40px", height: "14px" }}></div>
-        <div style={{ fontSize: "10px", paddingLeft: "5px" }}>Happy</div>
-      </div> */}
-      <CalenderComponent feelings={feelings} />
- {/*      <div style={{ display: "flex" }}>
-        <FilterButtonDay range={range} onClick={() => setRange('day')}>1d</FilterButtonDay>
-        <FilterButtonWeek range={range} onClick={() => setRange('week')}>7d</FilterButtonWeek>
-        <FilterButtonMonth range={range} onClick={() => setRange('month')}>1m</FilterButtonMonth>
-        <FilterButtonYear range={range} onClick={() => setRange('year')}>1y</FilterButtonYear>
-      </div> */}
-      <Graph x={x} y={y} range={range} setRange={setRange}/>
-    </Container>
-  )
+return (
+  <Container>
+    <SectionTitle>Your feelings </SectionTitle>
+    <CalenderComponent feelings={feelings} />
+    <Graph x={x} y={y} range={range} setRange={setRange} />
+  </Container>
+)
 }
 
 export default SummaryPage
