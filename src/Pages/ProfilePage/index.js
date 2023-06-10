@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 import { SectionTitle } from 'styled-components/Titels'
 import FeelingsForm from './Form'
-import Quote from './Quote'
 
 const Profile = () => {
   const accessToken = useSelector(store => store.user.accessToken)
@@ -26,10 +25,6 @@ const Profile = () => {
         accessToken={accessToken} 
         setVisible={setVisible} 
         setFeeling={setFeeling} />
-      <Quote 
-        visible={visible} 
-        setVisible={setVisible} 
-        feeling={feeling} />
     </Container>
   )
 }
