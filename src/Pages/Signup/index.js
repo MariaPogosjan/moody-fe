@@ -79,7 +79,7 @@ const SignUp = () => {
   return (
     <FormSection>
       <SectionTitle>Sign up</SectionTitle>
-      <GoogleLoginComponent text="Sign up"/>
+      {/* <GoogleLoginComponent text="Sign up"/> */}
       <Form onSubmit={onFormSubmit}>
         {errors &&
           <>

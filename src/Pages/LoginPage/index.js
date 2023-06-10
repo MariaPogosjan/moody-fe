@@ -88,7 +88,7 @@ const Login = () => {
   return (
     <FormSection >
       <SectionTitle>Sign in</SectionTitle>
-      <GoogleLoginComponent text="Sign in"/>
+      {/* <GoogleLoginComponent text="Sign in"/> */}
       <Form onSubmit={onFormSubmit}>
         {errors && <ErrorMessage>{errors.message}</ErrorMessage>}
         <Label htmlFor="name">Email or username</Label>

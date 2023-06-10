@@ -1,4 +1,4 @@
-const BASE_URL = 'https://moody-be-77tqxxowdq-lz.a.run.app'
+const BASE_URL = 'http://localhost:8080/'
 
 export const API_URL = (slug) => `${BASE_URL}/${slug}`
 
