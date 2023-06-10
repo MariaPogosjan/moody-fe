@@ -14,8 +14,6 @@ import { Button, ButtonsWrapper } from 'styled-components/Buttons'
 import user from 'reducers/user'
 import { API_URL } from 'reusables/urls'
 
-import GoogleLoginComponent from 'components/GoogleLogin'
-
 const Login = () => {
   const [emailOrUsername, setUsernameOrEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -88,7 +86,6 @@ const Login = () => {
   return (
     <FormSection >
       <SectionTitle>Sign in</SectionTitle>
-      {/* <GoogleLoginComponent text="Sign in"/> */}
       <Form onSubmit={onFormSubmit}>
         {errors && <ErrorMessage>{errors.message}</ErrorMessage>}
         <Label htmlFor="name">Email or username</Label>
